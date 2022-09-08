@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.neighbors`.KNeighborsTransformer
+=====================================================
+
+.. currentmodule:: sklearn.neighbors
+
+.. autoclass:: KNeighborsTransformer
+
+.. include:: sklearn.neighbors.KNeighborsTransformer.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

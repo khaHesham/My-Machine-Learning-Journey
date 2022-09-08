@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.inspection`.DecisionBoundaryDisplay
+========================================================
+
+.. currentmodule:: sklearn.inspection
+
+.. autoclass:: DecisionBoundaryDisplay
+
+.. include:: sklearn.inspection.DecisionBoundaryDisplay.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

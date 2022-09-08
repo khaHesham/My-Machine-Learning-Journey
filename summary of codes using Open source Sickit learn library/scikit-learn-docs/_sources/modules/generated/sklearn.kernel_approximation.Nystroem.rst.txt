@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.kernel_approximation`.Nystroem
+===================================================
+
+.. currentmodule:: sklearn.kernel_approximation
+
+.. autoclass:: Nystroem
+
+.. include:: sklearn.kernel_approximation.Nystroem.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

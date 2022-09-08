@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.preprocessing`.KBinsDiscretizer
+====================================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: KBinsDiscretizer
+
+.. include:: sklearn.preprocessing.KBinsDiscretizer.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.multiclass`.OneVsOneClassifier
+===================================================
+
+.. currentmodule:: sklearn.multiclass
+
+.. autoclass:: OneVsOneClassifier
+
+.. include:: sklearn.multiclass.OneVsOneClassifier.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

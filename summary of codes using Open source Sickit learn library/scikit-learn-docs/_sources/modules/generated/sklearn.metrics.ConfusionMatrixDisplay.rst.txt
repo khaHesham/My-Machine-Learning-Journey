@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.metrics`.ConfusionMatrixDisplay
+====================================================
+
+.. currentmodule:: sklearn.metrics
+
+.. autoclass:: ConfusionMatrixDisplay
+
+.. include:: sklearn.metrics.ConfusionMatrixDisplay.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

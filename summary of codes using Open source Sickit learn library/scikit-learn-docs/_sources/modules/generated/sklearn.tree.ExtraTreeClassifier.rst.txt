@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.tree`.ExtraTreeClassifier
+==============================================
+
+.. currentmodule:: sklearn.tree
+
+.. autoclass:: ExtraTreeClassifier
+
+.. include:: sklearn.tree.ExtraTreeClassifier.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

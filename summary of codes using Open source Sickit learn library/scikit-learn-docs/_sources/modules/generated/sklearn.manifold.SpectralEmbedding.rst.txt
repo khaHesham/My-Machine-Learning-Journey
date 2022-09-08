@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.manifold`.SpectralEmbedding
+================================================
+
+.. currentmodule:: sklearn.manifold
+
+.. autoclass:: SpectralEmbedding
+
+.. include:: sklearn.manifold.SpectralEmbedding.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

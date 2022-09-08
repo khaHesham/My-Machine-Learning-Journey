@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.preprocessing`.KernelCenterer
+==================================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: KernelCenterer
+
+.. include:: sklearn.preprocessing.KernelCenterer.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

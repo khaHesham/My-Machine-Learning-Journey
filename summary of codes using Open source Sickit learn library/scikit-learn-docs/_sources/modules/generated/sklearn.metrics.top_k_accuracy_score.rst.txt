@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.metrics`.top_k_accuracy_score
+========================================================
+
+.. currentmodule:: sklearn.metrics
+
+.. autofunction:: top_k_accuracy_score
+
+.. include:: sklearn.metrics.top_k_accuracy_score.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

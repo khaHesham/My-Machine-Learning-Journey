@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.neural_network`.BernoulliRBM
+=================================================
+
+.. currentmodule:: sklearn.neural_network
+
+.. autoclass:: BernoulliRBM
+
+.. include:: sklearn.neural_network.BernoulliRBM.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

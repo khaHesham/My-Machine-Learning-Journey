@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.svm`.NuSVC
+===============================
+
+.. currentmodule:: sklearn.svm
+
+.. autoclass:: NuSVC
+
+.. include:: sklearn.svm.NuSVC.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

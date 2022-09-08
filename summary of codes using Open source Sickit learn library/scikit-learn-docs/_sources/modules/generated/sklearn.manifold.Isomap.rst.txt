@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.manifold`.Isomap
+=====================================
+
+.. currentmodule:: sklearn.manifold
+
+.. autoclass:: Isomap
+
+.. include:: sklearn.manifold.Isomap.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

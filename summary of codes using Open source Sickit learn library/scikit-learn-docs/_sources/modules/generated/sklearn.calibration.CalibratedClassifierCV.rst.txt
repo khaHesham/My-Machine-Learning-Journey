@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.calibration`.CalibratedClassifierCV
+========================================================
+
+.. currentmodule:: sklearn.calibration
+
+.. autoclass:: CalibratedClassifierCV
+
+.. include:: sklearn.calibration.CalibratedClassifierCV.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

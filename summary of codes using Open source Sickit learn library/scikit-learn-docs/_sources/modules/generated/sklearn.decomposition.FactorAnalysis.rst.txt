@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.decomposition`.FactorAnalysis
+==================================================
+
+.. currentmodule:: sklearn.decomposition
+
+.. autoclass:: FactorAnalysis
+
+.. include:: sklearn.decomposition.FactorAnalysis.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

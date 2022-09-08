@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+<meta property="og:title" content="sklearn.preprocessing.OneHotEncoder" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://scikit-learn/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html" />
+  
+<meta property="og:site_name" content="scikit-learn" />
+  
+<meta property="og:description" content="Examples using sklearn.preprocessing.OneHotEncoder: Release Highlights for scikit-learn 1.1 Release Highlights for scikit-learn 1.1 Release Highlights for scikit-learn 1.0 Release Highlights for sc..." />
+  
+<meta property="og:image" content="https://scikit-learn/stable/_images/sphx_glr_plot_release_highlights_1_1_0_thumb.png" />
+  
+<meta property="og:image:alt" content="Release Highlights for scikit-learn 1.1" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <title>sklearn.preprocessing.OneHotEncoder &mdash; scikit-learn 1.1.2 documentation</title>
+  
+  <link rel="canonical" href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html" />
+
+  
+  <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  <link rel="stylesheet" href="../../_static/css/vendor/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+<script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script> 
+</head>
+<body>
+
+
+
+
+
+
+<nav id="navbar" class="sk-docs-navbar navbar navbar-expand-md navbar-light bg-light py-0">
+  <div class="container-fluid sk-docs-container px-0">
+      <a class="navbar-brand py-0" href="../../index.html">
+        <img
+          class="sk-brand-img"
+          src="../../_static/scikit-learn-logo-small.png"
+          alt="logo"/>
+      </a>
+    <button
+      id="sk-navbar-toggler"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="sk-navbar-collapse collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../install.html">Install</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../user_guide.html">User Guide</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../classes.html">API</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../auto_examples/index.html">Examples</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" target="_blank" rel="noopener noreferrer" href="https://blog.scikit-learn.org/">Community</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../getting_started.html" >Getting Started</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../tutorial/index.html" >Tutorial</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../whats_new/v1.1.html" >What's new</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../glossary.html" >Glossary</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/dev/developers/index.html" target="_blank" rel="noopener noreferrer">Development</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../faq.html" >FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../support.html" >Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../related_projects.html" >Related packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../roadmap.html" >Roadmap</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../about.html" >About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://github.com/scikit-learn/scikit-learn" >GitHub</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/dev/versions.html" >Other Versions and Download</a>
+        </li>
+        <li class="nav-item dropdown nav-more-item-dropdown">
+          <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../getting_started.html" >Getting Started</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../tutorial/index.html" >Tutorial</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../whats_new/v1.1.html" >What's new</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../glossary.html" >Glossary</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/dev/developers/index.html" target="_blank" rel="noopener noreferrer">Development</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../faq.html" >FAQ</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../support.html" >Support</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../related_projects.html" >Related packages</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../roadmap.html" >Roadmap</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../about.html" >About us</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://github.com/scikit-learn/scikit-learn" >GitHub</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/dev/versions.html" >Other Versions and Download</a>
+          </div>
+        </li>
+      </ul>
+      <div id="searchbox" role="search">
+          <div class="searchformwrapper">
+          <form class="search" action="../../search.html" method="get">
+            <input class="sk-search-text-input" type="text" name="q" aria-labelledby="searchlabel" />
+            <input class="sk-search-text-btn" type="submit" value="Go" />
+          </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="d-flex" id="sk-doc-wrapper">
+    <input type="checkbox" name="sk-toggle-checkbox" id="sk-toggle-checkbox">
+    <label id="sk-sidemenu-toggle" class="sk-btn-toggle-toc btn sk-btn-primary" for="sk-toggle-checkbox">Toggle Menu</label>
+    <div id="sk-sidebar-wrapper" class="border-right">
+      <div class="sk-sidebar-toc-wrapper">
+        <div class="sk-sidebar-toc-logo">
+          <a href="../../index.html">
+            <img
+              class="sk-brand-img"
+              src="../../_static/scikit-learn-logo-small.png"
+              alt="logo"/>
+          </a>
+        </div>
+        <div class="btn-group w-100 mb-2" role="group" aria-label="rellinks">
+            <a href="sklearn.preprocessing.Normalizer.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="sklearn.preprocessing.Normalizer">Prev</a><a href="../classes.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="API Reference">Up</a>
+            <a href="sklearn.preprocessing.OrdinalEncoder.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="sklearn.preprocessing.OrdinalEncoder">Next</a>
+        </div>
+        <div class="alert alert-danger p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+          <strong>scikit-learn 1.1.2</strong><br/>
+          <a href="http://scikit-learn.org/dev/versions.html">Other versions</a>
+          </p>
+        </div>
+        <div class="alert alert-warning p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+            Please <a class="font-weight-bold" href="../../about.html#citing-scikit-learn"><string>cite us</string></a> if you use the software.
+          </p>
+        </div>
+            <div class="sk-sidebar-toc">
+              <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sklearn.preprocessing</span></code>.OneHotEncoder</a><ul>
+<li><a class="reference internal" href="#examples-using-sklearn-preprocessing-onehotencoder">Examples using <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.OneHotEncoder</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+      </div>
+    </div>
+    <div id="sk-page-content-wrapper">
+      <div class="sk-page-content container-fluid body px-md-3" role="main">
+        
+  <section id="sklearn-preprocessing-onehotencoder">
+<h1><a class="reference internal" href="../classes.html#module-sklearn.preprocessing" title="sklearn.preprocessing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sklearn.preprocessing</span></code></a>.OneHotEncoder<a class="headerlink" href="#sklearn-preprocessing-onehotencoder" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sklearn.preprocessing.</span></span><span class="sig-name descname"><span class="pre">OneHotEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categories='auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handle_unknown='error'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_frequency=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_categories=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/preprocessing/_encoders.py#L201"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode categorical features as a one-hot numeric array.</p>
+<p>The input to this transformer should be an array-like of integers or
+strings, denoting the values taken on by categorical (discrete) features.
+The features are encoded using a one-hot (aka ‘one-of-K’ or ‘dummy’)
+encoding scheme. This creates a binary column for each category and
+returns a sparse matrix or dense array (depending on the <code class="docutils literal notranslate"><span class="pre">sparse</span></code>
+parameter)</p>
+<p>By default, the encoder derives the categories based on the unique values
+in each feature. Alternatively, you can also specify the <code class="docutils literal notranslate"><span class="pre">categories</span></code>
+manually.</p>
+<p>This encoding is needed for feeding categorical data to many scikit-learn
+estimators, notably linear models and SVMs with the standard kernels.</p>
+<p>Note: a one-hot encoding of y labels should use a LabelBinarizer
+instead.</p>
+<p>Read more in the <a class="reference internal" href="../preprocessing.html#preprocessing-categorical-features"><span class="std std-ref">User Guide</span></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>categories</strong><span class="classifier">‘auto’ or a list of array-like, default=’auto’</span></dt><dd><p>Categories (unique values) per feature:</p>
+<ul class="simple">
+<li><p>‘auto’ : Determine categories automatically from the training data.</p></li>
+<li><p>list : <code class="docutils literal notranslate"><span class="pre">categories[i]</span></code> holds the categories expected in the ith
+column. The passed categories should not mix strings and numeric
+values within a single feature, and should be sorted in case of
+numeric values.</p></li>
+</ul>
+<p>The used categories can be found in the <code class="docutils literal notranslate"><span class="pre">categories_</span></code> attribute.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.20.</span></p>
+</div>
+</dd>
+<dt><strong>drop</strong><span class="classifier">{‘first’, ‘if_binary’} or an array-like of shape (n_features,),             default=None</span></dt><dd><p>Specifies a methodology to use to drop one of the categories per
+feature. This is useful in situations where perfectly collinear
+features cause problems, such as when feeding the resulting data
+into an unregularized linear regression model.</p>
+<p>However, dropping one category breaks the symmetry of the original
+representation and can therefore induce a bias in downstream models,
+for instance for penalized linear classification or regression models.</p>
+<ul class="simple">
+<li><p>None : retain all features (the default).</p></li>
+<li><p>‘first’ : drop the first category in each feature. If only one
+category is present, the feature will be dropped entirely.</p></li>
+<li><p>‘if_binary’ : drop the first category in each feature with two
+categories. Features with 1 or more than 2 categories are
+left intact.</p></li>
+<li><p>array : <code class="docutils literal notranslate"><span class="pre">drop[i]</span></code> is the category in feature <code class="docutils literal notranslate"><span class="pre">X[:,</span> <span class="pre">i]</span></code> that
+should be dropped.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.21: </span>The parameter <code class="docutils literal notranslate"><span class="pre">drop</span></code> was added in 0.21.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.23: </span>The option <code class="docutils literal notranslate"><span class="pre">drop='if_binary'</span></code> was added in 0.23.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.1: </span>Support for dropping infrequent categories.</p>
+</div>
+</dd>
+<dt><strong>sparse</strong><span class="classifier">bool, default=True</span></dt><dd><p>Will return sparse matrix if set True else will return an array.</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">number type, default=float</span></dt><dd><p>Desired dtype of output.</p>
+</dd>
+<dt><strong>handle_unknown</strong><span class="classifier">{‘error’, ‘ignore’, ‘infrequent_if_exist’},                      default=’error’</span></dt><dd><p>Specifies the way unknown categories are handled during <a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.transform" title="sklearn.preprocessing.OneHotEncoder.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transform</span></code></a>.</p>
+<ul class="simple">
+<li><p>‘error’ : Raise an error if an unknown category is present during transform.</p></li>
+<li><p>‘ignore’ : When an unknown category is encountered during
+transform, the resulting one-hot encoded columns for this feature
+will be all zeros. In the inverse transform, an unknown category
+will be denoted as None.</p></li>
+<li><p>‘infrequent_if_exist’ : When an unknown category is encountered
+during transform, the resulting one-hot encoded columns for this
+feature will map to the infrequent category if it exists. The
+infrequent category will be mapped to the last position in the
+encoding. During inverse transform, an unknown category will be
+mapped to the category denoted <code class="docutils literal notranslate"><span class="pre">'infrequent'</span></code> if it exists. If the
+<code class="docutils literal notranslate"><span class="pre">'infrequent'</span></code> category does not exist, then <a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.transform" title="sklearn.preprocessing.OneHotEncoder.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transform</span></code></a> and
+<a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.inverse_transform" title="sklearn.preprocessing.OneHotEncoder.inverse_transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">inverse_transform</span></code></a> will handle an unknown category as with
+<code class="docutils literal notranslate"><span class="pre">handle_unknown='ignore'</span></code>. Infrequent categories exist based on
+<code class="docutils literal notranslate"><span class="pre">min_frequency</span></code> and <code class="docutils literal notranslate"><span class="pre">max_categories</span></code>. Read more in the
+<a class="reference internal" href="../preprocessing.html#one-hot-encoder-infrequent-categories"><span class="std std-ref">User Guide</span></a>.</p></li>
+</ul>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.1: </span><code class="docutils literal notranslate"><span class="pre">'infrequent_if_exist'</span></code> was added to automatically handle unknown
+categories and infrequent categories.</p>
+</div>
+</dd>
+<dt><strong>min_frequency</strong><span class="classifier">int or float, default=None</span></dt><dd><p>Specifies the minimum frequency below which a category will be
+considered infrequent.</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">int</span></code>, categories with a smaller cardinality will be considered
+infrequent.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">float</span></code>, categories with a smaller cardinality than
+<code class="docutils literal notranslate"><span class="pre">min_frequency</span> <span class="pre">*</span> <span class="pre">n_samples</span></code>  will be considered infrequent.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1: </span>Read more in the <a class="reference internal" href="../preprocessing.html#one-hot-encoder-infrequent-categories"><span class="std std-ref">User Guide</span></a>.</p>
+</div>
+</dd>
+<dt><strong>max_categories</strong><span class="classifier">int, default=None</span></dt><dd><p>Specifies an upper limit to the number of output features for each input
+feature when considering infrequent categories. If there are infrequent
+categories, <code class="docutils literal notranslate"><span class="pre">max_categories</span></code> includes the category representing the
+infrequent categories along with the frequent categories. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+there is no limit to the number of output features.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1: </span>Read more in the <a class="reference internal" href="../preprocessing.html#one-hot-encoder-infrequent-categories"><span class="std std-ref">User Guide</span></a>.</p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>categories_</strong><span class="classifier">list of arrays</span></dt><dd><p>The categories of each feature determined during fitting
+(in order of the features in X and corresponding with the output
+of <code class="docutils literal notranslate"><span class="pre">transform</span></code>). This includes the category specified in <code class="docutils literal notranslate"><span class="pre">drop</span></code>
+(if any).</p>
+</dd>
+<dt><strong>drop_idx_</strong><span class="classifier">array of shape (n_features,)</span></dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">drop_idx_[i]</span></code> is the index in <code class="docutils literal notranslate"><span class="pre">categories_[i]</span></code> of the category
+to be dropped for each feature.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drop_idx_[i]</span> <span class="pre">=</span> <span class="pre">None</span></code> if no category is to be dropped from the
+feature with index <code class="docutils literal notranslate"><span class="pre">i</span></code>, e.g. when <code class="docutils literal notranslate"><span class="pre">drop='if_binary'</span></code> and the
+feature isn’t binary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drop_idx_</span> <span class="pre">=</span> <span class="pre">None</span></code> if all the transformed features will be
+retained.</p></li>
+</ul>
+<p>If infrequent categories are enabled by setting <code class="docutils literal notranslate"><span class="pre">min_frequency</span></code> or
+<code class="docutils literal notranslate"><span class="pre">max_categories</span></code> to a non-default value and <code class="docutils literal notranslate"><span class="pre">drop_idx[i]</span></code> corresponds
+to a infrequent category, then the entire infrequent category is
+dropped.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.23: </span>Added the possibility to contain <code class="docutils literal notranslate"><span class="pre">None</span></code> values.</p>
+</div>
+</dd>
+<dt><a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.infrequent_categories_" title="sklearn.preprocessing.OneHotEncoder.infrequent_categories_"><code class="xref py py-obj docutils literal notranslate"><span class="pre">infrequent_categories_</span></code></a><span class="classifier">list of ndarray</span></dt><dd><p>Infrequent categories for each feature.</p>
+</dd>
+<dt><strong>n_features_in_</strong><span class="classifier">int</span></dt><dd><p>Number of features seen during <a class="reference internal" href="../../glossary.html#term-fit"><span class="xref std std-term">fit</span></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.</span></p>
+</div>
+</dd>
+<dt><strong>feature_names_in_</strong><span class="classifier">ndarray of shape (<code class="docutils literal notranslate"><span class="pre">n_features_in_</span></code>,)</span></dt><dd><p>Names of features seen during <a class="reference internal" href="../../glossary.html#term-fit"><span class="xref std std-term">fit</span></a>. Defined only when <code class="docutils literal notranslate"><span class="pre">X</span></code>
+has feature names that are all strings.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="sklearn.preprocessing.OrdinalEncoder.html#sklearn.preprocessing.OrdinalEncoder" title="sklearn.preprocessing.OrdinalEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code></a></dt><dd><p>Performs an ordinal (integer) encoding of the categorical features.</p>
+</dd>
+<dt><a class="reference internal" href="sklearn.feature_extraction.DictVectorizer.html#sklearn.feature_extraction.DictVectorizer" title="sklearn.feature_extraction.DictVectorizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.feature_extraction.DictVectorizer</span></code></a></dt><dd><p>Performs a one-hot encoding of dictionary items (also handles string-valued features).</p>
+</dd>
+<dt><a class="reference internal" href="sklearn.feature_extraction.FeatureHasher.html#sklearn.feature_extraction.FeatureHasher" title="sklearn.feature_extraction.FeatureHasher"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sklearn.feature_extraction.FeatureHasher</span></code></a></dt><dd><p>Performs an approximate one-hot encoding of dictionary items or strings.</p>
+</dd>
+<dt><a class="reference internal" href="sklearn.preprocessing.LabelBinarizer.html#sklearn.preprocessing.LabelBinarizer" title="sklearn.preprocessing.LabelBinarizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LabelBinarizer</span></code></a></dt><dd><p>Binarizes labels in a one-vs-all fashion.</p>
+</dd>
+<dt><a class="reference internal" href="sklearn.preprocessing.MultiLabelBinarizer.html#sklearn.preprocessing.MultiLabelBinarizer" title="sklearn.preprocessing.MultiLabelBinarizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiLabelBinarizer</span></code></a></dt><dd><p>Transforms between iterable of iterables and a multilabel format, e.g. a (samples x classes) binary matrix indicating the presence of a class label.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>Given a dataset with two features, we let the encoder find the unique
+values per feature and transform the data to a binary one-hot encoding.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+</pre></div>
+</div>
+<p>One can discard categories not seen during <code class="docutils literal notranslate"><span class="pre">fit</span></code>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">enc</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Male&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Female&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Female&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">OneHotEncoder(handle_unknown=&#39;ignore&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enc</span><span class="o">.</span><span class="n">categories_</span>
+<span class="go">[array([&#39;Female&#39;, &#39;Male&#39;], dtype=object), array([1, 2, 3], dtype=object)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s1">&#39;Female&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Male&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="go">array([[1., 0., 1., 0., 0.],</span>
+<span class="go">       [0., 1., 0., 0., 0.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enc</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="go">array([[&#39;Male&#39;, 1],</span>
+<span class="go">       [None, 2]], dtype=object)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enc</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">([</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">])</span>
+<span class="go">array([&#39;gender_Female&#39;, &#39;gender_Male&#39;, &#39;group_1&#39;, &#39;group_2&#39;, &#39;group_3&#39;], ...)</span>
+</pre></div>
+</div>
+<p>One can always drop the first column for each feature:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">drop_enc</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">drop_enc</span><span class="o">.</span><span class="n">categories_</span>
+<span class="go">[array([&#39;Female&#39;, &#39;Male&#39;], dtype=object), array([1, 2, 3], dtype=object)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">drop_enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s1">&#39;Female&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Male&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="go">array([[0., 0., 0.],</span>
+<span class="go">       [1., 1., 0.]])</span>
+</pre></div>
+</div>
+<p>Or drop a column for feature only having 2 categories:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">drop_binary_enc</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s1">&#39;if_binary&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">drop_binary_enc</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s1">&#39;Female&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Male&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="go">array([[0., 1., 0., 0.],</span>
+<span class="go">       [1., 0., 1., 0.]])</span>
+</pre></div>
+</div>
+<p>Infrequent categories are enabled by setting <code class="docutils literal notranslate"><span class="pre">max_categories</span></code> or <code class="docutils literal notranslate"><span class="pre">min_frequency</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;d&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ohe</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">max_categories</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ohe</span><span class="o">.</span><span class="n">infrequent_categories_</span>
+<span class="go">[array([&#39;a&#39;, &#39;d&#39;], dtype=object)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ohe</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="s2">&quot;a&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]])</span>
+<span class="go">array([[0., 0., 1.],</span>
+<span class="go">       [1., 0., 0.]])</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.fit" title="sklearn.preprocessing.OneHotEncoder.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X[, y])</p></td>
+<td><p>Fit OneHotEncoder to X.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.fit_transform" title="sklearn.preprocessing.OneHotEncoder.fit_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_transform</span></code></a>(X[, y])</p></td>
+<td><p>Fit OneHotEncoder to X, then transform X.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.get_feature_names" title="sklearn.preprocessing.OneHotEncoder.get_feature_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_feature_names</span></code></a>([input_features])</p></td>
+<td><p>DEPRECATED: get_feature_names is deprecated in 1.0 and will be removed in 1.2.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.get_feature_names_out" title="sklearn.preprocessing.OneHotEncoder.get_feature_names_out"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_feature_names_out</span></code></a>([input_features])</p></td>
+<td><p>Get output feature names for transformation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.get_params" title="sklearn.preprocessing.OneHotEncoder.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<td><p>Get parameters for this estimator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.inverse_transform" title="sklearn.preprocessing.OneHotEncoder.inverse_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_transform</span></code></a>(X)</p></td>
+<td><p>Convert the data back to the original representation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.set_params" title="sklearn.preprocessing.OneHotEncoder.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<td><p>Set the parameters of this estimator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sklearn.preprocessing.OneHotEncoder.transform" title="sklearn.preprocessing.OneHotEncoder.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(X)</p></td>
+<td><p>Transform X using one-hot encoding.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/preprocessing/_encoders.py#L799"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit OneHotEncoder to X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>The data to determine the categories of each feature.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">None</span></dt><dd><p>Ignored. This parameter exists only for compatibility with
+<a class="reference internal" href="sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="sklearn.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>self</dt><dd><p>Fitted encoder.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/preprocessing/_encoders.py#L832"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit OneHotEncoder to X, then transform X.</p>
+<p>Equivalent to fit(X).transform(X) but more convenient.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>The data to encode.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">None</span></dt><dd><p>Ignored. This parameter exists only for compatibility with
+<a class="reference internal" href="sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="sklearn.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X_out</strong><span class="classifier">{ndarray, sparse matrix} of shape                 (n_samples, n_encoded_features)</span></dt><dd><p>Transformed input. If <code class="docutils literal notranslate"><span class="pre">sparse=True</span></code>, a sparse matrix will be
+returned.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder.get_feature_names">
+<span class="sig-name descname"><span class="pre">get_feature_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/preprocessing/_encoders.py#L1041"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder.get_feature_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>DEPRECATED: get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.</p>
+<p>Return feature names for output features.</p>
+<blockquote>
+<div><p>For a given input feature, if there is an infrequent category, the most
+‘infrequent_sklearn’ will be used as a feature name.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>input_features</strong><span class="classifier">list of str of shape (n_features,)</span></dt><dd><p>String names for input features if available. By default,
+“x0”, “x1”, … “xn_features” is used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>output_feature_names</strong><span class="classifier">ndarray of shape (n_output_features,)</span></dt><dd><p>Array of feature names.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder.get_feature_names_out">
+<span class="sig-name descname"><span class="pre">get_feature_names_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/preprocessing/_encoders.py#L1082"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder.get_feature_names_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get output feature names for transformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>input_features</strong><span class="classifier">array-like of str or None, default=None</span></dt><dd><p>Input features.</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">input_features</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, then <code class="docutils literal notranslate"><span class="pre">feature_names_in_</span></code> is
+used as feature names in. If <code class="docutils literal notranslate"><span class="pre">feature_names_in_</span></code> is not defined,
+then the following input feature names are generated:
+<code class="docutils literal notranslate"><span class="pre">[&quot;x0&quot;,</span> <span class="pre">&quot;x1&quot;,</span> <span class="pre">...,</span> <span class="pre">&quot;x(n_features_in_</span> <span class="pre">-</span> <span class="pre">1)&quot;]</span></code>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">input_features</span></code> is an array-like, then <code class="docutils literal notranslate"><span class="pre">input_features</span></code> must
+match <code class="docutils literal notranslate"><span class="pre">feature_names_in_</span></code> if <code class="docutils literal notranslate"><span class="pre">feature_names_in_</span></code> is defined.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>feature_names_out</strong><span class="classifier">ndarray of str objects</span></dt><dd><p>Transformed feature names.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/base.py#L194"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>deep</strong><span class="classifier">bool, default=True</span></dt><dd><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>params</strong><span class="classifier">dict</span></dt><dd><p>Parameter names mapped to their values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder.infrequent_categories_">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">infrequent_categories_</span></span><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder.infrequent_categories_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Infrequent categories for each feature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder.inverse_transform">
+<span class="sig-name descname"><span class="pre">inverse_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/preprocessing/_encoders.py#L927"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder.inverse_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the data back to the original representation.</p>
+<p>When unknown categories are encountered (all zeros in the
+one-hot encoding), <code class="docutils literal notranslate"><span class="pre">None</span></code> is used to represent this category. If the
+feature with the unknown category has a dropped category, the dropped
+category will be its inverse.</p>
+<p>For a given input feature, if there is an infrequent category,
+‘infrequent_sklearn’ will be used to represent the infrequent category.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">{array-like, sparse matrix} of shape                 (n_samples, n_encoded_features)</span></dt><dd><p>The transformed data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X_tr</strong><span class="classifier">ndarray of shape (n_samples, n_features)</span></dt><dd><p>Inverse transformed array.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/base.py#L218"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <a class="reference internal" href="sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="sklearn.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**params</strong><span class="classifier">dict</span></dt><dd><p>Estimator parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">estimator instance</span></dt><dd><p>Estimator instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.preprocessing.OneHotEncoder.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/preprocessing/_encoders.py#L857"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.preprocessing.OneHotEncoder.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform X using one-hot encoding.</p>
+<p>If there are infrequent categories for a feature, the infrequent
+categories will be grouped into a single category.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>The data to encode.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>X_out</strong><span class="classifier">{ndarray, sparse matrix} of shape                 (n_samples, n_encoded_features)</span></dt><dd><p>Transformed input. If <code class="docutils literal notranslate"><span class="pre">sparse=True</span></code>, a sparse matrix will be
+returned.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples-using-sklearn-preprocessing-onehotencoder">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.OneHotEncoder</span></code><a class="headerlink" href="#examples-using-sklearn-preprocessing-onehotencoder" title="Permalink to this heading">¶</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="We are pleased to announce the release of scikit-learn 1.1! Many bug fixes and improvements wer..."><img alt="Release Highlights for scikit-learn 1.1" src="../../_images/sphx_glr_plot_release_highlights_1_1_0_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/release_highlights/plot_release_highlights_1_1_0.html#sphx-glr-auto-examples-release-highlights-plot-release-highlights-1-1-0-py"><span class="std std-ref">Release Highlights for scikit-learn 1.1</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Release Highlights for scikit-learn 1.1</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="We are very pleased to announce the release of scikit-learn 1.0! The library has been stable fo..."><img alt="Release Highlights for scikit-learn 1.0" src="../../_images/sphx_glr_plot_release_highlights_1_0_0_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/release_highlights/plot_release_highlights_1_0_0.html#sphx-glr-auto-examples-release-highlights-plot-release-highlights-1-0-0-py"><span class="std std-ref">Release Highlights for scikit-learn 1.0</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Release Highlights for scikit-learn 1.0</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="We are pleased to announce the release of scikit-learn 0.23! Many bug fixes and improvements we..."><img alt="Release Highlights for scikit-learn 0.23" src="../../_images/sphx_glr_plot_release_highlights_0_23_0_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/release_highlights/plot_release_highlights_0_23_0.html#sphx-glr-auto-examples-release-highlights-plot-release-highlights-0-23-0-py"><span class="std std-ref">Release Highlights for scikit-learn 0.23</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Release Highlights for scikit-learn 0.23</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In this example, we will compare the training times and prediction performances of HistGradient..."><img alt="Categorical Feature Support in Gradient Boosting" src="../../_images/sphx_glr_plot_gradient_boosting_categorical_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/ensemble/plot_gradient_boosting_categorical.html#sphx-glr-auto-examples-ensemble-plot-gradient-boosting-categorical-py"><span class="std std-ref">Categorical Feature Support in Gradient Boosting</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Categorical Feature Support in Gradient Boosting</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Stacking refers to a method to blend estimators. In this strategy, some estimators are individu..."><img alt="Combine predictors using stacking" src="../../_images/sphx_glr_plot_stack_predictors_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/ensemble/plot_stack_predictors.html#sphx-glr-auto-examples-ensemble-plot-stack-predictors-py"><span class="std std-ref">Combine predictors using stacking</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Combine predictors using stacking</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Transform your features into a higher dimensional, sparse space. Then train a linear model on t..."><img alt="Feature transformations with ensembles of trees" src="../../_images/sphx_glr_plot_feature_transformation_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/ensemble/plot_feature_transformation.html#sphx-glr-auto-examples-ensemble-plot-feature-transformation-py"><span class="std std-ref">Feature transformations with ensembles of trees</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Feature transformations with ensembles of trees</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This notebook introduces different strategies to leverage time-related features for a bike shar..."><img alt="Time-related feature engineering" src="../../_images/sphx_glr_plot_cyclical_feature_engineering_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/applications/plot_cyclical_feature_engineering.html#sphx-glr-auto-examples-applications-plot-cyclical-feature-engineering-py"><span class="std std-ref">Time-related feature engineering</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Time-related feature engineering</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example illustrates the use of log-linear Poisson regression on the `French Motor Third-Pa..."><img alt="Poisson regression and non-normal loss" src="../../_images/sphx_glr_plot_poisson_regression_non_normal_loss_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_poisson_regression_non_normal_loss.html#sphx-glr-auto-examples-linear-model-plot-poisson-regression-non-normal-loss-py"><span class="std std-ref">Poisson regression and non-normal loss</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Poisson regression and non-normal loss</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example illustrates the use of Poisson, Gamma and Tweedie regression on the `French Motor ..."><img alt="Tweedie regression on insurance claims" src="../../_images/sphx_glr_plot_tweedie_regression_insurance_claims_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_tweedie_regression_insurance_claims.html#sphx-glr-auto-examples-linear-model-plot-tweedie-regression-insurance-claims-py"><span class="std std-ref">Tweedie regression on insurance claims</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Tweedie regression on insurance claims</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In linear models, the target value is modeled as a linear combination of the features (see the ..."><img alt="Common pitfalls in the interpretation of coefficients of linear models" src="../../_images/sphx_glr_plot_linear_model_coefficient_interpretation_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#sphx-glr-auto-examples-inspection-plot-linear-model-coefficient-interpretation-py"><span class="std std-ref">Common pitfalls in the interpretation of coefficients of linear models</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Common pitfalls in the interpretation of coefficients of linear models</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The default configuration for displaying a pipeline in a Jupyter Notebook is &#x27;diagram&#x27; where se..."><img alt="Displaying Pipelines" src="../../_images/sphx_glr_plot_pipeline_display_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/miscellaneous/plot_pipeline_display.html#sphx-glr-auto-examples-miscellaneous-plot-pipeline-display-py"><span class="std std-ref">Displaying Pipelines</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Displaying Pipelines</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example illustrates how to apply different preprocessing and feature extraction pipelines ..."><img alt="Column Transformer with Mixed Types" src="../../_images/sphx_glr_plot_column_transformer_mixed_types_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/compose/plot_column_transformer_mixed_types.html#sphx-glr-auto-examples-compose-plot-column-transformer-mixed-types-py"><span class="std std-ref">Column Transformer with Mixed Types</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Column Transformer with Mixed Types</div>
+</div></div><div class="clearer"></div></section>
+</section>
+
+
+      </div>
+    <div class="container">
+      <footer class="sk-content-footer">
+            &copy; 2007 - 2022, scikit-learn developers (BSD License).
+          <a href="../../_sources/modules/generated/sklearn.preprocessing.OneHotEncoder.rst.txt" rel="nofollow">Show this page source</a>
+      </footer>
+    </div>
+  </div>
+</div>
+<script src="../../_static/js/vendor/bootstrap.min.js"></script>
+
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-22606712-2', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script>
+$(document).ready(function() {
+    /* Add a [>>>] button on the top-right corner of code samples to hide
+     * the >>> and ... prompts and the output and thus make the code
+     * copyable. */
+    var div = $('.highlight-python .highlight,' +
+                '.highlight-python3 .highlight,' +
+                '.highlight-pycon .highlight,' +
+		'.highlight-default .highlight')
+    var pre = div.find('pre');
+
+    // get the styles from the current theme
+    pre.parent().parent().css('position', 'relative');
+    var hide_text = 'Hide prompts and outputs';
+    var show_text = 'Show prompts and outputs';
+
+    // create and add the button to all the code blocks that contain >>>
+    div.each(function(index) {
+        var jthis = $(this);
+        if (jthis.find('.gp').length > 0) {
+            var button = $('<span class="copybutton">&gt;&gt;&gt;</span>');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+            jthis.prepend(button);
+        }
+        // tracebacks (.gt) contain bare text elements that need to be
+        // wrapped in a span to work with .nextUntil() (see later)
+        jthis.find('pre:has(.gt)').contents().filter(function() {
+            return ((this.nodeType == 3) && (this.data.trim().length > 0));
+        }).wrap('<span>');
+    });
+
+    // define the behavior of the button when it's clicked
+    $('.copybutton').click(function(e){
+        e.preventDefault();
+        var button = $(this);
+        if (button.data('hidden') === 'false') {
+            // hide the code output
+            button.parent().find('.go, .gp, .gt').hide();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'hidden');
+            button.css('text-decoration', 'line-through');
+            button.attr('title', show_text);
+            button.data('hidden', 'true');
+        } else {
+            // show the code output
+            button.parent().find('.go, .gp, .gt').show();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'visible');
+            button.css('text-decoration', 'none');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+        }
+    });
+
+	/*** Add permalink buttons next to glossary terms ***/
+	$('dl.glossary > dt[id]').append(function() {
+		return ('<a class="headerlink" href="#' +
+			    this.getAttribute('id') +
+			    '" title="Permalink to this term">¶</a>');
+	});
+  /*** Hide navbar when scrolling down ***/
+  // Returns true when headerlink target matches hash in url
+  (function() {
+    hashTargetOnTop = function() {
+        var hash = window.location.hash;
+        if ( hash.length < 2 ) { return false; }
+
+        var target = document.getElementById( hash.slice(1) );
+        if ( target === null ) { return false; }
+
+        var top = target.getBoundingClientRect().top;
+        return (top < 2) && (top > -2);
+    };
+
+    // Hide navbar on load if hash target is on top
+    var navBar = document.getElementById("navbar");
+    var navBarToggler = document.getElementById("sk-navbar-toggler");
+    var navBarHeightHidden = "-" + navBar.getBoundingClientRect().height + "px";
+    var $window = $(window);
+
+    hideNavBar = function() {
+        navBar.style.top = navBarHeightHidden;
+    };
+
+    showNavBar = function() {
+        navBar.style.top = "0";
+    }
+
+    if (hashTargetOnTop()) {
+        hideNavBar()
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    hideOnScroll = function(lastScrollTop) {
+        if (($window.width() < 768) && (navBarToggler.getAttribute("aria-expanded") === 'true')) {
+            return;
+        }
+        if (lastScrollTop > 2 && (prevScrollpos <= lastScrollTop) || hashTargetOnTop()){
+            hideNavBar()
+        } else {
+            showNavBar()
+        }
+        prevScrollpos = lastScrollTop;
+    };
+
+    /*** high performance scroll event listener***/
+    var raf = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        window.oRequestAnimationFrame;
+    var lastScrollTop = $window.scrollTop();
+
+    if (raf) {
+        loop();
+    }
+
+    function loop() {
+        var scrollTop = $window.scrollTop();
+        if (lastScrollTop === scrollTop) {
+            raf(loop);
+            return;
+        } else {
+            lastScrollTop = scrollTop;
+            hideOnScroll(lastScrollTop);
+            raf(loop);
+        }
+    }
+  })();
+});
+
+</script>
+    
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    
+</body>
+</html>

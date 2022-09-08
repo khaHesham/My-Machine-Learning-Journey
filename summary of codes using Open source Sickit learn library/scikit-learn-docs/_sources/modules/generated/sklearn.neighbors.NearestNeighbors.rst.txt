@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.neighbors`.NearestNeighbors
+================================================
+
+.. currentmodule:: sklearn.neighbors
+
+.. autoclass:: NearestNeighbors
+
+.. include:: sklearn.neighbors.NearestNeighbors.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

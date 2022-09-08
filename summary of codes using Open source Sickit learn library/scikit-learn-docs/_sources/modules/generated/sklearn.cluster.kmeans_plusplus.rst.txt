@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.cluster`.kmeans_plusplus
+===================================================
+
+.. currentmodule:: sklearn.cluster
+
+.. autofunction:: kmeans_plusplus
+
+.. include:: sklearn.cluster.kmeans_plusplus.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

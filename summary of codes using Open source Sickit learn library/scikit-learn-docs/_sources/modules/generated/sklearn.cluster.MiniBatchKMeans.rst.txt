@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.cluster`.MiniBatchKMeans
+=============================================
+
+.. currentmodule:: sklearn.cluster
+
+.. autoclass:: MiniBatchKMeans
+
+.. include:: sklearn.cluster.MiniBatchKMeans.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

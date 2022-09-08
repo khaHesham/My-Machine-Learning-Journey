@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.tree`.DecisionTreeRegressor
+================================================
+
+.. currentmodule:: sklearn.tree
+
+.. autoclass:: DecisionTreeRegressor
+
+.. include:: sklearn.tree.DecisionTreeRegressor.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

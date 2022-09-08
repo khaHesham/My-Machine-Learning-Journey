@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.covariance`.MinCovDet
+==========================================
+
+.. currentmodule:: sklearn.covariance
+
+.. autoclass:: MinCovDet
+
+.. include:: sklearn.covariance.MinCovDet.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

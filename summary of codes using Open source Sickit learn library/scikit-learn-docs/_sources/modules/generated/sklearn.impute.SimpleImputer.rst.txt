@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.impute`.SimpleImputer
+==========================================
+
+.. currentmodule:: sklearn.impute
+
+.. autoclass:: SimpleImputer
+
+.. include:: sklearn.impute.SimpleImputer.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

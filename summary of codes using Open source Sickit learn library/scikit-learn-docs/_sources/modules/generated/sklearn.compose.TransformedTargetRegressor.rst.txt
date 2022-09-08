@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.compose`.TransformedTargetRegressor
+========================================================
+
+.. currentmodule:: sklearn.compose
+
+.. autoclass:: TransformedTargetRegressor
+
+.. include:: sklearn.compose.TransformedTargetRegressor.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

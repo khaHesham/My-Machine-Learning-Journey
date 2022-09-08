@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.decomposition`.LatentDirichletAllocation
+=============================================================
+
+.. currentmodule:: sklearn.decomposition
+
+.. autoclass:: LatentDirichletAllocation
+
+.. include:: sklearn.decomposition.LatentDirichletAllocation.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

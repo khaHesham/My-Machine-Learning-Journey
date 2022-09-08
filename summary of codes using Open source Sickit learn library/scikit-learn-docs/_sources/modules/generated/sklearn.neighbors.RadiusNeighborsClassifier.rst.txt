@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.neighbors`.RadiusNeighborsClassifier
+=========================================================
+
+.. currentmodule:: sklearn.neighbors
+
+.. autoclass:: RadiusNeighborsClassifier
+
+.. include:: sklearn.neighbors.RadiusNeighborsClassifier.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.cross_decomposition`.PLSRegression
+=======================================================
+
+.. currentmodule:: sklearn.cross_decomposition
+
+.. autoclass:: PLSRegression
+
+.. include:: sklearn.cross_decomposition.PLSRegression.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

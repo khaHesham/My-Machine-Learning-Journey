@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.metrics`.DetCurveDisplay
+=============================================
+
+.. currentmodule:: sklearn.metrics
+
+.. autoclass:: DetCurveDisplay
+
+.. include:: sklearn.metrics.DetCurveDisplay.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

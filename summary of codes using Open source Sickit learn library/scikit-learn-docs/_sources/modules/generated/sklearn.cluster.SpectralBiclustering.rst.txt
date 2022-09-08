@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.cluster`.SpectralBiclustering
+==================================================
+
+.. currentmodule:: sklearn.cluster
+
+.. autoclass:: SpectralBiclustering
+
+.. include:: sklearn.cluster.SpectralBiclustering.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.metrics`.RocCurveDisplay
+=============================================
+
+.. currentmodule:: sklearn.metrics
+
+.. autoclass:: RocCurveDisplay
+
+.. include:: sklearn.metrics.RocCurveDisplay.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

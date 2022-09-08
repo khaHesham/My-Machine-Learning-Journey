@@ -1,0 +1,980 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+<meta property="og:title" content="sklearn.linear_model.LogisticRegression" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://scikit-learn/stable/modules/generated/sklearn.linear_model.LogisticRegression.html" />
+  
+<meta property="og:site_name" content="scikit-learn" />
+  
+<meta property="og:description" content="Examples using sklearn.linear_model.LogisticRegression: Release Highlights for scikit-learn 1.1 Release Highlights for scikit-learn 1.1 Release Highlights for scikit-learn 1.0 Release Highlights fo..." />
+  
+<meta property="og:image" content="https://scikit-learn/stable/_images/sphx_glr_plot_release_highlights_1_1_0_thumb.png" />
+  
+<meta property="og:image:alt" content="Release Highlights for scikit-learn 1.1" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <title>sklearn.linear_model.LogisticRegression &mdash; scikit-learn 1.1.2 documentation</title>
+  
+  <link rel="canonical" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html" />
+
+  
+  <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  <link rel="stylesheet" href="../../_static/css/vendor/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+<script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+<script src="../../_static/jquery.js"></script> 
+</head>
+<body>
+
+
+
+
+
+
+<nav id="navbar" class="sk-docs-navbar navbar navbar-expand-md navbar-light bg-light py-0">
+  <div class="container-fluid sk-docs-container px-0">
+      <a class="navbar-brand py-0" href="../../index.html">
+        <img
+          class="sk-brand-img"
+          src="../../_static/scikit-learn-logo-small.png"
+          alt="logo"/>
+      </a>
+    <button
+      id="sk-navbar-toggler"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="sk-navbar-collapse collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../install.html">Install</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../user_guide.html">User Guide</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../classes.html">API</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../../auto_examples/index.html">Examples</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" target="_blank" rel="noopener noreferrer" href="https://blog.scikit-learn.org/">Community</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../getting_started.html" >Getting Started</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../tutorial/index.html" >Tutorial</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../whats_new/v1.1.html" >What's new</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../glossary.html" >Glossary</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/dev/developers/index.html" target="_blank" rel="noopener noreferrer">Development</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../faq.html" >FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../support.html" >Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../related_projects.html" >Related packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../roadmap.html" >Roadmap</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../../about.html" >About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://github.com/scikit-learn/scikit-learn" >GitHub</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/dev/versions.html" >Other Versions and Download</a>
+        </li>
+        <li class="nav-item dropdown nav-more-item-dropdown">
+          <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../getting_started.html" >Getting Started</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../tutorial/index.html" >Tutorial</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../whats_new/v1.1.html" >What's new</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../glossary.html" >Glossary</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/dev/developers/index.html" target="_blank" rel="noopener noreferrer">Development</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../faq.html" >FAQ</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../support.html" >Support</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../related_projects.html" >Related packages</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../roadmap.html" >Roadmap</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../../about.html" >About us</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://github.com/scikit-learn/scikit-learn" >GitHub</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/dev/versions.html" >Other Versions and Download</a>
+          </div>
+        </li>
+      </ul>
+      <div id="searchbox" role="search">
+          <div class="searchformwrapper">
+          <form class="search" action="../../search.html" method="get">
+            <input class="sk-search-text-input" type="text" name="q" aria-labelledby="searchlabel" />
+            <input class="sk-search-text-btn" type="submit" value="Go" />
+          </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="d-flex" id="sk-doc-wrapper">
+    <input type="checkbox" name="sk-toggle-checkbox" id="sk-toggle-checkbox">
+    <label id="sk-sidemenu-toggle" class="sk-btn-toggle-toc btn sk-btn-primary" for="sk-toggle-checkbox">Toggle Menu</label>
+    <div id="sk-sidebar-wrapper" class="border-right">
+      <div class="sk-sidebar-toc-wrapper">
+        <div class="sk-sidebar-toc-logo">
+          <a href="../../index.html">
+            <img
+              class="sk-brand-img"
+              src="../../_static/scikit-learn-logo-small.png"
+              alt="logo"/>
+          </a>
+        </div>
+        <div class="btn-group w-100 mb-2" role="group" aria-label="rellinks">
+            <a href="sklearn.kernel_ridge.KernelRidge.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="sklearn.kernel_ridge.KernelRidge">Prev</a><a href="../classes.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="API Reference">Up</a>
+            <a href="sklearn.linear_model.LogisticRegressionCV.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="sklearn.linear_model.LogisticRegressionCV">Next</a>
+        </div>
+        <div class="alert alert-danger p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+          <strong>scikit-learn 1.1.2</strong><br/>
+          <a href="http://scikit-learn.org/dev/versions.html">Other versions</a>
+          </p>
+        </div>
+        <div class="alert alert-warning p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+            Please <a class="font-weight-bold" href="../../about.html#citing-scikit-learn"><string>cite us</string></a> if you use the software.
+          </p>
+        </div>
+            <div class="sk-sidebar-toc">
+              <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sklearn.linear_model</span></code>.LogisticRegression</a><ul>
+<li><a class="reference internal" href="#examples-using-sklearn-linear-model-logisticregression">Examples using <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegression</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+      </div>
+    </div>
+    <div id="sk-page-content-wrapper">
+      <div class="sk-page-content container-fluid body px-md-3" role="main">
+        
+  <section id="sklearn-linear-model-logisticregression">
+<h1><a class="reference internal" href="../classes.html#module-sklearn.linear_model" title="sklearn.linear_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sklearn.linear_model</span></code></a>.LogisticRegression<a class="headerlink" href="#sklearn-linear-model-logisticregression" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sklearn.linear_model.</span></span><span class="sig-name descname"><span class="pre">LogisticRegression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">penalty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'l2'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intercept_scaling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lbfgs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warm_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l1_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/linear_model/_logistic.py#L754"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logistic Regression (aka logit, MaxEnt) classifier.</p>
+<p>In the multiclass case, the training algorithm uses the one-vs-rest (OvR)
+scheme if the ‘multi_class’ option is set to ‘ovr’, and uses the
+cross-entropy loss if the ‘multi_class’ option is set to ‘multinomial’.
+(Currently the ‘multinomial’ option is supported only by the ‘lbfgs’,
+‘sag’, ‘saga’ and ‘newton-cg’ solvers.)</p>
+<p>This class implements regularized logistic regression using the
+‘liblinear’ library, ‘newton-cg’, ‘sag’, ‘saga’ and ‘lbfgs’ solvers. <strong>Note
+that regularization is applied by default</strong>. It can handle both dense
+and sparse input. Use C-ordered arrays or CSR matrices containing 64-bit
+floats for optimal performance; any other input format will be converted
+(and copied).</p>
+<p>The ‘newton-cg’, ‘sag’, and ‘lbfgs’ solvers support only L2 regularization
+with primal formulation, or no regularization. The ‘liblinear’ solver
+supports both L1 and L2 regularization, with a dual formulation only for
+the L2 penalty. The Elastic-Net regularization is only supported by the
+‘saga’ solver.</p>
+<p>Read more in the <a class="reference internal" href="../linear_model.html#logistic-regression"><span class="std std-ref">User Guide</span></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>penalty</strong><span class="classifier">{‘l1’, ‘l2’, ‘elasticnet’, ‘none’}, default=’l2’</span></dt><dd><p>Specify the norm of the penalty:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'none'</span></code>: no penalty is added;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'l2'</span></code>: add a L2 penalty term and it is the default choice;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'l1'</span></code>: add a L1 penalty term;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'elasticnet'</span></code>: both L1 and L2 penalty terms are added.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Some penalties may not work with some solvers. See the parameter
+<code class="docutils literal notranslate"><span class="pre">solver</span></code> below, to know the compatibility between the penalty and
+solver.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.19: </span>l1 penalty with SAGA solver (allowing ‘multinomial’ + L1)</p>
+</div>
+</dd>
+<dt><strong>dual</strong><span class="classifier">bool, default=False</span></dt><dd><p>Dual or primal formulation. Dual formulation is only implemented for
+l2 penalty with liblinear solver. Prefer dual=False when
+n_samples &gt; n_features.</p>
+</dd>
+<dt><strong>tol</strong><span class="classifier">float, default=1e-4</span></dt><dd><p>Tolerance for stopping criteria.</p>
+</dd>
+<dt><strong>C</strong><span class="classifier">float, default=1.0</span></dt><dd><p>Inverse of regularization strength; must be a positive float.
+Like in support vector machines, smaller values specify stronger
+regularization.</p>
+</dd>
+<dt><strong>fit_intercept</strong><span class="classifier">bool, default=True</span></dt><dd><p>Specifies if a constant (a.k.a. bias or intercept) should be
+added to the decision function.</p>
+</dd>
+<dt><strong>intercept_scaling</strong><span class="classifier">float, default=1</span></dt><dd><p>Useful only when the solver ‘liblinear’ is used
+and self.fit_intercept is set to True. In this case, x becomes
+[x, self.intercept_scaling],
+i.e. a “synthetic” feature with constant value equal to
+intercept_scaling is appended to the instance vector.
+The intercept becomes <code class="docutils literal notranslate"><span class="pre">intercept_scaling</span> <span class="pre">*</span> <span class="pre">synthetic_feature_weight</span></code>.</p>
+<p>Note! the synthetic feature weight is subject to l1/l2 regularization
+as all other features.
+To lessen the effect of regularization on synthetic feature weight
+(and therefore on the intercept) intercept_scaling has to be increased.</p>
+</dd>
+<dt><strong>class_weight</strong><span class="classifier">dict or ‘balanced’, default=None</span></dt><dd><p>Weights associated with classes in the form <code class="docutils literal notranslate"><span class="pre">{class_label:</span> <span class="pre">weight}</span></code>.
+If not given, all classes are supposed to have weight one.</p>
+<p>The “balanced” mode uses the values of y to automatically adjust
+weights inversely proportional to class frequencies in the input data
+as <code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">/</span> <span class="pre">(n_classes</span> <span class="pre">*</span> <span class="pre">np.bincount(y))</span></code>.</p>
+<p>Note that these weights will be multiplied with sample_weight (passed
+through the fit method) if sample_weight is specified.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.17: </span><em>class_weight=’balanced’</em></p>
+</div>
+</dd>
+<dt><strong>random_state</strong><span class="classifier">int, RandomState instance, default=None</span></dt><dd><p>Used when <code class="docutils literal notranslate"><span class="pre">solver</span></code> == ‘sag’, ‘saga’ or ‘liblinear’ to shuffle the
+data. See <a class="reference internal" href="../../glossary.html#term-random_state"><span class="xref std std-term">Glossary</span></a> for details.</p>
+</dd>
+<dt><strong>solver</strong><span class="classifier">{‘newton-cg’, ‘lbfgs’, ‘liblinear’, ‘sag’, ‘saga’},             default=’lbfgs’</span></dt><dd><p>Algorithm to use in the optimization problem. Default is ‘lbfgs’.
+To choose a solver, you might want to consider the following aspects:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For small datasets, ‘liblinear’ is a good choice, whereas ‘sag’
+and ‘saga’ are faster for large ones;</p></li>
+<li><p>For multiclass problems, only ‘newton-cg’, ‘sag’, ‘saga’ and
+‘lbfgs’ handle multinomial loss;</p></li>
+<li><p>‘liblinear’ is limited to one-versus-rest schemes.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The choice of the algorithm depends on the penalty chosen:
+Supported penalties by solver:</p>
+<ul class="simple">
+<li><p>‘newton-cg’   -   [‘l2’, ‘none’]</p></li>
+<li><p>‘lbfgs’       -   [‘l2’, ‘none’]</p></li>
+<li><p>‘liblinear’   -   [‘l1’, ‘l2’]</p></li>
+<li><p>‘sag’         -   [‘l2’, ‘none’]</p></li>
+<li><p>‘saga’        -   [‘elasticnet’, ‘l1’, ‘l2’, ‘none’]</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>‘sag’ and ‘saga’ fast convergence is only guaranteed on
+features with approximately the same scale. You can
+preprocess the data with a scaler from <a class="reference internal" href="../classes.html#module-sklearn.preprocessing" title="sklearn.preprocessing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sklearn.preprocessing</span></code></a>.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Refer to the User Guide for more information regarding
+<a class="reference internal" href="#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> and more specifically the
+<a class="reference internal" href="../linear_model.html#logistic-regression"><span class="std std-ref">Table</span></a>
+summarizing solver/penalty supports.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.17: </span>Stochastic Average Gradient descent solver.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.19: </span>SAGA solver.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.22: </span>The default solver changed from ‘liblinear’ to ‘lbfgs’ in 0.22.</p>
+</div>
+</dd>
+<dt><strong>max_iter</strong><span class="classifier">int, default=100</span></dt><dd><p>Maximum number of iterations taken for the solvers to converge.</p>
+</dd>
+<dt><strong>multi_class</strong><span class="classifier">{‘auto’, ‘ovr’, ‘multinomial’}, default=’auto’</span></dt><dd><p>If the option chosen is ‘ovr’, then a binary problem is fit for each
+label. For ‘multinomial’ the loss minimised is the multinomial loss fit
+across the entire probability distribution, <em>even when the data is
+binary</em>. ‘multinomial’ is unavailable when solver=’liblinear’.
+‘auto’ selects ‘ovr’ if the data is binary, or if solver=’liblinear’,
+and otherwise selects ‘multinomial’.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.18: </span>Stochastic Average Gradient descent solver for ‘multinomial’ case.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.22: </span>Default changed from ‘ovr’ to ‘auto’ in 0.22.</p>
+</div>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">int, default=0</span></dt><dd><p>For the liblinear and lbfgs solvers set verbose to any positive
+number for verbosity.</p>
+</dd>
+<dt><strong>warm_start</strong><span class="classifier">bool, default=False</span></dt><dd><p>When set to True, reuse the solution of the previous call to fit as
+initialization, otherwise, just erase the previous solution.
+Useless for liblinear solver. See <a class="reference internal" href="../../glossary.html#term-warm_start"><span class="xref std std-term">the Glossary</span></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.17: </span><em>warm_start</em> to support <em>lbfgs</em>, <em>newton-cg</em>, <em>sag</em>, <em>saga</em> solvers.</p>
+</div>
+</dd>
+<dt><strong>n_jobs</strong><span class="classifier">int, default=None</span></dt><dd><p>Number of CPU cores used when parallelizing over classes if
+multi_class=’ovr’”. This parameter is ignored when the <code class="docutils literal notranslate"><span class="pre">solver</span></code> is
+set to ‘liblinear’ regardless of whether ‘multi_class’ is specified or
+not. <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <a class="reference external" href="https://joblib.readthedocs.io/en/latest/parallel.html#joblib.parallel_backend" title="(in joblib v1.2.0.dev0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code></a>
+context. <code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors.
+See <a class="reference internal" href="../../glossary.html#term-n_jobs"><span class="xref std std-term">Glossary</span></a> for more details.</p>
+</dd>
+<dt><strong>l1_ratio</strong><span class="classifier">float, default=None</span></dt><dd><p>The Elastic-Net mixing parameter, with <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">l1_ratio</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code>. Only
+used if <code class="docutils literal notranslate"><span class="pre">penalty='elasticnet'</span></code>. Setting <code class="docutils literal notranslate"><span class="pre">l1_ratio=0</span></code> is equivalent
+to using <code class="docutils literal notranslate"><span class="pre">penalty='l2'</span></code>, while setting <code class="docutils literal notranslate"><span class="pre">l1_ratio=1</span></code> is equivalent
+to using <code class="docutils literal notranslate"><span class="pre">penalty='l1'</span></code>. For <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">l1_ratio</span> <span class="pre">&lt;1</span></code>, the penalty is a
+combination of L1 and L2.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>classes_</strong><span class="classifier">ndarray of shape (n_classes, )</span></dt><dd><p>A list of class labels known to the classifier.</p>
+</dd>
+<dt><strong>coef_</strong><span class="classifier">ndarray of shape (1, n_features) or (n_classes, n_features)</span></dt><dd><p>Coefficient of the features in the decision function.</p>
+<p><code class="docutils literal notranslate"><span class="pre">coef_</span></code> is of shape (1, n_features) when the given problem is binary.
+In particular, when <code class="docutils literal notranslate"><span class="pre">multi_class='multinomial'</span></code>, <code class="docutils literal notranslate"><span class="pre">coef_</span></code> corresponds
+to outcome 1 (True) and <code class="docutils literal notranslate"><span class="pre">-coef_</span></code> corresponds to outcome 0 (False).</p>
+</dd>
+<dt><strong>intercept_</strong><span class="classifier">ndarray of shape (1,) or (n_classes,)</span></dt><dd><p>Intercept (a.k.a. bias) added to the decision function.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">fit_intercept</span></code> is set to False, the intercept is set to zero.
+<code class="docutils literal notranslate"><span class="pre">intercept_</span></code> is of shape (1,) when the given problem is binary.
+In particular, when <code class="docutils literal notranslate"><span class="pre">multi_class='multinomial'</span></code>, <code class="docutils literal notranslate"><span class="pre">intercept_</span></code>
+corresponds to outcome 1 (True) and <code class="docutils literal notranslate"><span class="pre">-intercept_</span></code> corresponds to
+outcome 0 (False).</p>
+</dd>
+<dt><strong>n_features_in_</strong><span class="classifier">int</span></dt><dd><p>Number of features seen during <a class="reference internal" href="../../glossary.html#term-fit"><span class="xref std std-term">fit</span></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.24.</span></p>
+</div>
+</dd>
+<dt><strong>feature_names_in_</strong><span class="classifier">ndarray of shape (<code class="docutils literal notranslate"><span class="pre">n_features_in_</span></code>,)</span></dt><dd><p>Names of features seen during <a class="reference internal" href="../../glossary.html#term-fit"><span class="xref std std-term">fit</span></a>. Defined only when <code class="docutils literal notranslate"><span class="pre">X</span></code>
+has feature names that are all strings.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.</span></p>
+</div>
+</dd>
+<dt><strong>n_iter_</strong><span class="classifier">ndarray of shape (n_classes,) or (1, )</span></dt><dd><p>Actual number of iterations for all classes. If binary or multinomial,
+it returns only 1 element. For liblinear solver, only the maximum
+number of iteration across all classes is given.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.20: </span>In SciPy &lt;= 1.0.0 the number of lbfgs iterations may exceed
+<code class="docutils literal notranslate"><span class="pre">max_iter</span></code>. <code class="docutils literal notranslate"><span class="pre">n_iter_</span></code> will now report at most <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>.</p>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="sklearn.linear_model.SGDClassifier.html#sklearn.linear_model.SGDClassifier" title="sklearn.linear_model.SGDClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SGDClassifier</span></code></a></dt><dd><p>Incrementally trained logistic regression (when given the parameter <code class="docutils literal notranslate"><span class="pre">loss=&quot;log&quot;</span></code>).</p>
+</dd>
+<dt><a class="reference internal" href="sklearn.linear_model.LogisticRegressionCV.html#sklearn.linear_model.LogisticRegressionCV" title="sklearn.linear_model.LogisticRegressionCV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogisticRegressionCV</span></code></a></dt><dd><p>Logistic regression with built-in cross validation.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The underlying C implementation uses a random number generator to
+select features when fitting the model. It is thus not uncommon,
+to have slightly different results for the same input data. If
+that happens, try with a smaller tol parameter.</p>
+<p>Predict output may not match that of standalone liblinear in certain
+cases. See <a class="reference internal" href="../linear_model.html#liblinear-differences"><span class="std std-ref">differences from liblinear</span></a>
+in the narrative documentation.</p>
+<p class="rubric">References</p>
+<dl class="simple">
+<dt>L-BFGS-B – Software for Large-scale Bound-constrained Optimization</dt><dd><p>Ciyou Zhu, Richard Byrd, Jorge Nocedal and Jose Luis Morales.
+<a class="reference external" href="http://users.iems.northwestern.edu/~nocedal/lbfgsb.html">http://users.iems.northwestern.edu/~nocedal/lbfgsb.html</a></p>
+</dd>
+<dt>LIBLINEAR – A Library for Large Linear Classification</dt><dd><p><a class="reference external" href="https://www.csie.ntu.edu.tw/~cjlin/liblinear/">https://www.csie.ntu.edu.tw/~cjlin/liblinear/</a></p>
+</dd>
+<dt>SAG – Mark Schmidt, Nicolas Le Roux, and Francis Bach</dt><dd><p>Minimizing Finite Sums with the Stochastic Average Gradient
+<a class="reference external" href="https://hal.inria.fr/hal-00860051/document">https://hal.inria.fr/hal-00860051/document</a></p>
+</dd>
+<dt>SAGA – Defazio, A., Bach F. &amp; Lacoste-Julien S. (2014).</dt><dd><p><a class="reference external" href="https://arxiv.org/abs/1407.0202">“SAGA: A Fast Incremental Gradient Method With Support
+for Non-Strongly Convex Composite Objectives”</a></p>
+</dd>
+<dt>Hsiang-Fu Yu, Fang-Lan Huang, Chih-Jen Lin (2011). Dual coordinate descent</dt><dd><p>methods for logistic regression and maximum entropy models.
+Machine Learning 85(1-2):41-75.
+<a class="reference external" href="https://www.csie.ntu.edu.tw/~cjlin/papers/maxent_dual.pdf">https://www.csie.ntu.edu.tw/~cjlin/papers/maxent_dual.pdf</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span>
+<span class="go">array([0, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span>
+<span class="go">array([[9.8...e-01, 1.8...e-02, 1.4...e-08],</span>
+<span class="go">       [9.7...e-01, 2.8...e-02, ...e-08]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="go">0.97...</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.decision_function" title="sklearn.linear_model.LogisticRegression.decision_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decision_function</span></code></a>(X)</p></td>
+<td><p>Predict confidence scores for samples.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.densify" title="sklearn.linear_model.LogisticRegression.densify"><code class="xref py py-obj docutils literal notranslate"><span class="pre">densify</span></code></a>()</p></td>
+<td><p>Convert coefficient matrix to dense array format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.fit" title="sklearn.linear_model.LogisticRegression.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, y[, sample_weight])</p></td>
+<td><p>Fit the model according to the given training data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.get_params" title="sklearn.linear_model.LogisticRegression.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
+<td><p>Get parameters for this estimator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.predict" title="sklearn.linear_model.LogisticRegression.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
+<td><p>Predict class labels for samples in X.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.predict_log_proba" title="sklearn.linear_model.LogisticRegression.predict_log_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_log_proba</span></code></a>(X)</p></td>
+<td><p>Predict logarithm of probability estimates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.predict_proba" title="sklearn.linear_model.LogisticRegression.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(X)</p></td>
+<td><p>Probability estimates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.score" title="sklearn.linear_model.LogisticRegression.score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code></a>(X, y[, sample_weight])</p></td>
+<td><p>Return the mean accuracy on the given test data and labels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.set_params" title="sklearn.linear_model.LogisticRegression.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(**params)</p></td>
+<td><p>Set the parameters of this estimator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sklearn.linear_model.LogisticRegression.sparsify" title="sklearn.linear_model.LogisticRegression.sparsify"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sparsify</span></code></a>()</p></td>
+<td><p>Convert coefficient matrix to sparse format.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.decision_function">
+<span class="sig-name descname"><span class="pre">decision_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/linear_model/_base.py#L408"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.decision_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict confidence scores for samples.</p>
+<p>The confidence score for a sample is proportional to the signed
+distance of that sample to the hyperplane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">{array-like, sparse matrix} of shape (n_samples, n_features)</span></dt><dd><p>The data matrix for which we want to get the confidence scores.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>scores</strong><span class="classifier">ndarray of shape (n_samples,) or (n_samples, n_classes)</span></dt><dd><p>Confidence scores per <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_classes)</span></code> combination. In the
+binary case, confidence score for <code class="docutils literal notranslate"><span class="pre">self.classes_[1]</span></code> where &gt;0 means
+this class would be predicted.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.densify">
+<span class="sig-name descname"><span class="pre">densify</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/linear_model/_base.py#L477"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.densify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert coefficient matrix to dense array format.</p>
+<p>Converts the <code class="docutils literal notranslate"><span class="pre">coef_</span></code> member (back) to a numpy.ndarray. This is the
+default format of <code class="docutils literal notranslate"><span class="pre">coef_</span></code> and is required for fitting, so calling
+this method is only required on models that have previously been
+sparsified; otherwise, it is a no-op.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>self</dt><dd><p>Fitted estimator.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/linear_model/_logistic.py#L1062"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model according to the given training data.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>X</strong><span class="classifier">{array-like, sparse matrix} of shape (n_samples, n_features)</span></dt><dd><p>Training vector, where <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> is the number of samples and
+<code class="docutils literal notranslate"><span class="pre">n_features</span></code> is the number of features.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,)</span></dt><dd><p>Target vector relative to X.</p>
+</dd>
+<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,) default=None</span></dt><dd><p>Array of weights that are assigned to individual samples.
+If not provided, then each sample is given unit weight.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.17: </span><em>sample_weight</em> support to LogisticRegression.</p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>self</dt><dd><p>Fitted estimator.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The SAGA solver supports both float64 and float32 bit arrays.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/base.py#L194"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>deep</strong><span class="classifier">bool, default=True</span></dt><dd><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>params</strong><span class="classifier">dict</span></dt><dd><p>Parameter names mapped to their values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/linear_model/_base.py#L433"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict class labels for samples in X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">{array-like, sparse matrix} of shape (n_samples, n_features)</span></dt><dd><p>The data matrix for which we want to get the predictions.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>y_pred</strong><span class="classifier">ndarray of shape (n_samples,)</span></dt><dd><p>Vector containing the class labels for each sample.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.predict_log_proba">
+<span class="sig-name descname"><span class="pre">predict_log_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/linear_model/_logistic.py#L1322"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.predict_log_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict logarithm of probability estimates.</p>
+<p>The returned estimates for all classes are ordered by the
+label of classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Vector to be scored, where <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> is the number of samples and
+<code class="docutils literal notranslate"><span class="pre">n_features</span></code> is the number of features.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>T</strong><span class="classifier">array-like of shape (n_samples, n_classes)</span></dt><dd><p>Returns the log-probability of the sample for each class in the
+model, where classes are ordered as they are in <code class="docutils literal notranslate"><span class="pre">self.classes_</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.predict_proba">
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/linear_model/_logistic.py#L1278"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Probability estimates.</p>
+<p>The returned estimates for all classes are ordered by the
+label of classes.</p>
+<p>For a multi_class problem, if multi_class is set to be “multinomial”
+the softmax function is used to find the predicted probability of
+each class.
+Else use a one-vs-rest approach, i.e calculate the probability
+of each class assuming it to be positive using the logistic function.
+and normalize these values across all the classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Vector to be scored, where <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> is the number of samples and
+<code class="docutils literal notranslate"><span class="pre">n_features</span></code> is the number of features.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>T</strong><span class="classifier">array-like of shape (n_samples, n_classes)</span></dt><dd><p>Returns the probability of the sample for each class in the model,
+where classes are ordered as they are in <code class="docutils literal notranslate"><span class="pre">self.classes_</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.score">
+<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/base.py#L640"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the mean accuracy on the given test data and labels.</p>
+<p>In multi-label classification, this is the subset accuracy
+which is a harsh metric since you require for each sample that
+each label set be correctly predicted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs)</span></dt><dd><p>True labels for <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+</dd>
+<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p>Mean accuracy of <code class="docutils literal notranslate"><span class="pre">self.predict(X)</span></code> wrt. <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/base.py#L218"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <a class="reference internal" href="sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="sklearn.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**params</strong><span class="classifier">dict</span></dt><dd><p>Estimator parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">estimator instance</span></dt><dd><p>Estimator instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sklearn.linear_model.LogisticRegression.sparsify">
+<span class="sig-name descname"><span class="pre">sparsify</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/36958fb24/sklearn/linear_model/_base.py#L497"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegression.sparsify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert coefficient matrix to sparse format.</p>
+<p>Converts the <code class="docutils literal notranslate"><span class="pre">coef_</span></code> member to a scipy.sparse matrix, which for
+L1-regularized models can be much more memory- and storage-efficient
+than the usual numpy.ndarray representation.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">intercept_</span></code> member is not converted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>self</dt><dd><p>Fitted estimator.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>For non-sparse models, i.e. when there are not many zeros in <code class="docutils literal notranslate"><span class="pre">coef_</span></code>,
+this may actually <em>increase</em> memory usage, so use this method with
+care. A rule of thumb is that the number of zero elements, which can
+be computed with <code class="docutils literal notranslate"><span class="pre">(coef_</span> <span class="pre">==</span> <span class="pre">0).sum()</span></code>, must be more than 50% for this
+to provide significant benefits.</p>
+<p>After calling this method, further fitting with the partial_fit
+method (if any) will not work until you call densify.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples-using-sklearn-linear-model-logisticregression">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegression</span></code><a class="headerlink" href="#examples-using-sklearn-linear-model-logisticregression" title="Permalink to this heading">¶</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="We are pleased to announce the release of scikit-learn 1.1! Many bug fixes and improvements wer..."><img alt="Release Highlights for scikit-learn 1.1" src="../../_images/sphx_glr_plot_release_highlights_1_1_0_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/release_highlights/plot_release_highlights_1_1_0.html#sphx-glr-auto-examples-release-highlights-plot-release-highlights-1-1-0-py"><span class="std std-ref">Release Highlights for scikit-learn 1.1</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Release Highlights for scikit-learn 1.1</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="We are very pleased to announce the release of scikit-learn 1.0! The library has been stable fo..."><img alt="Release Highlights for scikit-learn 1.0" src="../../_images/sphx_glr_plot_release_highlights_1_0_0_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/release_highlights/plot_release_highlights_1_0_0.html#sphx-glr-auto-examples-release-highlights-plot-release-highlights-1-0-0-py"><span class="std std-ref">Release Highlights for scikit-learn 1.0</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Release Highlights for scikit-learn 1.0</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="We are pleased to announce the release of scikit-learn 0.24! Many bug fixes and improvements we..."><img alt="Release Highlights for scikit-learn 0.24" src="../../_images/sphx_glr_plot_release_highlights_0_24_0_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/release_highlights/plot_release_highlights_0_24_0.html#sphx-glr-auto-examples-release-highlights-plot-release-highlights-0-24-0-py"><span class="std std-ref">Release Highlights for scikit-learn 0.24</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Release Highlights for scikit-learn 0.24</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="We are pleased to announce the release of scikit-learn 0.23! Many bug fixes and improvements we..."><img alt="Release Highlights for scikit-learn 0.23" src="../../_images/sphx_glr_plot_release_highlights_0_23_0_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/release_highlights/plot_release_highlights_0_23_0.html#sphx-glr-auto-examples-release-highlights-plot-release-highlights-0-23-0-py"><span class="std std-ref">Release Highlights for scikit-learn 0.23</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Release Highlights for scikit-learn 0.23</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="We are pleased to announce the release of scikit-learn 0.22, which comes with many bug fixes an..."><img alt="Release Highlights for scikit-learn 0.22" src="../../_images/sphx_glr_plot_release_highlights_0_22_0_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/release_highlights/plot_release_highlights_0_22_0.html#sphx-glr-auto-examples-release-highlights-plot-release-highlights-0-22-0-py"><span class="std std-ref">Release Highlights for scikit-learn 0.22</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Release Highlights for scikit-learn 0.22</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Well calibrated classifiers are probabilistic classifiers for which the output of predict_proba..."><img alt="Comparison of Calibration of Classifiers" src="../../_images/sphx_glr_plot_compare_calibration_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/calibration/plot_compare_calibration.html#sphx-glr-auto-examples-calibration-plot-compare-calibration-py"><span class="std std-ref">Comparison of Calibration of Classifiers</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Comparison of Calibration of Classifiers</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="When performing classification one often wants to predict not only the class label, but also th..."><img alt="Probability Calibration curves" src="../../_images/sphx_glr_plot_calibration_curve_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/calibration/plot_calibration_curve.html#sphx-glr-auto-examples-calibration-plot-calibration-curve-py"><span class="std std-ref">Probability Calibration curves</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Probability Calibration curves</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Plot the classification probability for different classifiers. We use a 3 class dataset, and we..."><img alt="Plot classification probability" src="../../_images/sphx_glr_plot_classification_probability_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/classification/plot_classification_probability.html#sphx-glr-auto-examples-classification-plot-classification-probability-py"><span class="std std-ref">Plot classification probability</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plot classification probability</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Transform your features into a higher dimensional, sparse space. Then train a linear model on t..."><img alt="Feature transformations with ensembles of trees" src="../../_images/sphx_glr_plot_feature_transformation_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/ensemble/plot_feature_transformation.html#sphx-glr-auto-examples-ensemble-plot-feature-transformation-py"><span class="std std-ref">Feature transformations with ensembles of trees</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Feature transformations with ensembles of trees</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Plot the class probabilities of the first sample in a toy dataset predicted by three different ..."><img alt="Plot class probabilities calculated by the VotingClassifier" src="../../_images/sphx_glr_plot_voting_probas_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/ensemble/plot_voting_probas.html#sphx-glr-auto-examples-ensemble-plot-voting-probas-py"><span class="std std-ref">Plot class probabilities calculated by the VotingClassifier</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plot class probabilities calculated by the VotingClassifier</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Comparing various online solvers"><img alt="Comparing various online solvers" src="../../_images/sphx_glr_plot_sgd_comparison_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_sgd_comparison.html#sphx-glr-auto-examples-linear-model-plot-sgd-comparison-py"><span class="std std-ref">Comparing various online solvers</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Comparing various online solvers</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Comparison of the sparsity (percentage of zero coefficients) of solutions when L1, L2 and Elast..."><img alt="L1 Penalty and Sparsity in Logistic Regression" src="../../_images/sphx_glr_plot_logistic_l1_l2_sparsity_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_logistic_l1_l2_sparsity.html#sphx-glr-auto-examples-linear-model-plot-logistic-l1-l2-sparsity-py"><span class="std std-ref">L1 Penalty and Sparsity in Logistic Regression</span></a></p>
+  <div class="sphx-glr-thumbnail-title">L1 Penalty and Sparsity in Logistic Regression</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Show below is a logistic-regression classifiers decision boundaries on the first two dimensions..."><img alt="Logistic Regression 3-class Classifier" src="../../_images/sphx_glr_plot_iris_logistic_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_iris_logistic.html#sphx-glr-auto-examples-linear-model-plot-iris-logistic-py"><span class="std std-ref">Logistic Regression 3-class Classifier</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Logistic Regression 3-class Classifier</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Shown in the plot is how the logistic regression would, in this synthetic dataset, classify val..."><img alt="Logistic function" src="../../_images/sphx_glr_plot_logistic_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_logistic.html#sphx-glr-auto-examples-linear-model-plot-logistic-py"><span class="std std-ref">Logistic function</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Logistic function</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Here we fit a multinomial logistic regression with L1 penalty on a subset of the MNIST digits c..."><img alt="MNIST classification using multinomial logistic + L1" src="../../_images/sphx_glr_plot_sparse_logistic_regression_mnist_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_sparse_logistic_regression_mnist.html#sphx-glr-auto-examples-linear-model-plot-sparse-logistic-regression-mnist-py"><span class="std std-ref">MNIST classification using multinomial logistic + L1</span></a></p>
+  <div class="sphx-glr-thumbnail-title">MNIST classification using multinomial logistic + L1</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Comparison of multinomial logistic L1 vs one-versus-rest L1 logistic regression to classify doc..."><img alt="Multiclass sparse logistic regression on 20newgroups" src="../../_images/sphx_glr_plot_sparse_logistic_regression_20newsgroups_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_sparse_logistic_regression_20newsgroups.html#sphx-glr-auto-examples-linear-model-plot-sparse-logistic-regression-20newsgroups-py"><span class="std std-ref">Multiclass sparse logistic regression on 20newgroups</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Multiclass sparse logistic regression on 20newgroups</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Plot decision surface of multinomial and One-vs-Rest Logistic Regression. The hyperplanes corre..."><img alt="Plot multinomial and One-vs-Rest Logistic Regression" src="../../_images/sphx_glr_plot_logistic_multinomial_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_logistic_multinomial.html#sphx-glr-auto-examples-linear-model-plot-logistic-multinomial-py"><span class="std std-ref">Plot multinomial and One-vs-Rest Logistic Regression</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plot multinomial and One-vs-Rest Logistic Regression</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip=" Train l1-penalized logistic regression models on a binary classification problem derived from ..."><img alt="Regularization path of L1- Logistic Regression" src="../../_images/sphx_glr_plot_logistic_path_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/linear_model/plot_logistic_path.html#sphx-glr-auto-examples-linear-model-plot-logistic-path-py"><span class="std std-ref">Regularization path of L1- Logistic Regression</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Regularization path of L1- Logistic Regression</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example illustrates the use of the print_changed_only global parameter."><img alt="Compact estimator representations" src="../../_images/sphx_glr_plot_changed_only_pprint_parameter_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/miscellaneous/plot_changed_only_pprint_parameter.html#sphx-glr-auto-examples-miscellaneous-plot-changed-only-pprint-parameter-py"><span class="std std-ref">Compact estimator representations</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Compact estimator representations</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The default configuration for displaying a pipeline in a Jupyter Notebook is &#x27;diagram&#x27; where se..."><img alt="Displaying Pipelines" src="../../_images/sphx_glr_plot_pipeline_display_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/miscellaneous/plot_pipeline_display.html#sphx-glr-auto-examples-miscellaneous-plot-pipeline-display-py"><span class="std std-ref">Displaying Pipelines</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Displaying Pipelines</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In this example, we will construct display objects, ConfusionMatrixDisplay, RocCurveDisplay, an..."><img alt="Visualizations with Display Objects" src="../../_images/sphx_glr_plot_display_object_visualization_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/miscellaneous/plot_display_object_visualization.html#sphx-glr-auto-examples-miscellaneous-plot-display-object-visualization-py"><span class="std std-ref">Visualizations with Display Objects</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Visualizations with Display Objects</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="For this example we will use the `yeast &lt;https://www.openml.org/d/40597&gt;`_ dataset which contai..."><img alt="Classifier Chain" src="../../_images/sphx_glr_plot_classifier_chain_yeast_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/multioutput/plot_classifier_chain_yeast.html#sphx-glr-auto-examples-multioutput-plot-classifier-chain-yeast-py"><span class="std std-ref">Classifier Chain</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Classifier Chain</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="For greyscale image data where pixel values can be interpreted as degrees of blackness on a whi..."><img alt="Restricted Boltzmann Machine features for digit classification" src="../../_images/sphx_glr_plot_rbm_logistic_classification_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/neural_networks/plot_rbm_logistic_classification.html#sphx-glr-auto-examples-neural-networks-plot-rbm-logistic-classification-py"><span class="std std-ref">Restricted Boltzmann Machine features for digit classification</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Restricted Boltzmann Machine features for digit classification</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example illustrates how to apply different preprocessing and feature extraction pipelines ..."><img alt="Column Transformer with Mixed Types" src="../../_images/sphx_glr_plot_column_transformer_mixed_types_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/compose/plot_column_transformer_mixed_types.html#sphx-glr-auto-examples-compose-plot-column-transformer-mixed-types-py"><span class="std std-ref">Column Transformer with Mixed Types</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Column Transformer with Mixed Types</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The PCA does an unsupervised dimensionality reduction, while the logistic regression does the p..."><img alt="Pipelining: chaining a PCA and a logistic regression" src="../../_images/sphx_glr_plot_digits_pipe_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/compose/plot_digits_pipe.html#sphx-glr-auto-examples-compose-plot-digits-pipe-py"><span class="std std-ref">Pipelining: chaining a PCA and a logistic regression</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Pipelining: chaining a PCA and a logistic regression</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="A demonstration of feature discretization on synthetic classification datasets. Feature discret..."><img alt="Feature discretization" src="../../_images/sphx_glr_plot_discretization_classification_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/preprocessing/plot_discretization_classification.html#sphx-glr-auto-examples-preprocessing-plot-discretization-classification-py"><span class="std std-ref">Feature discretization</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Feature discretization</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="A tutorial exercise regarding the use of classification techniques on the Digits dataset."><img alt="Digits Classification Exercise" src="../../_images/sphx_glr_plot_digits_classification_exercise_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/exercises/plot_digits_classification_exercise.html#sphx-glr-auto-examples-exercises-plot-digits-classification-exercise-py"><span class="std std-ref">Digits Classification Exercise</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Digits Classification Exercise</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example showing how scikit-learn can be used to classify documents by topics using a..."><img alt="Classification of text documents using sparse features" src="../../_images/sphx_glr_plot_document_classification_20newsgroups_thumb.png" />
+<p><a class="reference internal" href="../../auto_examples/text/plot_document_classification_20newsgroups.html#sphx-glr-auto-examples-text-plot-document-classification-20newsgroups-py"><span class="std std-ref">Classification of text documents using sparse features</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Classification of text documents using sparse features</div>
+</div></div><div class="clearer"></div></section>
+</section>
+
+
+      </div>
+    <div class="container">
+      <footer class="sk-content-footer">
+            &copy; 2007 - 2022, scikit-learn developers (BSD License).
+          <a href="../../_sources/modules/generated/sklearn.linear_model.LogisticRegression.rst.txt" rel="nofollow">Show this page source</a>
+      </footer>
+    </div>
+  </div>
+</div>
+<script src="../../_static/js/vendor/bootstrap.min.js"></script>
+
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-22606712-2', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script>
+$(document).ready(function() {
+    /* Add a [>>>] button on the top-right corner of code samples to hide
+     * the >>> and ... prompts and the output and thus make the code
+     * copyable. */
+    var div = $('.highlight-python .highlight,' +
+                '.highlight-python3 .highlight,' +
+                '.highlight-pycon .highlight,' +
+		'.highlight-default .highlight')
+    var pre = div.find('pre');
+
+    // get the styles from the current theme
+    pre.parent().parent().css('position', 'relative');
+    var hide_text = 'Hide prompts and outputs';
+    var show_text = 'Show prompts and outputs';
+
+    // create and add the button to all the code blocks that contain >>>
+    div.each(function(index) {
+        var jthis = $(this);
+        if (jthis.find('.gp').length > 0) {
+            var button = $('<span class="copybutton">&gt;&gt;&gt;</span>');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+            jthis.prepend(button);
+        }
+        // tracebacks (.gt) contain bare text elements that need to be
+        // wrapped in a span to work with .nextUntil() (see later)
+        jthis.find('pre:has(.gt)').contents().filter(function() {
+            return ((this.nodeType == 3) && (this.data.trim().length > 0));
+        }).wrap('<span>');
+    });
+
+    // define the behavior of the button when it's clicked
+    $('.copybutton').click(function(e){
+        e.preventDefault();
+        var button = $(this);
+        if (button.data('hidden') === 'false') {
+            // hide the code output
+            button.parent().find('.go, .gp, .gt').hide();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'hidden');
+            button.css('text-decoration', 'line-through');
+            button.attr('title', show_text);
+            button.data('hidden', 'true');
+        } else {
+            // show the code output
+            button.parent().find('.go, .gp, .gt').show();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'visible');
+            button.css('text-decoration', 'none');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+        }
+    });
+
+	/*** Add permalink buttons next to glossary terms ***/
+	$('dl.glossary > dt[id]').append(function() {
+		return ('<a class="headerlink" href="#' +
+			    this.getAttribute('id') +
+			    '" title="Permalink to this term">¶</a>');
+	});
+  /*** Hide navbar when scrolling down ***/
+  // Returns true when headerlink target matches hash in url
+  (function() {
+    hashTargetOnTop = function() {
+        var hash = window.location.hash;
+        if ( hash.length < 2 ) { return false; }
+
+        var target = document.getElementById( hash.slice(1) );
+        if ( target === null ) { return false; }
+
+        var top = target.getBoundingClientRect().top;
+        return (top < 2) && (top > -2);
+    };
+
+    // Hide navbar on load if hash target is on top
+    var navBar = document.getElementById("navbar");
+    var navBarToggler = document.getElementById("sk-navbar-toggler");
+    var navBarHeightHidden = "-" + navBar.getBoundingClientRect().height + "px";
+    var $window = $(window);
+
+    hideNavBar = function() {
+        navBar.style.top = navBarHeightHidden;
+    };
+
+    showNavBar = function() {
+        navBar.style.top = "0";
+    }
+
+    if (hashTargetOnTop()) {
+        hideNavBar()
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    hideOnScroll = function(lastScrollTop) {
+        if (($window.width() < 768) && (navBarToggler.getAttribute("aria-expanded") === 'true')) {
+            return;
+        }
+        if (lastScrollTop > 2 && (prevScrollpos <= lastScrollTop) || hashTargetOnTop()){
+            hideNavBar()
+        } else {
+            showNavBar()
+        }
+        prevScrollpos = lastScrollTop;
+    };
+
+    /*** high performance scroll event listener***/
+    var raf = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        window.oRequestAnimationFrame;
+    var lastScrollTop = $window.scrollTop();
+
+    if (raf) {
+        loop();
+    }
+
+    function loop() {
+        var scrollTop = $window.scrollTop();
+        if (lastScrollTop === scrollTop) {
+            raf(loop);
+            return;
+        } else {
+            lastScrollTop = scrollTop;
+            hideOnScroll(lastScrollTop);
+            raf(loop);
+        }
+    }
+  })();
+});
+
+</script>
+    
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    
+</body>
+</html>

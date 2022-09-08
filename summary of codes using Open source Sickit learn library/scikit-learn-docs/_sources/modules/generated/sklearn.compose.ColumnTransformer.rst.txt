@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.compose`.ColumnTransformer
+===============================================
+
+.. currentmodule:: sklearn.compose
+
+.. autoclass:: ColumnTransformer
+
+.. include:: sklearn.compose.ColumnTransformer.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

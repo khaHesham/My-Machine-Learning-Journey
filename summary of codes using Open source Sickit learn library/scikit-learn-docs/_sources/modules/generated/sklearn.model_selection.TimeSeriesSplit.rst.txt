@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.model_selection`.TimeSeriesSplit
+=====================================================
+
+.. currentmodule:: sklearn.model_selection
+
+.. autoclass:: TimeSeriesSplit
+
+.. include:: sklearn.model_selection.TimeSeriesSplit.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

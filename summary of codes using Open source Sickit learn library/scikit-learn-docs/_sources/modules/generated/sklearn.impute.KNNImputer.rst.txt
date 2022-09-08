@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.impute`.KNNImputer
+=======================================
+
+.. currentmodule:: sklearn.impute
+
+.. autoclass:: KNNImputer
+
+.. include:: sklearn.impute.KNNImputer.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

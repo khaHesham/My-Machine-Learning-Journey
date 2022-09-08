@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.calibration`.CalibrationDisplay
+====================================================
+
+.. currentmodule:: sklearn.calibration
+
+.. autoclass:: CalibrationDisplay
+
+.. include:: sklearn.calibration.CalibrationDisplay.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

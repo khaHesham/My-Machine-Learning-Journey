@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.preprocessing`.StandardScaler
+==================================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: StandardScaler
+
+.. include:: sklearn.preprocessing.StandardScaler.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

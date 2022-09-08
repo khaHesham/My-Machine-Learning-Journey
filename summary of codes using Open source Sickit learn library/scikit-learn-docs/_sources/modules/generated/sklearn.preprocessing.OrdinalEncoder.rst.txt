@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.preprocessing`.OrdinalEncoder
+==================================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: OrdinalEncoder
+
+.. include:: sklearn.preprocessing.OrdinalEncoder.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

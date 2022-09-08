@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.linear_model`.BayesianRidge
+================================================
+
+.. currentmodule:: sklearn.linear_model
+
+.. autoclass:: BayesianRidge
+
+.. include:: sklearn.linear_model.BayesianRidge.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

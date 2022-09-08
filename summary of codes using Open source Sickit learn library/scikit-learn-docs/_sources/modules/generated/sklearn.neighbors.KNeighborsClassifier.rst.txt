@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.neighbors`.KNeighborsClassifier
+====================================================
+
+.. currentmodule:: sklearn.neighbors
+
+.. autoclass:: KNeighborsClassifier
+
+.. include:: sklearn.neighbors.KNeighborsClassifier.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.naive_bayes`.CategoricalNB
+===============================================
+
+.. currentmodule:: sklearn.naive_bayes
+
+.. autoclass:: CategoricalNB
+
+.. include:: sklearn.naive_bayes.CategoricalNB.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

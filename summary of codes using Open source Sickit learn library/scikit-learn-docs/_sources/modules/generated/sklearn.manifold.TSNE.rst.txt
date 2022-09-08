@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.manifold`.TSNE
+===================================
+
+.. currentmodule:: sklearn.manifold
+
+.. autoclass:: TSNE
+
+.. include:: sklearn.manifold.TSNE.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

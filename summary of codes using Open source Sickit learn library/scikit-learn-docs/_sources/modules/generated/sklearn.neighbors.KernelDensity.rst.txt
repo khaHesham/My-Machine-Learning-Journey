@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.neighbors`.KernelDensity
+=============================================
+
+.. currentmodule:: sklearn.neighbors
+
+.. autoclass:: KernelDensity
+
+.. include:: sklearn.neighbors.KernelDensity.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.decomposition`.MiniBatchNMF
+================================================
+
+.. currentmodule:: sklearn.decomposition
+
+.. autoclass:: MiniBatchNMF
+
+.. include:: sklearn.decomposition.MiniBatchNMF.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

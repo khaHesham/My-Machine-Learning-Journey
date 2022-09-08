@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.cluster`.SpectralCoclustering
+==================================================
+
+.. currentmodule:: sklearn.cluster
+
+.. autoclass:: SpectralCoclustering
+
+.. include:: sklearn.cluster.SpectralCoclustering.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

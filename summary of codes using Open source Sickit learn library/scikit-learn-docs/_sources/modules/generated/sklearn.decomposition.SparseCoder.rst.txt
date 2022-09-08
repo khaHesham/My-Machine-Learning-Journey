@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.decomposition`.SparseCoder
+===============================================
+
+.. currentmodule:: sklearn.decomposition
+
+.. autoclass:: SparseCoder
+
+.. include:: sklearn.decomposition.SparseCoder.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

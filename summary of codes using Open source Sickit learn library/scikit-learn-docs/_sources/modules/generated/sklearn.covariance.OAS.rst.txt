@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.covariance`.OAS
+====================================
+
+.. currentmodule:: sklearn.covariance
+
+.. autoclass:: OAS
+
+.. include:: sklearn.covariance.OAS.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

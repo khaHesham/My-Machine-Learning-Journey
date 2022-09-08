@@ -1,0 +1,135 @@
+
+
+.. _sphx_glr_auto_examples_preprocessing:
+
+.. _preprocessing_examples:
+
+Preprocessing
+-------------
+
+Examples concerning the :mod:`sklearn.preprocessing` module.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Feature 0 (median income in a block) and feature 5 (average house occupancy) of the california_...">
+
+.. only:: html
+
+  .. image:: /auto_examples/preprocessing/images/thumb/sphx_glr_plot_all_scaling_thumb.png
+    :alt: Compare the effect of different scalers on data with outliers
+
+  :ref:`sphx_glr_auto_examples_preprocessing_plot_all_scaling.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Compare the effect of different scalers on data with outliers</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example presents the different strategies implemented in KBinsDiscretizer:">
+
+.. only:: html
+
+  .. image:: /auto_examples/preprocessing/images/thumb/sphx_glr_plot_discretization_strategies_thumb.png
+    :alt: Demonstrating the different strategies of KBinsDiscretizer
+
+  :ref:`sphx_glr_auto_examples_preprocessing_plot_discretization_strategies.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Demonstrating the different strategies of KBinsDiscretizer</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="A demonstration of feature discretization on synthetic classification datasets. Feature discret...">
+
+.. only:: html
+
+  .. image:: /auto_examples/preprocessing/images/thumb/sphx_glr_plot_discretization_classification_thumb.png
+    :alt: Feature discretization
+
+  :ref:`sphx_glr_auto_examples_preprocessing_plot_discretization_classification.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Feature discretization</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Feature scaling through standardization (or Z-score normalization) can be an important preproce...">
+
+.. only:: html
+
+  .. image:: /auto_examples/preprocessing/images/thumb/sphx_glr_plot_scaling_importance_thumb.png
+    :alt: Importance of Feature Scaling
+
+  :ref:`sphx_glr_auto_examples_preprocessing_plot_scaling_importance.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Importance of Feature Scaling</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the use of the Box-Cox and Yeo-Johnson transforms through PowerTransf...">
+
+.. only:: html
+
+  .. image:: /auto_examples/preprocessing/images/thumb/sphx_glr_plot_map_data_to_normal_thumb.png
+    :alt: Map data to a normal distribution
+
+  :ref:`sphx_glr_auto_examples_preprocessing_plot_map_data_to_normal.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Map data to a normal distribution</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The example compares prediction result of linear regression (linear model) and decision tree (t...">
+
+.. only:: html
+
+  .. image:: /auto_examples/preprocessing/images/thumb/sphx_glr_plot_discretization_thumb.png
+    :alt: Using KBinsDiscretizer to discretize continuous features
+
+  :ref:`sphx_glr_auto_examples_preprocessing_plot_discretization.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Using KBinsDiscretizer to discretize continuous features</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/preprocessing/plot_all_scaling
+   /auto_examples/preprocessing/plot_discretization_strategies
+   /auto_examples/preprocessing/plot_discretization_classification
+   /auto_examples/preprocessing/plot_scaling_importance
+   /auto_examples/preprocessing/plot_map_data_to_normal
+   /auto_examples/preprocessing/plot_discretization
+

@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.preprocessing`.PolynomialFeatures
+======================================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: PolynomialFeatures
+
+.. include:: sklearn.preprocessing.PolynomialFeatures.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

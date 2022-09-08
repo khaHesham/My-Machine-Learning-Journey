@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.multioutput`.MultiOutputClassifier
+=======================================================
+
+.. currentmodule:: sklearn.multioutput
+
+.. autoclass:: MultiOutputClassifier
+
+.. include:: sklearn.multioutput.MultiOutputClassifier.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

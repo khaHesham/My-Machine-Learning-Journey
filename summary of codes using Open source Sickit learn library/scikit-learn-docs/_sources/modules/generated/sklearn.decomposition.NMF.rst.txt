@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.decomposition`.NMF
+=======================================
+
+.. currentmodule:: sklearn.decomposition
+
+.. autoclass:: NMF
+
+.. include:: sklearn.decomposition.NMF.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

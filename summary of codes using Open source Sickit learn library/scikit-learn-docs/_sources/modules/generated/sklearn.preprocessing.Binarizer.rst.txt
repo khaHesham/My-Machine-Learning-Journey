@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.preprocessing`.Binarizer
+=============================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: Binarizer
+
+.. include:: sklearn.preprocessing.Binarizer.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

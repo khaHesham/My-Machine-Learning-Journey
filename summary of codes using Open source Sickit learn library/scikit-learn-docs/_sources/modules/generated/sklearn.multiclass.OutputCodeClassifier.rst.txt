@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.multiclass`.OutputCodeClassifier
+=====================================================
+
+.. currentmodule:: sklearn.multiclass
+
+.. autoclass:: OutputCodeClassifier
+
+.. include:: sklearn.multiclass.OutputCodeClassifier.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

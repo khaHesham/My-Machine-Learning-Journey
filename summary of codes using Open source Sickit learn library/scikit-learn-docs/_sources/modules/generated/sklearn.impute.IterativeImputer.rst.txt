@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.impute`.IterativeImputer
+=============================================
+
+.. currentmodule:: sklearn.impute
+
+.. autoclass:: IterativeImputer
+
+.. include:: sklearn.impute.IterativeImputer.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.linear_model`.TweedieRegressor
+===================================================
+
+.. currentmodule:: sklearn.linear_model
+
+.. autoclass:: TweedieRegressor
+
+.. include:: sklearn.linear_model.TweedieRegressor.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

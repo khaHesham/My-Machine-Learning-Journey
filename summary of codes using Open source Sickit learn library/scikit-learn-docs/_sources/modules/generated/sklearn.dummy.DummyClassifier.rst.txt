@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.dummy`.DummyClassifier
+===========================================
+
+.. currentmodule:: sklearn.dummy
+
+.. autoclass:: DummyClassifier
+
+.. include:: sklearn.dummy.DummyClassifier.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

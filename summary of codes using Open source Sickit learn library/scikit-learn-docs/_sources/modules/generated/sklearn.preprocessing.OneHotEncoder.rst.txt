@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.preprocessing`.OneHotEncoder
+=================================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: OneHotEncoder
+
+.. include:: sklearn.preprocessing.OneHotEncoder.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

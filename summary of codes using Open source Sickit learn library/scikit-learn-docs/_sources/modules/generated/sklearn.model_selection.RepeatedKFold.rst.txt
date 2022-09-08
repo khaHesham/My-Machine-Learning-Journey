@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.model_selection`.RepeatedKFold
+===================================================
+
+.. currentmodule:: sklearn.model_selection
+
+.. autoclass:: RepeatedKFold
+
+.. include:: sklearn.model_selection.RepeatedKFold.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

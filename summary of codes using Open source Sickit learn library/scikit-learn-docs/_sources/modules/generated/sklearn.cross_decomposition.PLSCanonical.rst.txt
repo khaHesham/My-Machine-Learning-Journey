@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.cross_decomposition`.PLSCanonical
+======================================================
+
+.. currentmodule:: sklearn.cross_decomposition
+
+.. autoclass:: PLSCanonical
+
+.. include:: sklearn.cross_decomposition.PLSCanonical.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

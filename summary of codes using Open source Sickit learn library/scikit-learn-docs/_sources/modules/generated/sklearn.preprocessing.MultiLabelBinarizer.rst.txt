@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.preprocessing`.MultiLabelBinarizer
+=======================================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: MultiLabelBinarizer
+
+.. include:: sklearn.preprocessing.MultiLabelBinarizer.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

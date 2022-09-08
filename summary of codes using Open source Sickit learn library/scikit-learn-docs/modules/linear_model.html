@@ -1,0 +1,2058 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+<meta property="og:title" content="1.1. Linear Models" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://scikit-learn/stable/modules/linear_model.html" />
+  
+<meta property="og:site_name" content="scikit-learn" />
+  
+<meta property="og:description" content="The following are a set of methods intended for regression in which the target value is expected to be a linear combination of the features. In mathematical notation, if\hat{y} is the predicted val..." />
+  
+<meta property="og:image" content="https://scikit-learn/stable/_images/sphx_glr_plot_ols_001.png" />
+  
+<meta property="og:image:alt" content="scikit-learn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <title>1.1. Linear Models &mdash; scikit-learn 1.1.2 documentation</title>
+  
+  <link rel="canonical" href="http://scikit-learn.org/stable/modules/linear_model.html" />
+
+  
+  <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  <link rel="stylesheet" href="../_static/css/vendor/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+<script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+<script src="../_static/jquery.js"></script> 
+</head>
+<body>
+
+
+
+
+
+
+<nav id="navbar" class="sk-docs-navbar navbar navbar-expand-md navbar-light bg-light py-0">
+  <div class="container-fluid sk-docs-container px-0">
+      <a class="navbar-brand py-0" href="../index.html">
+        <img
+          class="sk-brand-img"
+          src="../_static/scikit-learn-logo-small.png"
+          alt="logo"/>
+      </a>
+    <button
+      id="sk-navbar-toggler"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="sk-navbar-collapse collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../install.html">Install</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../user_guide.html">User Guide</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="classes.html">API</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" href="../auto_examples/index.html">Examples</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link" target="_blank" rel="noopener noreferrer" href="https://blog.scikit-learn.org/">Community</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../getting_started.html" >Getting Started</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../tutorial/index.html" >Tutorial</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../whats_new/v1.1.html" >What's new</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../glossary.html" >Glossary</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/dev/developers/index.html" target="_blank" rel="noopener noreferrer">Development</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../faq.html" >FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../support.html" >Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../related_projects.html" >Related packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../roadmap.html" >Roadmap</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="../about.html" >About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://github.com/scikit-learn/scikit-learn" >GitHub</a>
+        </li>
+        <li class="nav-item">
+          <a class="sk-nav-link nav-link nav-more-item-mobile-items" href="https://scikit-learn.org/dev/versions.html" >Other Versions and Download</a>
+        </li>
+        <li class="nav-item dropdown nav-more-item-dropdown">
+          <a class="sk-nav-link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="sk-nav-dropdown-item dropdown-item" href="../getting_started.html" >Getting Started</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../tutorial/index.html" >Tutorial</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../whats_new/v1.1.html" >What's new</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../glossary.html" >Glossary</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/dev/developers/index.html" target="_blank" rel="noopener noreferrer">Development</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../faq.html" >FAQ</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../support.html" >Support</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../related_projects.html" >Related packages</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../roadmap.html" >Roadmap</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="../about.html" >About us</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://github.com/scikit-learn/scikit-learn" >GitHub</a>
+              <a class="sk-nav-dropdown-item dropdown-item" href="https://scikit-learn.org/dev/versions.html" >Other Versions and Download</a>
+          </div>
+        </li>
+      </ul>
+      <div id="searchbox" role="search">
+          <div class="searchformwrapper">
+          <form class="search" action="../search.html" method="get">
+            <input class="sk-search-text-input" type="text" name="q" aria-labelledby="searchlabel" />
+            <input class="sk-search-text-btn" type="submit" value="Go" />
+          </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="d-flex" id="sk-doc-wrapper">
+    <input type="checkbox" name="sk-toggle-checkbox" id="sk-toggle-checkbox">
+    <label id="sk-sidemenu-toggle" class="sk-btn-toggle-toc btn sk-btn-primary" for="sk-toggle-checkbox">Toggle Menu</label>
+    <div id="sk-sidebar-wrapper" class="border-right">
+      <div class="sk-sidebar-toc-wrapper">
+        <div class="sk-sidebar-toc-logo">
+          <a href="../index.html">
+            <img
+              class="sk-brand-img"
+              src="../_static/scikit-learn-logo-small.png"
+              alt="logo"/>
+          </a>
+        </div>
+        <div class="btn-group w-100 mb-2" role="group" aria-label="rellinks">
+            <a href="../supervised_learning.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="1. Supervised learning">Prev</a><a href="../supervised_learning.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="1. Supervised learning">Up</a>
+            <a href="lda_qda.html" role="button" class="btn sk-btn-rellink py-1" sk-rellink-tooltip="1.2. Linear and Quadratic Discriminant Analysis">Next</a>
+        </div>
+        <div class="alert alert-danger p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+          <strong>scikit-learn 1.1.2</strong><br/>
+          <a href="http://scikit-learn.org/dev/versions.html">Other versions</a>
+          </p>
+        </div>
+        <div class="alert alert-warning p-1 mb-2" role="alert">
+          <p class="text-center mb-0">
+            Please <a class="font-weight-bold" href="../about.html#citing-scikit-learn"><string>cite us</string></a> if you use the software.
+          </p>
+        </div>
+            <div class="sk-sidebar-toc">
+              <ul>
+<li><a class="reference internal" href="#">1.1. Linear Models</a><ul>
+<li><a class="reference internal" href="#ordinary-least-squares">1.1.1. Ordinary Least Squares</a><ul>
+<li><a class="reference internal" href="#non-negative-least-squares">1.1.1.1. Non-Negative Least Squares</a></li>
+<li><a class="reference internal" href="#ordinary-least-squares-complexity">1.1.1.2. Ordinary Least Squares Complexity</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ridge-regression-and-classification">1.1.2. Ridge regression and classification</a><ul>
+<li><a class="reference internal" href="#regression">1.1.2.1. Regression</a></li>
+<li><a class="reference internal" href="#classification">1.1.2.2. Classification</a></li>
+<li><a class="reference internal" href="#ridge-complexity">1.1.2.3. Ridge Complexity</a></li>
+<li><a class="reference internal" href="#setting-the-regularization-parameter-leave-one-out-cross-validation">1.1.2.4. Setting the regularization parameter: leave-one-out Cross-Validation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lasso">1.1.3. Lasso</a><ul>
+<li><a class="reference internal" href="#setting-regularization-parameter">1.1.3.1. Setting regularization parameter</a><ul>
+<li><a class="reference internal" href="#using-cross-validation">1.1.3.1.1. Using cross-validation</a></li>
+<li><a class="reference internal" href="#information-criteria-based-model-selection">1.1.3.1.2. Information-criteria based model selection</a></li>
+<li><a class="reference internal" href="#comparison-with-the-regularization-parameter-of-svm">1.1.3.1.3. Comparison with the regularization parameter of SVM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multi-task-lasso">1.1.4. Multi-task Lasso</a></li>
+<li><a class="reference internal" href="#elastic-net">1.1.5. Elastic-Net</a></li>
+<li><a class="reference internal" href="#multi-task-elastic-net">1.1.6. Multi-task Elastic-Net</a></li>
+<li><a class="reference internal" href="#least-angle-regression">1.1.7. Least Angle Regression</a></li>
+<li><a class="reference internal" href="#lars-lasso">1.1.8. LARS Lasso</a><ul>
+<li><a class="reference internal" href="#mathematical-formulation">1.1.8.1. Mathematical formulation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#orthogonal-matching-pursuit-omp">1.1.9. Orthogonal Matching Pursuit (OMP)</a></li>
+<li><a class="reference internal" href="#bayesian-regression">1.1.10. Bayesian Regression</a><ul>
+<li><a class="reference internal" href="#bayesian-ridge-regression">1.1.10.1. Bayesian Ridge Regression</a></li>
+<li><a class="reference internal" href="#automatic-relevance-determination-ard">1.1.10.2. Automatic Relevance Determination - ARD</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#logistic-regression">1.1.11. Logistic regression</a><ul>
+<li><a class="reference internal" href="#binary-case">1.1.11.1. Binary Case</a></li>
+<li><a class="reference internal" href="#multinomial-case">1.1.11.2. Multinomial Case</a></li>
+<li><a class="reference internal" href="#solvers">1.1.11.3. Solvers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generalized-linear-regression">1.1.12. Generalized Linear Regression</a><ul>
+<li><a class="reference internal" href="#usage">1.1.12.1. Usage</a></li>
+<li><a class="reference internal" href="#practical-considerations">1.1.12.2. Practical considerations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#stochastic-gradient-descent-sgd">1.1.13. Stochastic Gradient Descent - SGD</a></li>
+<li><a class="reference internal" href="#perceptron">1.1.14. Perceptron</a></li>
+<li><a class="reference internal" href="#passive-aggressive-algorithms">1.1.15. Passive Aggressive Algorithms</a></li>
+<li><a class="reference internal" href="#robustness-regression-outliers-and-modeling-errors">1.1.16. Robustness regression: outliers and modeling errors</a><ul>
+<li><a class="reference internal" href="#different-scenario-and-useful-concepts">1.1.16.1. Different scenario and useful concepts</a></li>
+<li><a class="reference internal" href="#ransac-random-sample-consensus">1.1.16.2. RANSAC: RANdom SAmple Consensus</a><ul>
+<li><a class="reference internal" href="#details-of-the-algorithm">1.1.16.2.1. Details of the algorithm</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#theil-sen-estimator-generalized-median-based-estimator">1.1.16.3. Theil-Sen estimator: generalized-median-based estimator</a><ul>
+<li><a class="reference internal" href="#theoretical-considerations">1.1.16.3.1. Theoretical considerations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#huber-regression">1.1.16.4. Huber Regression</a></li>
+<li><a class="reference internal" href="#notes">1.1.16.5. Notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#quantile-regression">1.1.17. Quantile Regression</a></li>
+<li><a class="reference internal" href="#polynomial-regression-extending-linear-models-with-basis-functions">1.1.18. Polynomial regression: extending linear models with basis functions</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+      </div>
+    </div>
+    <div id="sk-page-content-wrapper">
+      <div class="sk-page-content container-fluid body px-md-3" role="main">
+        
+  <section id="linear-models">
+<span id="linear-model"></span><h1><span class="section-number">1.1. </span>Linear Models<a class="headerlink" href="#linear-models" title="Permalink to this heading">¶</a></h1>
+<p>The following are a set of methods intended for regression in which
+the target value is expected to be a linear combination of the features.
+In mathematical notation, if <span class="math notranslate nohighlight">\(\hat{y}\)</span> is the predicted
+value.</p>
+<div class="math notranslate nohighlight">
+\[\hat{y}(w, x) = w_0 + w_1 x_1 + ... + w_p x_p\]</div>
+<p>Across the module, we designate the vector <span class="math notranslate nohighlight">\(w = (w_1,
+..., w_p)\)</span> as <code class="docutils literal notranslate"><span class="pre">coef_</span></code> and <span class="math notranslate nohighlight">\(w_0\)</span> as <code class="docutils literal notranslate"><span class="pre">intercept_</span></code>.</p>
+<p>To perform classification with generalized linear models, see
+<a class="reference internal" href="#logistic-regression"><span class="std std-ref">Logistic regression</span></a>.</p>
+<section id="ordinary-least-squares">
+<span id="id1"></span><h2><span class="section-number">1.1.1. </span>Ordinary Least Squares<a class="headerlink" href="#ordinary-least-squares" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference internal" href="generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression" title="sklearn.linear_model.LinearRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code></a> fits a linear model with coefficients
+<span class="math notranslate nohighlight">\(w = (w_1, ..., w_p)\)</span> to minimize the residual sum
+of squares between the observed targets in the dataset, and the
+targets predicted by the linear approximation. Mathematically it
+solves a problem of the form:</p>
+<div class="math notranslate nohighlight">
+\[\min_{w} || X w - y||_2^2\]</div>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_ols.html"><img alt="../_images/sphx_glr_plot_ols_001.png" src="../_images/sphx_glr_plot_ols_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<p><a class="reference internal" href="generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression" title="sklearn.linear_model.LinearRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code></a> will take in its <code class="docutils literal notranslate"><span class="pre">fit</span></code> method arrays X, y
+and will store the coefficients <span class="math notranslate nohighlight">\(w\)</span> of the linear model in its
+<code class="docutils literal notranslate"><span class="pre">coef_</span></code> member:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="go">LinearRegression()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span>
+<span class="go">array([0.5, 0.5])</span>
+</pre></div>
+</div>
+<p>The coefficient estimates for Ordinary Least Squares rely on the
+independence of the features. When features are correlated and the
+columns of the design matrix <span class="math notranslate nohighlight">\(X\)</span> have an approximately linear
+dependence, the design matrix becomes close to singular
+and as a result, the least-squares estimate becomes highly sensitive
+to random errors in the observed target, producing a large
+variance. This situation of <em>multicollinearity</em> can arise, for
+example, when data are collected without an experimental design.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py"><span class="std std-ref">Linear Regression Example</span></a></p></li>
+</ul>
+</aside>
+<section id="non-negative-least-squares">
+<h3><span class="section-number">1.1.1.1. </span>Non-Negative Least Squares<a class="headerlink" href="#non-negative-least-squares" title="Permalink to this heading">¶</a></h3>
+<p>It is possible to constrain all the coefficients to be non-negative, which may
+be useful when they represent some physical or naturally non-negative
+quantities (e.g., frequency counts or prices of goods).
+<a class="reference internal" href="generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression" title="sklearn.linear_model.LinearRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code></a> accepts a boolean <code class="docutils literal notranslate"><span class="pre">positive</span></code>
+parameter: when set to <code class="docutils literal notranslate"><span class="pre">True</span></code> <a class="reference external" href="https://en.wikipedia.org/wiki/Non-negative_least_squares">Non-Negative Least Squares</a> are then applied.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_nnls.html#sphx-glr-auto-examples-linear-model-plot-nnls-py"><span class="std std-ref">Non-negative least squares</span></a></p></li>
+</ul>
+</aside>
+</section>
+<section id="ordinary-least-squares-complexity">
+<h3><span class="section-number">1.1.1.2. </span>Ordinary Least Squares Complexity<a class="headerlink" href="#ordinary-least-squares-complexity" title="Permalink to this heading">¶</a></h3>
+<p>The least squares solution is computed using the singular value
+decomposition of X. If X is a matrix of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></code>
+this method has a cost of
+<span class="math notranslate nohighlight">\(O(n_{\text{samples}} n_{\text{features}}^2)\)</span>, assuming that
+<span class="math notranslate nohighlight">\(n_{\text{samples}} \geq n_{\text{features}}\)</span>.</p>
+</section>
+</section>
+<section id="ridge-regression-and-classification">
+<span id="ridge-regression"></span><h2><span class="section-number">1.1.2. </span>Ridge regression and classification<a class="headerlink" href="#ridge-regression-and-classification" title="Permalink to this heading">¶</a></h2>
+<section id="regression">
+<h3><span class="section-number">1.1.2.1. </span>Regression<a class="headerlink" href="#regression" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference internal" href="generated/sklearn.linear_model.Ridge.html#sklearn.linear_model.Ridge" title="sklearn.linear_model.Ridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ridge</span></code></a> regression addresses some of the problems of
+<a class="reference internal" href="#ordinary-least-squares"><span class="std std-ref">Ordinary Least Squares</span></a> by imposing a penalty on the size of the
+coefficients. The ridge coefficients minimize a penalized residual sum
+of squares:</p>
+<div class="math notranslate nohighlight">
+\[\min_{w} || X w - y||_2^2 + \alpha ||w||_2^2\]</div>
+<p>The complexity parameter <span class="math notranslate nohighlight">\(\alpha \geq 0\)</span> controls the amount
+of shrinkage: the larger the value of <span class="math notranslate nohighlight">\(\alpha\)</span>, the greater the amount
+of shrinkage and thus the coefficients become more robust to collinearity.</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_ridge_path.html"><img alt="../_images/sphx_glr_plot_ridge_path_001.png" src="../_images/sphx_glr_plot_ridge_path_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<p>As with other linear models, <a class="reference internal" href="generated/sklearn.linear_model.Ridge.html#sklearn.linear_model.Ridge" title="sklearn.linear_model.Ridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ridge</span></code></a> will take in its <code class="docutils literal notranslate"><span class="pre">fit</span></code> method
+arrays X, y and will store the coefficients <span class="math notranslate nohighlight">\(w\)</span> of the linear model in
+its <code class="docutils literal notranslate"><span class="pre">coef_</span></code> member:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">Ridge(alpha=0.5)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span>
+<span class="go">array([0.34545455, 0.34545455])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span>
+<span class="go">0.13636...</span>
+</pre></div>
+</div>
+</section>
+<section id="classification">
+<h3><span class="section-number">1.1.2.2. </span>Classification<a class="headerlink" href="#classification" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference internal" href="generated/sklearn.linear_model.Ridge.html#sklearn.linear_model.Ridge" title="sklearn.linear_model.Ridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ridge</span></code></a> regressor has a classifier variant:
+<a class="reference internal" href="generated/sklearn.linear_model.RidgeClassifier.html#sklearn.linear_model.RidgeClassifier" title="sklearn.linear_model.RidgeClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">RidgeClassifier</span></code></a>. This classifier first converts binary targets to
+<code class="docutils literal notranslate"><span class="pre">{-1,</span> <span class="pre">1}</span></code> and then treats the problem as a regression task, optimizing the
+same objective as above. The predicted class corresponds to the sign of the
+regressor’s prediction. For multiclass classification, the problem is
+treated as multi-output regression, and the predicted class corresponds to
+the output with the highest value.</p>
+<p>It might seem questionable to use a (penalized) Least Squares loss to fit a
+classification model instead of the more traditional logistic or hinge
+losses. However, in practice, all those models can lead to similar
+cross-validation scores in terms of accuracy or precision/recall, while the
+penalized least squares loss used by the <a class="reference internal" href="generated/sklearn.linear_model.RidgeClassifier.html#sklearn.linear_model.RidgeClassifier" title="sklearn.linear_model.RidgeClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">RidgeClassifier</span></code></a> allows for
+a very different choice of the numerical solvers with distinct computational
+performance profiles.</p>
+<p>The <a class="reference internal" href="generated/sklearn.linear_model.RidgeClassifier.html#sklearn.linear_model.RidgeClassifier" title="sklearn.linear_model.RidgeClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">RidgeClassifier</span></code></a> can be significantly faster than e.g.
+<a class="reference internal" href="generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> with a high number of classes because it can
+compute the projection matrix <span class="math notranslate nohighlight">\((X^T X)^{-1} X^T\)</span> only once.</p>
+<p>This classifier is sometimes referred to as a <a class="reference external" href="https://en.wikipedia.org/wiki/Least-squares_support-vector_machine">Least Squares Support Vector
+Machines</a> with
+a linear kernel.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_ridge_path.html#sphx-glr-auto-examples-linear-model-plot-ridge-path-py"><span class="std std-ref">Plot Ridge coefficients as a function of the regularization</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/text/plot_document_classification_20newsgroups.html#sphx-glr-auto-examples-text-plot-document-classification-20newsgroups-py"><span class="std std-ref">Classification of text documents using sparse features</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#sphx-glr-auto-examples-inspection-plot-linear-model-coefficient-interpretation-py"><span class="std std-ref">Common pitfalls in the interpretation of coefficients of linear models</span></a></p></li>
+</ul>
+</aside>
+</section>
+<section id="ridge-complexity">
+<h3><span class="section-number">1.1.2.3. </span>Ridge Complexity<a class="headerlink" href="#ridge-complexity" title="Permalink to this heading">¶</a></h3>
+<p>This method has the same order of complexity as
+<a class="reference internal" href="#ordinary-least-squares"><span class="std std-ref">Ordinary Least Squares</span></a>.</p>
+</section>
+<section id="setting-the-regularization-parameter-leave-one-out-cross-validation">
+<h3><span class="section-number">1.1.2.4. </span>Setting the regularization parameter: leave-one-out Cross-Validation<a class="headerlink" href="#setting-the-regularization-parameter-leave-one-out-cross-validation" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference internal" href="generated/sklearn.linear_model.RidgeCV.html#sklearn.linear_model.RidgeCV" title="sklearn.linear_model.RidgeCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">RidgeCV</span></code></a> implements ridge regression with built-in
+cross-validation of the alpha parameter. The object works in the same way
+as GridSearchCV except that it defaults to Leave-One-Out Cross-Validation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">RidgeCV(alphas=array([1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01,</span>
+<span class="go">      1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">alpha_</span>
+<span class="go">0.01</span>
+</pre></div>
+</div>
+<p>Specifying the value of the <a class="reference internal" href="../glossary.html#term-cv"><span class="xref std std-term">cv</span></a> attribute will trigger the use of
+cross-validation with <a class="reference internal" href="generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSearchCV</span></code></a>, for
+example <code class="docutils literal notranslate"><span class="pre">cv=10</span></code> for 10-fold cross-validation, rather than Leave-One-Out
+Cross-Validation.</p>
+<aside class="topic">
+<p class="topic-title">References</p>
+<ul class="simple">
+<li><p>“Notes on Regularized Least Squares”, Rifkin &amp; Lippert (<a class="reference external" href="http://cbcl.mit.edu/publications/ps/MIT-CSAIL-TR-2007-025.pdf">technical report</a>,
+<a class="reference external" href="https://www.mit.edu/~9.520/spring07/Classes/rlsslides.pdf">course slides</a>).</p></li>
+</ul>
+</aside>
+</section>
+</section>
+<section id="lasso">
+<span id="id3"></span><h2><span class="section-number">1.1.3. </span>Lasso<a class="headerlink" href="#lasso" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso" title="sklearn.linear_model.Lasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lasso</span></code></a> is a linear model that estimates sparse coefficients.
+It is useful in some contexts due to its tendency to prefer solutions
+with fewer non-zero coefficients, effectively reducing the number of
+features upon which the given solution is dependent. For this reason,
+Lasso and its variants are fundamental to the field of compressed sensing.
+Under certain conditions, it can recover the exact set of non-zero
+coefficients (see
+<a class="reference internal" href="../auto_examples/applications/plot_tomography_l1_reconstruction.html#sphx-glr-auto-examples-applications-plot-tomography-l1-reconstruction-py"><span class="std std-ref">Compressive sensing: tomography reconstruction with L1 prior (Lasso)</span></a>).</p>
+<p>Mathematically, it consists of a linear model with an added regularization term.
+The objective function to minimize is:</p>
+<div class="math notranslate nohighlight">
+\[\min_{w} { \frac{1}{2n_{\text{samples}}} ||X w - y||_2 ^ 2 + \alpha ||w||_1}\]</div>
+<p>The lasso estimate thus solves the minimization of the
+least-squares penalty with <span class="math notranslate nohighlight">\(\alpha ||w||_1\)</span> added, where
+<span class="math notranslate nohighlight">\(\alpha\)</span> is a constant and <span class="math notranslate nohighlight">\(||w||_1\)</span> is the <span class="math notranslate nohighlight">\(\ell_1\)</span>-norm of
+the coefficient vector.</p>
+<p>The implementation in the class <a class="reference internal" href="generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso" title="sklearn.linear_model.Lasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lasso</span></code></a> uses coordinate descent as
+the algorithm to fit the coefficients. See <a class="reference internal" href="#least-angle-regression"><span class="std std-ref">Least Angle Regression</span></a>
+for another implementation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">Lasso(alpha=0.1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="go">array([0.8])</span>
+</pre></div>
+</div>
+<p>The function <a class="reference internal" href="generated/sklearn.linear_model.lasso_path.html#sklearn.linear_model.lasso_path" title="sklearn.linear_model.lasso_path"><code class="xref py py-func docutils literal notranslate"><span class="pre">lasso_path</span></code></a> is useful for lower-level tasks, as it
+computes the coefficients along the full path of possible values.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_lasso_and_elasticnet.html#sphx-glr-auto-examples-linear-model-plot-lasso-and-elasticnet-py"><span class="std std-ref">Lasso and Elastic Net for Sparse Signals</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/applications/plot_tomography_l1_reconstruction.html#sphx-glr-auto-examples-applications-plot-tomography-l1-reconstruction-py"><span class="std std-ref">Compressive sensing: tomography reconstruction with L1 prior (Lasso)</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#sphx-glr-auto-examples-inspection-plot-linear-model-coefficient-interpretation-py"><span class="std std-ref">Common pitfalls in the interpretation of coefficients of linear models</span></a></p></li>
+</ul>
+</aside>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Feature selection with Lasso</strong></p>
+<p>As the Lasso regression yields sparse models, it can
+thus be used to perform feature selection, as detailed in
+<a class="reference internal" href="feature_selection.html#l1-feature-selection"><span class="std std-ref">L1-based feature selection</span></a>.</p>
+</div>
+<p>The following two references explain the iterations
+used in the coordinate descent solver of scikit-learn, as well as
+the duality gap computation used for convergence control.</p>
+<aside class="topic">
+<p class="topic-title">References</p>
+<ul class="simple">
+<li><p>“Regularization Path For Generalized linear Models by Coordinate Descent”,
+Friedman, Hastie &amp; Tibshirani, J Stat Softw, 2010 (<a class="reference external" href="https://www.jstatsoft.org/article/view/v033i01/v33i01.pdf">Paper</a>).</p></li>
+<li><p>“An Interior-Point Method for Large-Scale L1-Regularized Least Squares,”
+S. J. Kim, K. Koh, M. Lustig, S. Boyd and D. Gorinevsky,
+in IEEE Journal of Selected Topics in Signal Processing, 2007
+(<a class="reference external" href="https://web.stanford.edu/~boyd/papers/pdf/l1_ls.pdf">Paper</a>)</p></li>
+</ul>
+</aside>
+<section id="setting-regularization-parameter">
+<h3><span class="section-number">1.1.3.1. </span>Setting regularization parameter<a class="headerlink" href="#setting-regularization-parameter" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">alpha</span></code> parameter controls the degree of sparsity of the estimated
+coefficients.</p>
+<section id="using-cross-validation">
+<h4><span class="section-number">1.1.3.1.1. </span>Using cross-validation<a class="headerlink" href="#using-cross-validation" title="Permalink to this heading">¶</a></h4>
+<p>scikit-learn exposes objects that set the Lasso <code class="docutils literal notranslate"><span class="pre">alpha</span></code> parameter by
+cross-validation: <a class="reference internal" href="generated/sklearn.linear_model.LassoCV.html#sklearn.linear_model.LassoCV" title="sklearn.linear_model.LassoCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">LassoCV</span></code></a> and <a class="reference internal" href="generated/sklearn.linear_model.LassoLarsCV.html#sklearn.linear_model.LassoLarsCV" title="sklearn.linear_model.LassoLarsCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsCV</span></code></a>.
+<a class="reference internal" href="generated/sklearn.linear_model.LassoLarsCV.html#sklearn.linear_model.LassoLarsCV" title="sklearn.linear_model.LassoLarsCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsCV</span></code></a> is based on the <a class="reference internal" href="#least-angle-regression"><span class="std std-ref">Least Angle Regression</span></a> algorithm
+explained below.</p>
+<p>For high-dimensional datasets with many collinear features,
+<a class="reference internal" href="generated/sklearn.linear_model.LassoCV.html#sklearn.linear_model.LassoCV" title="sklearn.linear_model.LassoCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">LassoCV</span></code></a> is most often preferable. However, <a class="reference internal" href="generated/sklearn.linear_model.LassoLarsCV.html#sklearn.linear_model.LassoLarsCV" title="sklearn.linear_model.LassoLarsCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsCV</span></code></a> has
+the advantage of exploring more relevant values of <code class="docutils literal notranslate"><span class="pre">alpha</span></code> parameter, and
+if the number of samples is very small compared to the number of
+features, it is often faster than <a class="reference internal" href="generated/sklearn.linear_model.LassoCV.html#sklearn.linear_model.LassoCV" title="sklearn.linear_model.LassoCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">LassoCV</span></code></a>.</p>
+<p class="centered">
+<strong><a class="reference external" href="../auto_examples/linear_model/plot_lasso_model_selection.html"><img alt="lasso_cv_1" src="../_images/sphx_glr_plot_lasso_model_selection_002.png" style="width: 307.2px; height: 230.39999999999998px;" /></a> <a class="reference external" href="../auto_examples/linear_model/plot_lasso_model_selection.html"><img alt="lasso_cv_2" src="../_images/sphx_glr_plot_lasso_model_selection_003.png" style="width: 307.2px; height: 230.39999999999998px;" /></a></strong></p></section>
+<section id="information-criteria-based-model-selection">
+<span id="lasso-lars-ic"></span><h4><span class="section-number">1.1.3.1.2. </span>Information-criteria based model selection<a class="headerlink" href="#information-criteria-based-model-selection" title="Permalink to this heading">¶</a></h4>
+<p>Alternatively, the estimator <a class="reference internal" href="generated/sklearn.linear_model.LassoLarsIC.html#sklearn.linear_model.LassoLarsIC" title="sklearn.linear_model.LassoLarsIC"><code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsIC</span></code></a> proposes to use the
+Akaike information criterion (AIC) and the Bayes Information criterion (BIC).
+It is a computationally cheaper alternative to find the optimal value of alpha
+as the regularization path is computed only once instead of k+1 times
+when using k-fold cross-validation.</p>
+<p>Indeed, these criteria are computed on the in-sample training set. In short,
+they penalize the over-optimistic scores of the different Lasso models by
+their flexibility (cf. to “Mathematical details” section below).</p>
+<p>However, such criteria need a proper estimation of the degrees of freedom of
+the solution, are derived for large samples (asymptotic results) and assume the
+correct model is candidates under investigation. They also tend to break when
+the problem is badly conditioned (e.g. more features than samples).</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_lasso_lars_ic.html"><img alt="../_images/sphx_glr_plot_lasso_lars_ic_001.png" src="../_images/sphx_glr_plot_lasso_lars_ic_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<p id="aic-bic"><strong>Mathematical details</strong></p>
+<p>The definition of AIC (and thus BIC) might differ in the literature. In this
+section, we give more information regarding the criterion computed in
+scikit-learn. The AIC criterion is defined as:</p>
+<div class="math notranslate nohighlight">
+\[AIC = -2 \log(\hat{L}) + 2 d\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{L}\)</span> is the maximum likelihood of the model and
+<span class="math notranslate nohighlight">\(d\)</span> is the number of parameters (as well referred to as degrees of
+freedom in the previous section).</p>
+<p>The definition of BIC replace the constant <span class="math notranslate nohighlight">\(2\)</span> by <span class="math notranslate nohighlight">\(\log(N)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[BIC = -2 \log(\hat{L}) + \log(N) d\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of samples.</p>
+<p>For a linear Gaussian model, the maximum log-likelihood is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\log(\hat{L}) = - \frac{n}{2} \log(2 \pi) - \frac{n}{2} \ln(\sigma^2) - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{2\sigma^2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma^2\)</span> is an estimate of the noise variance,
+<span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> are respectively the true and predicted
+targets, and <span class="math notranslate nohighlight">\(n\)</span> is the number of samples.</p>
+<p>Plugging the maximum log-likelihood in the AIC formula yields:</p>
+<div class="math notranslate nohighlight">
+\[AIC = n \log(2 \pi \sigma^2) + \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sigma^2} + 2 d\]</div>
+<p>The first term of the above expression is sometimes discarded since it is a
+constant when <span class="math notranslate nohighlight">\(\sigma^2\)</span> is provided. In addition,
+it is sometimes stated that the AIC is equivalent to the <span class="math notranslate nohighlight">\(C_p\)</span> statistic
+<a class="footnote-reference brackets" href="#id6" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></a>. In a strict sense, however, it is equivalent only up to some constant
+and a multiplicative factor.</p>
+<p>At last, we mentioned above that <span class="math notranslate nohighlight">\(\sigma^2\)</span> is an estimate of the
+noise variance. In <a class="reference internal" href="generated/sklearn.linear_model.LassoLarsIC.html#sklearn.linear_model.LassoLarsIC" title="sklearn.linear_model.LassoLarsIC"><code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsIC</span></code></a> when the parameter <code class="docutils literal notranslate"><span class="pre">noise_variance</span></code> is
+not provided (default), the noise variance is estimated via the unbiased
+estimator <a class="footnote-reference brackets" href="#id7" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></a> defined as:</p>
+<div class="math notranslate nohighlight">
+\[\sigma^2 = \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{n - p}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is the number of features and <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> is the
+predicted target using an ordinary least squares regression. Note, that this
+formula is valid only when <code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">&gt;</span> <span class="pre">n_features</span></code>.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_lasso_model_selection.html#sphx-glr-auto-examples-linear-model-plot-lasso-model-selection-py"><span class="std std-ref">Lasso model selection: AIC-BIC / cross-validation</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_lasso_lars_ic.html#sphx-glr-auto-examples-linear-model-plot-lasso-lars-ic-py"><span class="std std-ref">Lasso model selection via information criteria</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">12</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://arxiv.org/abs/0712.0881.pdf">Zou, Hui, Trevor Hastie, and Robert Tibshirani.
+“On the degrees of freedom of the lasso.”
+The Annals of Statistics 35.5 (2007): 2173-2192.</a></p>
+</aside>
+<aside class="footnote brackets" id="id7" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">13</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://doi.org/10.1162/089976603321891864">Cherkassky, Vladimir, and Yunqian Ma.
+“Comparison of model selection for regression.”
+Neural computation 15.7 (2003): 1691-1714.</a></p>
+</aside>
+</aside>
+</aside>
+</section>
+<section id="comparison-with-the-regularization-parameter-of-svm">
+<h4><span class="section-number">1.1.3.1.3. </span>Comparison with the regularization parameter of SVM<a class="headerlink" href="#comparison-with-the-regularization-parameter-of-svm" title="Permalink to this heading">¶</a></h4>
+<p>The equivalence between <code class="docutils literal notranslate"><span class="pre">alpha</span></code> and the regularization parameter of SVM,
+<code class="docutils literal notranslate"><span class="pre">C</span></code> is given by <code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">C</span></code> or <code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">(n_samples</span> <span class="pre">*</span> <span class="pre">C)</span></code>,
+depending on the estimator and the exact objective function optimized by the
+model.</p>
+</section>
+</section>
+</section>
+<section id="multi-task-lasso">
+<span id="id8"></span><h2><span class="section-number">1.1.4. </span>Multi-task Lasso<a class="headerlink" href="#multi-task-lasso" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="generated/sklearn.linear_model.MultiTaskLasso.html#sklearn.linear_model.MultiTaskLasso" title="sklearn.linear_model.MultiTaskLasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiTaskLasso</span></code></a> is a linear model that estimates sparse
+coefficients for multiple regression problems jointly: <code class="docutils literal notranslate"><span class="pre">y</span></code> is a 2D array,
+of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_tasks)</span></code>. The constraint is that the selected
+features are the same for all the regression problems, also called tasks.</p>
+<p>The following figure compares the location of the non-zero entries in the
+coefficient matrix W obtained with a simple Lasso or a MultiTaskLasso.
+The Lasso estimates yield scattered non-zeros while the non-zeros of
+the MultiTaskLasso are full columns.</p>
+<p class="centered">
+<strong><a class="reference external" href="../auto_examples/linear_model/plot_multi_task_lasso_support.html"><img alt="multi_task_lasso_1" src="../_images/sphx_glr_plot_multi_task_lasso_support_001.png" style="width: 384.0px; height: 240.0px;" /></a> <a class="reference external" href="../auto_examples/linear_model/plot_multi_task_lasso_support.html"><img alt="multi_task_lasso_2" src="../_images/sphx_glr_plot_multi_task_lasso_support_002.png" style="width: 307.2px; height: 230.39999999999998px;" /></a></strong></p><p class="centered">
+<strong>Fitting a time-series model, imposing that any active feature be active at all times.</strong></p><aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_multi_task_lasso_support.html#sphx-glr-auto-examples-linear-model-plot-multi-task-lasso-support-py"><span class="std std-ref">Joint feature selection with multi-task Lasso</span></a></p></li>
+</ul>
+</aside>
+<p>Mathematically, it consists of a linear model trained with a mixed
+<span class="math notranslate nohighlight">\(\ell_1\)</span> <span class="math notranslate nohighlight">\(\ell_2\)</span>-norm for regularization.
+The objective function to minimize is:</p>
+<div class="math notranslate nohighlight">
+\[\min_{W} { \frac{1}{2n_{\text{samples}}} ||X W - Y||_{\text{Fro}} ^ 2 + \alpha ||W||_{21}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{Fro}\)</span> indicates the Frobenius norm</p>
+<div class="math notranslate nohighlight">
+\[||A||_{\text{Fro}} = \sqrt{\sum_{ij} a_{ij}^2}\]</div>
+<p>and <span class="math notranslate nohighlight">\(\ell_1\)</span> <span class="math notranslate nohighlight">\(\ell_2\)</span> reads</p>
+<div class="math notranslate nohighlight">
+\[||A||_{2 1} = \sum_i \sqrt{\sum_j a_{ij}^2}.\]</div>
+<p>The implementation in the class <a class="reference internal" href="generated/sklearn.linear_model.MultiTaskLasso.html#sklearn.linear_model.MultiTaskLasso" title="sklearn.linear_model.MultiTaskLasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiTaskLasso</span></code></a> uses
+coordinate descent as the algorithm to fit the coefficients.</p>
+</section>
+<section id="elastic-net">
+<span id="id9"></span><h2><span class="section-number">1.1.5. </span>Elastic-Net<a class="headerlink" href="#elastic-net" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference internal" href="generated/sklearn.linear_model.ElasticNet.html#sklearn.linear_model.ElasticNet" title="sklearn.linear_model.ElasticNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticNet</span></code></a> is a linear regression model trained with both
+<span class="math notranslate nohighlight">\(\ell_1\)</span> and <span class="math notranslate nohighlight">\(\ell_2\)</span>-norm regularization of the coefficients.
+This combination  allows for learning a sparse model where few of
+the weights are non-zero like <a class="reference internal" href="generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso" title="sklearn.linear_model.Lasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lasso</span></code></a>, while still maintaining
+the regularization properties of <a class="reference internal" href="generated/sklearn.linear_model.Ridge.html#sklearn.linear_model.Ridge" title="sklearn.linear_model.Ridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ridge</span></code></a>. We control the convex
+combination of <span class="math notranslate nohighlight">\(\ell_1\)</span> and <span class="math notranslate nohighlight">\(\ell_2\)</span> using the <code class="docutils literal notranslate"><span class="pre">l1_ratio</span></code>
+parameter.</p>
+<p>Elastic-net is useful when there are multiple features that are
+correlated with one another. Lasso is likely to pick one of these
+at random, while elastic-net is likely to pick both.</p>
+<p>A practical advantage of trading-off between Lasso and Ridge is that it
+allows Elastic-Net to inherit some of Ridge’s stability under rotation.</p>
+<p>The objective function to minimize is in this case</p>
+<div class="math notranslate nohighlight">
+\[\min_{w} { \frac{1}{2n_{\text{samples}}} ||X w - y||_2 ^ 2 + \alpha \rho ||w||_1 +
+\frac{\alpha(1-\rho)}{2} ||w||_2 ^ 2}\]</div>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_lasso_coordinate_descent_path.html"><img alt="../_images/sphx_glr_plot_lasso_coordinate_descent_path_001.png" src="../_images/sphx_glr_plot_lasso_coordinate_descent_path_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<p>The class <a class="reference internal" href="generated/sklearn.linear_model.ElasticNetCV.html#sklearn.linear_model.ElasticNetCV" title="sklearn.linear_model.ElasticNetCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticNetCV</span></code></a> can be used to set the parameters
+<code class="docutils literal notranslate"><span class="pre">alpha</span></code> (<span class="math notranslate nohighlight">\(\alpha\)</span>) and <code class="docutils literal notranslate"><span class="pre">l1_ratio</span></code> (<span class="math notranslate nohighlight">\(\rho\)</span>) by cross-validation.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_lasso_and_elasticnet.html#sphx-glr-auto-examples-linear-model-plot-lasso-and-elasticnet-py"><span class="std std-ref">Lasso and Elastic Net for Sparse Signals</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_lasso_coordinate_descent_path.html#sphx-glr-auto-examples-linear-model-plot-lasso-coordinate-descent-path-py"><span class="std std-ref">Lasso and Elastic Net</span></a></p></li>
+</ul>
+</aside>
+<p>The following two references explain the iterations
+used in the coordinate descent solver of scikit-learn, as well as
+the duality gap computation used for convergence control.</p>
+<aside class="topic">
+<p class="topic-title">References</p>
+<ul class="simple">
+<li><p>“Regularization Path For Generalized linear Models by Coordinate Descent”,
+Friedman, Hastie &amp; Tibshirani, J Stat Softw, 2010 (<a class="reference external" href="https://www.jstatsoft.org/article/view/v033i01/v33i01.pdf">Paper</a>).</p></li>
+<li><p>“An Interior-Point Method for Large-Scale L1-Regularized Least Squares,”
+S. J. Kim, K. Koh, M. Lustig, S. Boyd and D. Gorinevsky,
+in IEEE Journal of Selected Topics in Signal Processing, 2007
+(<a class="reference external" href="https://web.stanford.edu/~boyd/papers/pdf/l1_ls.pdf">Paper</a>)</p></li>
+</ul>
+</aside>
+</section>
+<section id="multi-task-elastic-net">
+<span id="id10"></span><h2><span class="section-number">1.1.6. </span>Multi-task Elastic-Net<a class="headerlink" href="#multi-task-elastic-net" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="generated/sklearn.linear_model.MultiTaskElasticNet.html#sklearn.linear_model.MultiTaskElasticNet" title="sklearn.linear_model.MultiTaskElasticNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiTaskElasticNet</span></code></a> is an elastic-net model that estimates sparse
+coefficients for multiple regression problems jointly: <code class="docutils literal notranslate"><span class="pre">Y</span></code> is a 2D array
+of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_tasks)</span></code>. The constraint is that the selected
+features are the same for all the regression problems, also called tasks.</p>
+<p>Mathematically, it consists of a linear model trained with a mixed
+<span class="math notranslate nohighlight">\(\ell_1\)</span> <span class="math notranslate nohighlight">\(\ell_2\)</span>-norm and <span class="math notranslate nohighlight">\(\ell_2\)</span>-norm for regularization.
+The objective function to minimize is:</p>
+<div class="math notranslate nohighlight">
+\[\min_{W} { \frac{1}{2n_{\text{samples}}} ||X W - Y||_{\text{Fro}}^2 + \alpha \rho ||W||_{2 1} +
+\frac{\alpha(1-\rho)}{2} ||W||_{\text{Fro}}^2}\]</div>
+<p>The implementation in the class <a class="reference internal" href="generated/sklearn.linear_model.MultiTaskElasticNet.html#sklearn.linear_model.MultiTaskElasticNet" title="sklearn.linear_model.MultiTaskElasticNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiTaskElasticNet</span></code></a> uses coordinate descent as
+the algorithm to fit the coefficients.</p>
+<p>The class <a class="reference internal" href="generated/sklearn.linear_model.MultiTaskElasticNetCV.html#sklearn.linear_model.MultiTaskElasticNetCV" title="sklearn.linear_model.MultiTaskElasticNetCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiTaskElasticNetCV</span></code></a> can be used to set the parameters
+<code class="docutils literal notranslate"><span class="pre">alpha</span></code> (<span class="math notranslate nohighlight">\(\alpha\)</span>) and <code class="docutils literal notranslate"><span class="pre">l1_ratio</span></code> (<span class="math notranslate nohighlight">\(\rho\)</span>) by cross-validation.</p>
+</section>
+<section id="least-angle-regression">
+<span id="id11"></span><h2><span class="section-number">1.1.7. </span>Least Angle Regression<a class="headerlink" href="#least-angle-regression" title="Permalink to this heading">¶</a></h2>
+<p>Least-angle regression (LARS) is a regression algorithm for
+high-dimensional data, developed by Bradley Efron, Trevor Hastie, Iain
+Johnstone and Robert Tibshirani. LARS is similar to forward stepwise
+regression. At each step, it finds the feature most correlated with the
+target. When there are multiple features having equal correlation, instead
+of continuing along the same feature, it proceeds in a direction equiangular
+between the features.</p>
+<p>The advantages of LARS are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>It is numerically efficient in contexts where the number of features
+is significantly greater than the number of samples.</p></li>
+<li><p>It is computationally just as fast as forward selection and has
+the same order of complexity as ordinary least squares.</p></li>
+<li><p>It produces a full piecewise linear solution path, which is
+useful in cross-validation or similar attempts to tune the model.</p></li>
+<li><p>If two features are almost equally correlated with the target,
+then their coefficients should increase at approximately the same
+rate. The algorithm thus behaves as intuition would expect, and
+also is more stable.</p></li>
+<li><p>It is easily modified to produce solutions for other estimators,
+like the Lasso.</p></li>
+</ul>
+</div></blockquote>
+<p>The disadvantages of the LARS method include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Because LARS is based upon an iterative refitting of the
+residuals, it would appear to be especially sensitive to the
+effects of noise. This problem is discussed in detail by Weisberg
+in the discussion section of the Efron et al. (2004) Annals of
+Statistics article.</p></li>
+</ul>
+</div></blockquote>
+<p>The LARS model can be used via the estimator <a class="reference internal" href="generated/sklearn.linear_model.Lars.html#sklearn.linear_model.Lars" title="sklearn.linear_model.Lars"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lars</span></code></a>, or its
+low-level implementation <a class="reference internal" href="generated/sklearn.linear_model.lars_path.html#sklearn.linear_model.lars_path" title="sklearn.linear_model.lars_path"><code class="xref py py-func docutils literal notranslate"><span class="pre">lars_path</span></code></a> or <a class="reference internal" href="generated/sklearn.linear_model.lars_path_gram.html#sklearn.linear_model.lars_path_gram" title="sklearn.linear_model.lars_path_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">lars_path_gram</span></code></a>.</p>
+</section>
+<section id="lars-lasso">
+<h2><span class="section-number">1.1.8. </span>LARS Lasso<a class="headerlink" href="#lars-lasso" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference internal" href="generated/sklearn.linear_model.LassoLars.html#sklearn.linear_model.LassoLars" title="sklearn.linear_model.LassoLars"><code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLars</span></code></a> is a lasso model implemented using the LARS
+algorithm, and unlike the implementation based on coordinate descent,
+this yields the exact solution, which is piecewise linear as a
+function of the norm of its coefficients.</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_lasso_lars.html"><img alt="../_images/sphx_glr_plot_lasso_lars_001.png" src="../_images/sphx_glr_plot_lasso_lars_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LassoLars</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">LassoLars(alpha=0.1, normalize=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span>
+<span class="go">array([0.6..., 0.        ])</span>
+</pre></div>
+</div>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_lasso_lars.html#sphx-glr-auto-examples-linear-model-plot-lasso-lars-py"><span class="std std-ref">Lasso path using LARS</span></a></p></li>
+</ul>
+</aside>
+<p>The Lars algorithm provides the full path of the coefficients along
+the regularization parameter almost for free, thus a common operation
+is to retrieve the path with one of the functions <a class="reference internal" href="generated/sklearn.linear_model.lars_path.html#sklearn.linear_model.lars_path" title="sklearn.linear_model.lars_path"><code class="xref py py-func docutils literal notranslate"><span class="pre">lars_path</span></code></a>
+or <a class="reference internal" href="generated/sklearn.linear_model.lars_path_gram.html#sklearn.linear_model.lars_path_gram" title="sklearn.linear_model.lars_path_gram"><code class="xref py py-func docutils literal notranslate"><span class="pre">lars_path_gram</span></code></a>.</p>
+<section id="mathematical-formulation">
+<h3><span class="section-number">1.1.8.1. </span>Mathematical formulation<a class="headerlink" href="#mathematical-formulation" title="Permalink to this heading">¶</a></h3>
+<p>The algorithm is similar to forward stepwise regression, but instead
+of including features at each step, the estimated coefficients are
+increased in a direction equiangular to each one’s correlations with
+the residual.</p>
+<p>Instead of giving a vector result, the LARS solution consists of a
+curve denoting the solution for each value of the <span class="math notranslate nohighlight">\(\ell_1\)</span> norm of the
+parameter vector. The full coefficients path is stored in the array
+<code class="docutils literal notranslate"><span class="pre">coef_path_</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(n_features,</span> <span class="pre">max_features</span> <span class="pre">+</span> <span class="pre">1)</span></code>. The first
+column is always zero.</p>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p>Original Algorithm is detailed in the paper <a class="reference external" href="https://www-stat.stanford.edu/~hastie/Papers/LARS/LeastAngle_2002.pdf">Least Angle Regression</a>
+by Hastie et al.</p></li>
+</ul>
+</aside>
+</section>
+</section>
+<section id="orthogonal-matching-pursuit-omp">
+<span id="omp"></span><h2><span class="section-number">1.1.9. </span>Orthogonal Matching Pursuit (OMP)<a class="headerlink" href="#orthogonal-matching-pursuit-omp" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference internal" href="generated/sklearn.linear_model.OrthogonalMatchingPursuit.html#sklearn.linear_model.OrthogonalMatchingPursuit" title="sklearn.linear_model.OrthogonalMatchingPursuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrthogonalMatchingPursuit</span></code></a> and <a class="reference internal" href="generated/sklearn.linear_model.orthogonal_mp.html#sklearn.linear_model.orthogonal_mp" title="sklearn.linear_model.orthogonal_mp"><code class="xref py py-func docutils literal notranslate"><span class="pre">orthogonal_mp</span></code></a> implement the OMP
+algorithm for approximating the fit of a linear model with constraints imposed
+on the number of non-zero coefficients (ie. the <span class="math notranslate nohighlight">\(\ell_0\)</span> pseudo-norm).</p>
+<p>Being a forward feature selection method like <a class="reference internal" href="#least-angle-regression"><span class="std std-ref">Least Angle Regression</span></a>,
+orthogonal matching pursuit can approximate the optimum solution vector with a
+fixed number of non-zero elements:</p>
+<div class="math notranslate nohighlight">
+\[\underset{w}{\operatorname{arg\,min\,}}  ||y - Xw||_2^2 \text{ subject to } ||w||_0 \leq n_{\text{nonzero\_coefs}}\]</div>
+<p>Alternatively, orthogonal matching pursuit can target a specific error instead
+of a specific number of non-zero coefficients. This can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\underset{w}{\operatorname{arg\,min\,}} ||w||_0 \text{ subject to } ||y-Xw||_2^2 \leq \text{tol}\]</div>
+<p>OMP is based on a greedy algorithm that includes at each step the atom most
+highly correlated with the current residual. It is similar to the simpler
+matching pursuit (MP) method, but better in that at each iteration, the
+residual is recomputed using an orthogonal projection on the space of the
+previously chosen dictionary elements.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_omp.html#sphx-glr-auto-examples-linear-model-plot-omp-py"><span class="std std-ref">Orthogonal Matching Pursuit</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.cs.technion.ac.il/~ronrubin/Publications/KSVD-OMP-v2.pdf">https://www.cs.technion.ac.il/~ronrubin/Publications/KSVD-OMP-v2.pdf</a></p></li>
+<li><p><a class="reference external" href="https://www.di.ens.fr/~mallat/papiers/MallatPursuit93.pdf">Matching pursuits with time-frequency dictionaries</a>,
+S. G. Mallat, Z. Zhang,</p></li>
+</ul>
+</aside>
+</section>
+<section id="bayesian-regression">
+<span id="id13"></span><h2><span class="section-number">1.1.10. </span>Bayesian Regression<a class="headerlink" href="#bayesian-regression" title="Permalink to this heading">¶</a></h2>
+<p>Bayesian regression techniques can be used to include regularization
+parameters in the estimation procedure: the regularization parameter is
+not set in a hard sense but tuned to the data at hand.</p>
+<p>This can be done by introducing <a class="reference external" href="https://en.wikipedia.org/wiki/Non-informative_prior#Uninformative_priors">uninformative priors</a>
+over the hyper parameters of the model.
+The <span class="math notranslate nohighlight">\(\ell_{2}\)</span> regularization used in <a class="reference internal" href="#ridge-regression"><span class="std std-ref">Ridge regression and classification</span></a> is
+equivalent to finding a maximum a posteriori estimation under a Gaussian prior
+over the coefficients <span class="math notranslate nohighlight">\(w\)</span> with precision <span class="math notranslate nohighlight">\(\lambda^{-1}\)</span>.
+Instead of setting <code class="docutils literal notranslate"><span class="pre">lambda</span></code> manually, it is possible to treat it as a random
+variable to be estimated from the data.</p>
+<p>To obtain a fully probabilistic model, the output <span class="math notranslate nohighlight">\(y\)</span> is assumed
+to be Gaussian distributed around <span class="math notranslate nohighlight">\(X w\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[p(y|X,w,\alpha) = \mathcal{N}(y|X w,\alpha)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is again treated as a random variable that is to be
+estimated from the data.</p>
+<p>The advantages of Bayesian Regression are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>It adapts to the data at hand.</p></li>
+<li><p>It can be used to include regularization parameters in the
+estimation procedure.</p></li>
+</ul>
+</div></blockquote>
+<p>The disadvantages of Bayesian regression include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Inference of the model can be time consuming.</p></li>
+</ul>
+</div></blockquote>
+<aside class="topic">
+<p class="topic-title">References</p>
+<ul class="simple">
+<li><p>A good introduction to Bayesian methods is given in C. Bishop: Pattern
+Recognition and Machine learning</p></li>
+<li><p>Original Algorithm is detailed in the  book <code class="docutils literal notranslate"><span class="pre">Bayesian</span> <span class="pre">learning</span> <span class="pre">for</span> <span class="pre">neural</span>
+<span class="pre">networks</span></code> by Radford M. Neal</p></li>
+</ul>
+</aside>
+<section id="bayesian-ridge-regression">
+<span id="id14"></span><h3><span class="section-number">1.1.10.1. </span>Bayesian Ridge Regression<a class="headerlink" href="#bayesian-ridge-regression" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference internal" href="generated/sklearn.linear_model.BayesianRidge.html#sklearn.linear_model.BayesianRidge" title="sklearn.linear_model.BayesianRidge"><code class="xref py py-class docutils literal notranslate"><span class="pre">BayesianRidge</span></code></a> estimates a probabilistic model of the
+regression problem as described above.
+The prior for the coefficient <span class="math notranslate nohighlight">\(w\)</span> is given by a spherical Gaussian:</p>
+<div class="math notranslate nohighlight">
+\[p(w|\lambda) =
+\mathcal{N}(w|0,\lambda^{-1}\mathbf{I}_{p})\]</div>
+<p>The priors over <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are chosen to be <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_distribution">gamma
+distributions</a>, the
+conjugate prior for the precision of the Gaussian. The resulting model is
+called <em>Bayesian Ridge Regression</em>, and is similar to the classical
+<a class="reference internal" href="generated/sklearn.linear_model.Ridge.html#sklearn.linear_model.Ridge" title="sklearn.linear_model.Ridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ridge</span></code></a>.</p>
+<p>The parameters <span class="math notranslate nohighlight">\(w\)</span>, <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are estimated
+jointly during the fit of the model, the regularization parameters
+<span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> being estimated by maximizing the
+<em>log marginal likelihood</em>. The scikit-learn implementation
+is based on the algorithm described in Appendix A of (Tipping, 2001)
+where the update of the parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> is done
+as suggested in (MacKay, 1992). The initial value of the maximization procedure
+can be set with the hyperparameters <code class="docutils literal notranslate"><span class="pre">alpha_init</span></code> and <code class="docutils literal notranslate"><span class="pre">lambda_init</span></code>.</p>
+<p>There are four more hyperparameters, <span class="math notranslate nohighlight">\(\alpha_1\)</span>, <span class="math notranslate nohighlight">\(\alpha_2\)</span>,
+<span class="math notranslate nohighlight">\(\lambda_1\)</span> and <span class="math notranslate nohighlight">\(\lambda_2\)</span> of the gamma prior distributions over
+<span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span>. These are usually chosen to be
+<em>non-informative</em>. By default <span class="math notranslate nohighlight">\(\alpha_1 = \alpha_2 =  \lambda_1 = \lambda_2 = 10^{-6}\)</span>.</p>
+<p>Bayesian Ridge Regression is used for regression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">BayesianRidge</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="go">BayesianRidge()</span>
+</pre></div>
+</div>
+<p>After being fitted, the model can then be used to predict new values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
+<span class="go">array([0.50000013])</span>
+</pre></div>
+</div>
+<p>The coefficients <span class="math notranslate nohighlight">\(w\)</span> of the model can be accessed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span>
+<span class="go">array([0.49999993, 0.49999993])</span>
+</pre></div>
+</div>
+<p>Due to the Bayesian framework, the weights found are slightly different to the
+ones found by <a class="reference internal" href="#ordinary-least-squares"><span class="std std-ref">Ordinary Least Squares</span></a>. However, Bayesian Ridge Regression
+is more robust to ill-posed problems.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_bayesian_ridge_curvefit.html#sphx-glr-auto-examples-linear-model-plot-bayesian-ridge-curvefit-py"><span class="std std-ref">Curve Fitting with Bayesian Ridge Regression</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p>Section 3.3 in Christopher M. Bishop: Pattern Recognition and Machine Learning, 2006</p></li>
+<li><p>David J. C. MacKay, <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.27.9072&amp;rep=rep1&amp;type=pdf">Bayesian Interpolation</a>, 1992.</p></li>
+<li><p>Michael E. Tipping, <a class="reference external" href="http://www.jmlr.org/papers/volume1/tipping01a/tipping01a.pdf">Sparse Bayesian Learning and the Relevance Vector Machine</a>, 2001.</p></li>
+</ul>
+</aside>
+</section>
+<section id="automatic-relevance-determination-ard">
+<span id="automatic-relevance-determination"></span><h3><span class="section-number">1.1.10.2. </span>Automatic Relevance Determination - ARD<a class="headerlink" href="#automatic-relevance-determination-ard" title="Permalink to this heading">¶</a></h3>
+<p>The Automatic Relevance Determination (as being implemented in
+<a class="reference internal" href="generated/sklearn.linear_model.ARDRegression.html#sklearn.linear_model.ARDRegression" title="sklearn.linear_model.ARDRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">ARDRegression</span></code></a>) is a kind of linear model which is very similar to the
+<a class="reference internal" href="#id14">Bayesian Ridge Regression</a>, but that leads to sparser coefficients <span class="math notranslate nohighlight">\(w\)</span>
+<a class="footnote-reference brackets" href="#id19" id="id15" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id20" id="id16" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<p><a class="reference internal" href="generated/sklearn.linear_model.ARDRegression.html#sklearn.linear_model.ARDRegression" title="sklearn.linear_model.ARDRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">ARDRegression</span></code></a> poses a different prior over <span class="math notranslate nohighlight">\(w\)</span>: it drops
+the spherical Gaussian distribution for a centered elliptic Gaussian
+distribution. This means each coefficient <span class="math notranslate nohighlight">\(w_{i}\)</span> can itself be drawn from
+a Gaussian distribution, centered on zero and with a precision
+<span class="math notranslate nohighlight">\(\lambda_{i}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[p(w|\lambda) = \mathcal{N}(w|0,A^{-1})\]</div>
+<p>with <span class="math notranslate nohighlight">\(A\)</span> being a positive definite diagonal matrix and
+<span class="math notranslate nohighlight">\(\text{diag}(A) = \lambda = \{\lambda_{1},...,\lambda_{p}\}\)</span>.</p>
+<p>In contrast to the <a class="reference internal" href="#id14">Bayesian Ridge Regression</a>, each coordinate of
+<span class="math notranslate nohighlight">\(w_{i}\)</span> has its own standard deviation <span class="math notranslate nohighlight">\(\frac{1}{\lambda_i}\)</span>. The
+prior over all <span class="math notranslate nohighlight">\(\lambda_i\)</span> is chosen to be the same gamma distribution
+given by the hyperparameters <span class="math notranslate nohighlight">\(\lambda_1\)</span> and <span class="math notranslate nohighlight">\(\lambda_2\)</span>.</p>
+<p>ARD is also known in the literature as <em>Sparse Bayesian Learning</em> and <em>Relevance
+Vector Machine</em> <a class="footnote-reference brackets" href="#id21" id="id17" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id23" id="id18" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>. For a worked-out comparison between ARD and <a class="reference internal" href="#id14">Bayesian
+Ridge Regression</a>, see the example below.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_ard.html#sphx-glr-auto-examples-linear-model-plot-ard-py"><span class="std std-ref">Comparing Linear Bayesian Regressors</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id19" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id15">1</a><span class="fn-bracket">]</span></span>
+<p>Christopher M. Bishop: Pattern Recognition and Machine Learning, Chapter 7.2.1</p>
+</aside>
+<aside class="footnote brackets" id="id20" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id16">2</a><span class="fn-bracket">]</span></span>
+<p>David Wipf and Srikantan Nagarajan: <a class="reference external" href="https://papers.nips.cc/paper/3372-a-new-view-of-automatic-relevance-determination.pdf">A new view of automatic relevance determination</a></p>
+</aside>
+<aside class="footnote brackets" id="id21" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id17">3</a><span class="fn-bracket">]</span></span>
+<p>Michael E. Tipping: <a class="reference external" href="http://www.jmlr.org/papers/volume1/tipping01a/tipping01a.pdf">Sparse Bayesian Learning and the Relevance Vector Machine</a></p>
+</aside>
+<aside class="footnote brackets" id="id23" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id18">4</a><span class="fn-bracket">]</span></span>
+<p>Tristan Fletcher: <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.651.8603&amp;rep=rep1&amp;type=pdf">Relevance Vector Machines explained</a></p>
+</aside>
+</aside>
+</aside>
+</section>
+</section>
+<section id="logistic-regression">
+<span id="id24"></span><h2><span class="section-number">1.1.11. </span>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">¶</a></h2>
+<p>Logistic regression, despite its name, is a linear model for classification
+rather than regression. Logistic regression is also known in the literature as
+logit regression, maximum-entropy classification (MaxEnt) or the log-linear
+classifier. In this model, the probabilities describing the possible outcomes
+of a single trial are modeled using a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Logistic_function">logistic function</a>.</p>
+<p>Logistic regression is implemented in <a class="reference internal" href="generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a>.
+This implementation can fit binary, One-vs-Rest, or multinomial logistic
+regression with optional <span class="math notranslate nohighlight">\(\ell_1\)</span>, <span class="math notranslate nohighlight">\(\ell_2\)</span> or Elastic-Net
+regularization.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Regularization is applied by default, which is common in machine
+learning but not in statistics. Another advantage of regularization is
+that it improves numerical stability. No regularization amounts to
+setting C to a very high value.</p>
+</div>
+<section id="binary-case">
+<h3><span class="section-number">1.1.11.1. </span>Binary Case<a class="headerlink" href="#binary-case" title="Permalink to this heading">¶</a></h3>
+<p>For notational ease, we assume that the target <span class="math notranslate nohighlight">\(y_i\)</span> takes values in the
+set <span class="math notranslate nohighlight">\(\{0, 1\}\)</span> for data point <span class="math notranslate nohighlight">\(i\)</span>.
+Once fitted, the <a class="reference internal" href="generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression.predict_proba" title="sklearn.linear_model.LogisticRegression.predict_proba"><code class="xref py py-meth docutils literal notranslate"><span class="pre">predict_proba</span></code></a>
+method of <a class="reference internal" href="generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> predicts
+the probability of the positive class <span class="math notranslate nohighlight">\(P(y_i=1|X_i)\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\hat{p}(X_i) = \operatorname{expit}(X_i w + w_0) = \frac{1}{1 + \exp(-X_i w - w_0)}.\]</div>
+<p>As an optimization problem, binary
+class logistic regression with regularization term <span class="math notranslate nohighlight">\(r(w)\)</span> minimizes the
+following cost function:</p>
+<div class="math notranslate nohighlight">
+\[\min_{w} C \sum_{i=1}^n \left(-y_i \log(\hat{p}(X_i)) - (1 - y_i) \log(1 - \hat{p}(X_i))\right) + r(w).\]</div>
+<p>We currently provide four choices for the regularization term  <span class="math notranslate nohighlight">\(r(w)\)</span>  via
+the <code class="docutils literal notranslate"><span class="pre">penalty</span></code> argument:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>penalty</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(r(w)\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\ell_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\|w\|_1\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\ell_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1}{2}\|w\|_2^2 = \frac{1}{2}w^T w\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ElasticNet</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1 - \rho}{2}w^T w + \rho \|w\|_1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>For ElasticNet, <span class="math notranslate nohighlight">\(\rho\)</span> (which corresponds to the <code class="docutils literal notranslate"><span class="pre">l1_ratio</span></code> parameter)
+controls the strength of <span class="math notranslate nohighlight">\(\ell_1\)</span> regularization vs. <span class="math notranslate nohighlight">\(\ell_2\)</span>
+regularization. Elastic-Net is equivalent to <span class="math notranslate nohighlight">\(\ell_1\)</span> when
+<span class="math notranslate nohighlight">\(\rho = 1\)</span> and equivalent to <span class="math notranslate nohighlight">\(\ell_2\)</span> when <span class="math notranslate nohighlight">\(\rho=0\)</span>.</p>
+</section>
+<section id="multinomial-case">
+<h3><span class="section-number">1.1.11.2. </span>Multinomial Case<a class="headerlink" href="#multinomial-case" title="Permalink to this heading">¶</a></h3>
+<p>The binary case can be extended to <span class="math notranslate nohighlight">\(K\)</span> classes leading to the multinomial
+logistic regression, see also <a class="reference external" href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression#As_a_log-linear_model">log-linear model</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is possible to parameterize a <span class="math notranslate nohighlight">\(K\)</span>-class classification model
+using only <span class="math notranslate nohighlight">\(K-1\)</span> weight vectors, leaving one class probability fully
+determined by the other class probabilities by leveraging the fact that all
+class probabilities must sum to one. We deliberately choose to overparameterize the model
+using <span class="math notranslate nohighlight">\(K\)</span> weight vectors for ease of implementation and to preserve the
+symmetrical inductive bias regarding ordering of classes, see <a class="footnote-reference brackets" href="#id37" id="id25" role="doc-noteref"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></a>. This effect becomes
+especially important when using regularization. The choice of overparameterization can be
+detrimental for unpenalized models since then the solution may not be unique, as shown in <a class="footnote-reference brackets" href="#id37" id="id26" role="doc-noteref"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></a>.</p>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(y_i \in {1, \ldots, K}\)</span> be the label (ordinal) encoded target variable for observation <span class="math notranslate nohighlight">\(i\)</span>.
+Instead of a single coefficient vector, we now have
+a matrix of coefficients <span class="math notranslate nohighlight">\(W\)</span> where each row vector <span class="math notranslate nohighlight">\(W_k\)</span> corresponds to class
+<span class="math notranslate nohighlight">\(k\)</span>. We aim at predicting the class probabilities <span class="math notranslate nohighlight">\(P(y_i=k|X_i)\)</span> via
+<a class="reference internal" href="generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression.predict_proba" title="sklearn.linear_model.LogisticRegression.predict_proba"><code class="xref py py-meth docutils literal notranslate"><span class="pre">predict_proba</span></code></a> as:</p>
+<div class="math notranslate nohighlight">
+\[\hat{p}_k(X_i) = \frac{\exp(X_i W_k + W_{0, k})}{\sum_{l=0}^{K-1} \exp(X_i W_l + W_{0, l})}.\]</div>
+<p>The objective for the optimization becomes</p>
+<div class="math notranslate nohighlight">
+\[\min_W -C \sum_{i=1}^n \sum_{k=0}^{K-1} [y_i = k] \log(\hat{p}_k(X_i)) + r(W).\]</div>
+<p>Where <span class="math notranslate nohighlight">\([P]\)</span> represents the Iverson bracket which evaluates to <span class="math notranslate nohighlight">\(0\)</span>
+if <span class="math notranslate nohighlight">\(P\)</span> is false, otherwise it evaluates to <span class="math notranslate nohighlight">\(1\)</span>. We currently provide four choices
+for the regularization term <span class="math notranslate nohighlight">\(r(W)\)</span> via the <code class="docutils literal notranslate"><span class="pre">penalty</span></code> argument:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>penalty</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(r(W)\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\ell_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\|W\|_{1,1} = \sum_{i=1}^n\sum_{j=1}^{K}|W_{i,j}|\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\ell_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1}{2}\|W\|_F^2 = \frac{1}{2}\sum_{i=1}^n\sum_{j=1}^{K} W_{i,j}^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ElasticNet</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1 - \rho}{2}\|W\|_F^2 + \rho \|W\|_{1,1}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="solvers">
+<h3><span class="section-number">1.1.11.3. </span>Solvers<a class="headerlink" href="#solvers" title="Permalink to this heading">¶</a></h3>
+<p>The solvers implemented in the class <a class="reference internal" href="generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a>
+are “liblinear”, “newton-cg”, “lbfgs”, “sag” and “saga”:</p>
+<p>The solver “liblinear” uses a coordinate descent (CD) algorithm, and relies
+on the excellent C++ <a class="reference external" href="https://www.csie.ntu.edu.tw/~cjlin/liblinear/">LIBLINEAR library</a>, which is shipped with
+scikit-learn. However, the CD algorithm implemented in liblinear cannot learn
+a true multinomial (multiclass) model; instead, the optimization problem is
+decomposed in a “one-vs-rest” fashion so separate binary classifiers are
+trained for all classes. This happens under the hood, so
+<a class="reference internal" href="generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> instances using this solver behave as multiclass
+classifiers. For <span class="math notranslate nohighlight">\(\ell_1\)</span> regularization <a class="reference internal" href="generated/sklearn.svm.l1_min_c.html#sklearn.svm.l1_min_c" title="sklearn.svm.l1_min_c"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.svm.l1_min_c</span></code></a> allows to
+calculate the lower bound for C in order to get a non “null” (all feature
+weights to zero) model.</p>
+<p>The “lbfgs”, “sag” and “newton-cg” solvers only support <span class="math notranslate nohighlight">\(\ell_2\)</span>
+regularization or no regularization, and are found to converge faster for some
+high-dimensional data. Setting <code class="docutils literal notranslate"><span class="pre">multi_class</span></code> to “multinomial” with these solvers
+learns a true multinomial logistic regression model <a class="footnote-reference brackets" href="#id32" id="id27" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>, which means that its
+probability estimates should be better calibrated than the default “one-vs-rest”
+setting.</p>
+<p>The “sag” solver uses Stochastic Average Gradient descent <a class="footnote-reference brackets" href="#id33" id="id28" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a>. It is faster
+than other solvers for large datasets, when both the number of samples and the
+number of features are large.</p>
+<p>The “saga” solver <a class="footnote-reference brackets" href="#id34" id="id29" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a> is a variant of “sag” that also supports the
+non-smooth <code class="docutils literal notranslate"><span class="pre">penalty=&quot;l1&quot;</span></code>. This is therefore the solver of choice for sparse
+multinomial logistic regression. It is also the only solver that supports
+<code class="docutils literal notranslate"><span class="pre">penalty=&quot;elasticnet&quot;</span></code>.</p>
+<p>The “lbfgs” is an optimization algorithm that approximates the
+Broyden–Fletcher–Goldfarb–Shanno algorithm <a class="footnote-reference brackets" href="#id35" id="id30" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a>, which belongs to
+quasi-Newton methods. The “lbfgs” solver is recommended for use for
+small data-sets but for larger datasets its performance suffers. <a class="footnote-reference brackets" href="#id36" id="id31" role="doc-noteref"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></a></p>
+<p>The following table summarizes the penalties supported by each solver:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td></td>
+<td colspan="5"><p><strong>Solvers</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Penalties</strong></p></td>
+<td><p><strong>‘liblinear’</strong></p></td>
+<td><p><strong>‘lbfgs’</strong></p></td>
+<td><p><strong>‘newton-cg’</strong></p></td>
+<td><p><strong>‘sag’</strong></p></td>
+<td><p><strong>‘saga’</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Multinomial + L2 penalty</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>OVR + L2 penalty</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Multinomial + L1 penalty</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>OVR + L1 penalty</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Elastic-Net</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>No penalty (‘none’)</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Behaviors</strong></p></td>
+<td colspan="5"></td>
+</tr>
+<tr class="row-even"><td><p>Penalize the intercept (bad)</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-odd"><td><p>Faster for large datasets</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Robust to unscaled datasets</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+</tr>
+</tbody>
+</table>
+<p>The “lbfgs” solver is used by default for its robustness. For large datasets
+the “saga” solver is usually faster.
+For large dataset, you may also consider using <a class="reference internal" href="generated/sklearn.linear_model.SGDClassifier.html#sklearn.linear_model.SGDClassifier" title="sklearn.linear_model.SGDClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">SGDClassifier</span></code></a>
+with ‘log’ loss, which might be even faster but requires more tuning.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_logistic_l1_l2_sparsity.html#sphx-glr-auto-examples-linear-model-plot-logistic-l1-l2-sparsity-py"><span class="std std-ref">L1 Penalty and Sparsity in Logistic Regression</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_logistic_path.html#sphx-glr-auto-examples-linear-model-plot-logistic-path-py"><span class="std std-ref">Regularization path of L1- Logistic Regression</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_logistic_multinomial.html#sphx-glr-auto-examples-linear-model-plot-logistic-multinomial-py"><span class="std std-ref">Plot multinomial and One-vs-Rest Logistic Regression</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_sparse_logistic_regression_20newsgroups.html#sphx-glr-auto-examples-linear-model-plot-sparse-logistic-regression-20newsgroups-py"><span class="std std-ref">Multiclass sparse logistic regression on 20newgroups</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_sparse_logistic_regression_mnist.html#sphx-glr-auto-examples-linear-model-plot-sparse-logistic-regression-mnist-py"><span class="std std-ref">MNIST classification using multinomial logistic + L1</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic" id="liblinear-differences">
+<p class="topic-title">Differences from liblinear:</p>
+<p>There might be a difference in the scores obtained between
+<a class="reference internal" href="generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> with <code class="docutils literal notranslate"><span class="pre">solver=liblinear</span></code>
+or <code class="xref py py-class docutils literal notranslate"><span class="pre">LinearSVC</span></code> and the external liblinear library directly,
+when <code class="docutils literal notranslate"><span class="pre">fit_intercept=False</span></code> and the fit <code class="docutils literal notranslate"><span class="pre">coef_</span></code> (or) the data to
+be predicted are zeroes. This is because for the sample(s) with
+<code class="docutils literal notranslate"><span class="pre">decision_function</span></code> zero, <a class="reference internal" href="generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> and <code class="xref py py-class docutils literal notranslate"><span class="pre">LinearSVC</span></code>
+predict the negative class, while liblinear predicts the positive class.
+Note that a model with <code class="docutils literal notranslate"><span class="pre">fit_intercept=False</span></code> and having many samples with
+<code class="docutils literal notranslate"><span class="pre">decision_function</span></code> zero, is likely to be a underfit, bad model and you are
+advised to set <code class="docutils literal notranslate"><span class="pre">fit_intercept=True</span></code> and increase the intercept_scaling.</p>
+</aside>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Feature selection with sparse logistic regression</strong></p>
+<p>A logistic regression with <span class="math notranslate nohighlight">\(\ell_1\)</span> penalty yields sparse models, and can
+thus be used to perform feature selection, as detailed in
+<a class="reference internal" href="feature_selection.html#l1-feature-selection"><span class="std std-ref">L1-based feature selection</span></a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>P-value estimation</strong></p>
+<p>It is possible to obtain the p-values and confidence intervals for
+coefficients in cases of regression without penalization. The <code class="docutils literal notranslate"><span class="pre">statsmodels</span>
+<span class="pre">package</span> <span class="pre">&lt;https://pypi.org/project/statsmodels/&gt;</span></code> natively supports this.
+Within sklearn, one could use bootstrapping instead as well.</p>
+</div>
+<p><a class="reference internal" href="generated/sklearn.linear_model.LogisticRegressionCV.html#sklearn.linear_model.LogisticRegressionCV" title="sklearn.linear_model.LogisticRegressionCV"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegressionCV</span></code></a> implements Logistic Regression with built-in
+cross-validation support, to find the optimal <code class="docutils literal notranslate"><span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">l1_ratio</span></code> parameters
+according to the <code class="docutils literal notranslate"><span class="pre">scoring</span></code> attribute. The “newton-cg”, “sag”, “saga” and
+“lbfgs” solvers are found to be faster for high-dimensional dense data, due
+to warm-starting (see <a class="reference internal" href="../glossary.html#term-warm_start"><span class="xref std std-term">Glossary</span></a>).</p>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id32" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id27">5</a><span class="fn-bracket">]</span></span>
+<p>Christopher M. Bishop: Pattern Recognition and Machine Learning, Chapter 4.3.4</p>
+</aside>
+<aside class="footnote brackets" id="id33" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id28">6</a><span class="fn-bracket">]</span></span>
+<p>Mark Schmidt, Nicolas Le Roux, and Francis Bach: <a class="reference external" href="https://hal.inria.fr/hal-00860051/document">Minimizing Finite Sums with the Stochastic Average Gradient.</a></p>
+</aside>
+<aside class="footnote brackets" id="id34" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id29">7</a><span class="fn-bracket">]</span></span>
+<p>Aaron Defazio, Francis Bach, Simon Lacoste-Julien:
+<a class="reference external" href="https://arxiv.org/abs/1407.0202">SAGA: A Fast Incremental Gradient Method With Support for
+Non-Strongly Convex Composite Objectives.</a></p>
+</aside>
+<aside class="footnote brackets" id="id35" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id30">8</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm</a></p>
+</aside>
+<aside class="footnote brackets" id="id36" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id31">9</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="http://www.fuzihao.org/blog/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/">“Performance Evaluation of Lbfgs vs other solvers”</a></p>
+</aside>
+<aside class="footnote brackets" id="id37" role="note">
+<span class="label"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id25">1</a>,<a role="doc-backlink" href="#id26">2</a>)</span>
+<p><a class="reference external" href="https://arxiv.org/abs/1311.6529">Simon, Noah, J. Friedman and T. Hastie.
+“A Blockwise Descent Algorithm for Group-penalized Multiresponse and
+Multinomial Regression.”</a></p>
+</aside>
+</aside>
+</aside>
+</section>
+</section>
+<section id="generalized-linear-regression">
+<span id="id38"></span><h2><span class="section-number">1.1.12. </span>Generalized Linear Regression<a class="headerlink" href="#generalized-linear-regression" title="Permalink to this heading">¶</a></h2>
+<p>Generalized Linear Models (GLM) extend linear models in two ways
+<a class="footnote-reference brackets" href="#id41" id="id39" role="doc-noteref"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></a>. First, the predicted values <span class="math notranslate nohighlight">\(\hat{y}\)</span> are linked to a linear
+combination of the input variables <span class="math notranslate nohighlight">\(X\)</span> via an inverse link function
+<span class="math notranslate nohighlight">\(h\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\hat{y}(w, X) = h(Xw).\]</div>
+<p>Secondly, the squared loss function is replaced by the unit deviance
+<span class="math notranslate nohighlight">\(d\)</span> of a distribution in the exponential family (or more precisely, a
+reproductive exponential dispersion model (EDM) <a class="footnote-reference brackets" href="#id42" id="id40" role="doc-noteref"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></a>).</p>
+<p>The minimization problem becomes:</p>
+<div class="math notranslate nohighlight">
+\[\min_{w} \frac{1}{2 n_{\text{samples}}} \sum_i d(y_i, \hat{y}_i) + \frac{\alpha}{2} ||w||_2^2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the L2 regularization penalty. When sample weights are
+provided, the average becomes a weighted average.</p>
+<p>The following table lists some specific EDMs and their unit deviance (all of
+these are instances of the Tweedie family):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Distribution</p></th>
+<th class="head"><p>Target Domain</p></th>
+<th class="head"><p>Unit Deviance <span class="math notranslate nohighlight">\(d(y, \hat{y})\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Normal</p></td>
+<td><p><span class="math notranslate nohighlight">\(y \in (-\infty, \infty)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\((y-\hat{y})^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Poisson</p></td>
+<td><p><span class="math notranslate nohighlight">\(y \in [0, \infty)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2(y\log\frac{y}{\hat{y}}-y+\hat{y})\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Gamma</p></td>
+<td><p><span class="math notranslate nohighlight">\(y \in (0, \infty)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2(\log\frac{\hat{y}}{y}+\frac{y}{\hat{y}}-1)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Inverse Gaussian</p></td>
+<td><p><span class="math notranslate nohighlight">\(y \in (0, \infty)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{(y-\hat{y})^2}{y\hat{y}^2}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>The Probability Density Functions (PDF) of these distributions are illustrated
+in the following figure,</p>
+<figure class="align-center" id="id48">
+<a class="reference internal image-reference" href="../_images/poisson_gamma_tweedie_distributions.png"><img alt="../_images/poisson_gamma_tweedie_distributions.png" src="../_images/poisson_gamma_tweedie_distributions.png" style="width: 1200.0px; height: 350.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">PDF of a random variable Y following Poisson, Tweedie (power=1.5) and Gamma
+distributions with different mean values (<span class="math notranslate nohighlight">\(\mu\)</span>). Observe the point
+mass at <span class="math notranslate nohighlight">\(Y=0\)</span> for the Poisson distribution and the Tweedie (power=1.5)
+distribution, but not for the Gamma distribution which has a strictly
+positive target domain.</span><a class="headerlink" href="#id48" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The choice of the distribution depends on the problem at hand:</p>
+<ul class="simple">
+<li><p>If the target values <span class="math notranslate nohighlight">\(y\)</span> are counts (non-negative integer valued) or
+relative frequencies (non-negative), you might use a Poisson deviance
+with log-link.</p></li>
+<li><p>If the target values are positive valued and skewed, you might try a
+Gamma deviance with log-link.</p></li>
+<li><p>If the target values seem to be heavier tailed than a Gamma distribution,
+you might try an Inverse Gaussian deviance (or even higher variance powers
+of the Tweedie family).</p></li>
+</ul>
+<p>Examples of use cases include:</p>
+<ul class="simple">
+<li><p>Agriculture / weather modeling:  number of rain events per year (Poisson),
+amount of rainfall per event (Gamma), total rainfall per year (Tweedie /
+Compound Poisson Gamma).</p></li>
+<li><p>Risk modeling / insurance policy pricing:  number of claim events /
+policyholder per year (Poisson), cost per event (Gamma), total cost per
+policyholder per year (Tweedie / Compound Poisson Gamma).</p></li>
+<li><p>Predictive maintenance: number of production interruption events per year
+(Poisson), duration of interruption (Gamma), total interruption time per year
+(Tweedie / Compound Poisson Gamma).</p></li>
+</ul>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id41" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id39">10</a><span class="fn-bracket">]</span></span>
+<p>McCullagh, Peter; Nelder, John (1989). Generalized Linear Models,
+Second Edition. Boca Raton: Chapman and Hall/CRC. ISBN 0-412-31760-5.</p>
+</aside>
+<aside class="footnote brackets" id="id42" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id40">11</a><span class="fn-bracket">]</span></span>
+<p>Jørgensen, B. (1992). The theory of exponential dispersion models
+and analysis of deviance. Monografias de matemática, no. 51.  See also
+<a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_dispersion_model">Exponential dispersion model.</a></p>
+</aside>
+</aside>
+</aside>
+<section id="usage">
+<h3><span class="section-number">1.1.12.1. </span>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference internal" href="generated/sklearn.linear_model.TweedieRegressor.html#sklearn.linear_model.TweedieRegressor" title="sklearn.linear_model.TweedieRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">TweedieRegressor</span></code></a> implements a generalized linear model for the
+Tweedie distribution, that allows to model any of the above mentioned
+distributions using the appropriate <code class="docutils literal notranslate"><span class="pre">power</span></code> parameter. In particular:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">=</span> <span class="pre">0</span></code>: Normal distribution. Specific estimators such as
+<a class="reference internal" href="generated/sklearn.linear_model.Ridge.html#sklearn.linear_model.Ridge" title="sklearn.linear_model.Ridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ridge</span></code></a>, <a class="reference internal" href="generated/sklearn.linear_model.ElasticNet.html#sklearn.linear_model.ElasticNet" title="sklearn.linear_model.ElasticNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElasticNet</span></code></a> are generally more appropriate in
+this case.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">=</span> <span class="pre">1</span></code>: Poisson distribution. <a class="reference internal" href="generated/sklearn.linear_model.PoissonRegressor.html#sklearn.linear_model.PoissonRegressor" title="sklearn.linear_model.PoissonRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PoissonRegressor</span></code></a> is exposed
+for convenience. However, it is strictly equivalent to
+<code class="docutils literal notranslate"><span class="pre">TweedieRegressor(power=1,</span> <span class="pre">link='log')</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">=</span> <span class="pre">2</span></code>: Gamma distribution. <a class="reference internal" href="generated/sklearn.linear_model.GammaRegressor.html#sklearn.linear_model.GammaRegressor" title="sklearn.linear_model.GammaRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">GammaRegressor</span></code></a> is exposed for
+convenience. However, it is strictly equivalent to
+<code class="docutils literal notranslate"><span class="pre">TweedieRegressor(power=2,</span> <span class="pre">link='log')</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">=</span> <span class="pre">3</span></code>: Inverse Gaussian distribution.</p></li>
+</ul>
+<p>The link function is determined by the <code class="docutils literal notranslate"><span class="pre">link</span></code> parameter.</p>
+<p>Usage example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">TweedieRegressor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span> <span class="o">=</span> <span class="n">TweedieRegressor</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">link</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="go">TweedieRegressor(alpha=0.5, link=&#39;log&#39;, power=1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span>
+<span class="go">array([0.2463..., 0.4337...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span>
+<span class="go">-0.7638...</span>
+</pre></div>
+</div>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_poisson_regression_non_normal_loss.html#sphx-glr-auto-examples-linear-model-plot-poisson-regression-non-normal-loss-py"><span class="std std-ref">Poisson regression and non-normal loss</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_tweedie_regression_insurance_claims.html#sphx-glr-auto-examples-linear-model-plot-tweedie-regression-insurance-claims-py"><span class="std std-ref">Tweedie regression on insurance claims</span></a></p></li>
+</ul>
+</aside>
+</section>
+<section id="practical-considerations">
+<h3><span class="section-number">1.1.12.2. </span>Practical considerations<a class="headerlink" href="#practical-considerations" title="Permalink to this heading">¶</a></h3>
+<p>The feature matrix <code class="docutils literal notranslate"><span class="pre">X</span></code> should be standardized before fitting. This ensures
+that the penalty treats features equally.</p>
+<p>Since the linear predictor <span class="math notranslate nohighlight">\(Xw\)</span> can be negative and Poisson,
+Gamma and Inverse Gaussian distributions don’t support negative values, it
+is necessary to apply an inverse link function that guarantees the
+non-negativeness. For example with <code class="docutils literal notranslate"><span class="pre">link='log'</span></code>, the inverse link function
+becomes <span class="math notranslate nohighlight">\(h(Xw)=\exp(Xw)\)</span>.</p>
+<p>If you want to model a relative frequency, i.e. counts per exposure (time,
+volume, …) you can do so by using a Poisson distribution and passing
+<span class="math notranslate nohighlight">\(y=\frac{\mathrm{counts}}{\mathrm{exposure}}\)</span> as target values
+together with <span class="math notranslate nohighlight">\(\mathrm{exposure}\)</span> as sample weights. For a concrete
+example see e.g.
+<a class="reference internal" href="../auto_examples/linear_model/plot_tweedie_regression_insurance_claims.html#sphx-glr-auto-examples-linear-model-plot-tweedie-regression-insurance-claims-py"><span class="std std-ref">Tweedie regression on insurance claims</span></a>.</p>
+<p>When performing cross-validation for the <code class="docutils literal notranslate"><span class="pre">power</span></code> parameter of
+<code class="docutils literal notranslate"><span class="pre">TweedieRegressor</span></code>, it is advisable to specify an explicit <code class="docutils literal notranslate"><span class="pre">scoring</span></code> function,
+because the default scorer <a class="reference internal" href="generated/sklearn.linear_model.TweedieRegressor.html#sklearn.linear_model.TweedieRegressor.score" title="sklearn.linear_model.TweedieRegressor.score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TweedieRegressor.score</span></code></a> is a function of
+<code class="docutils literal notranslate"><span class="pre">power</span></code> itself.</p>
+</section>
+</section>
+<section id="stochastic-gradient-descent-sgd">
+<h2><span class="section-number">1.1.13. </span>Stochastic Gradient Descent - SGD<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Permalink to this heading">¶</a></h2>
+<p>Stochastic gradient descent is a simple yet very efficient approach
+to fit linear models. It is particularly useful when the number of samples
+(and the number of features) is very large.
+The <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> method allows online/out-of-core learning.</p>
+<p>The classes <a class="reference internal" href="generated/sklearn.linear_model.SGDClassifier.html#sklearn.linear_model.SGDClassifier" title="sklearn.linear_model.SGDClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">SGDClassifier</span></code></a> and <a class="reference internal" href="generated/sklearn.linear_model.SGDRegressor.html#sklearn.linear_model.SGDRegressor" title="sklearn.linear_model.SGDRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">SGDRegressor</span></code></a> provide
+functionality to fit linear models for classification and regression
+using different (convex) loss functions and different penalties.
+E.g., with <code class="docutils literal notranslate"><span class="pre">loss=&quot;log&quot;</span></code>, <a class="reference internal" href="generated/sklearn.linear_model.SGDClassifier.html#sklearn.linear_model.SGDClassifier" title="sklearn.linear_model.SGDClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">SGDClassifier</span></code></a>
+fits a logistic regression model,
+while with <code class="docutils literal notranslate"><span class="pre">loss=&quot;hinge&quot;</span></code> it fits a linear support vector machine (SVM).</p>
+<aside class="topic">
+<p class="topic-title">References</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="sgd.html#sgd"><span class="std std-ref">Stochastic Gradient Descent</span></a></p></li>
+</ul>
+</aside>
+</section>
+<section id="perceptron">
+<span id="id43"></span><h2><span class="section-number">1.1.14. </span>Perceptron<a class="headerlink" href="#perceptron" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="generated/sklearn.linear_model.Perceptron.html#sklearn.linear_model.Perceptron" title="sklearn.linear_model.Perceptron"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perceptron</span></code></a> is another simple classification algorithm suitable for
+large scale learning. By default:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>It does not require a learning rate.</p></li>
+<li><p>It is not regularized (penalized).</p></li>
+<li><p>It updates its model only on mistakes.</p></li>
+</ul>
+</div></blockquote>
+<p>The last characteristic implies that the Perceptron is slightly faster to
+train than SGD with the hinge loss and that the resulting models are
+sparser.</p>
+</section>
+<section id="passive-aggressive-algorithms">
+<span id="passive-aggressive"></span><h2><span class="section-number">1.1.15. </span>Passive Aggressive Algorithms<a class="headerlink" href="#passive-aggressive-algorithms" title="Permalink to this heading">¶</a></h2>
+<p>The passive-aggressive algorithms are a family of algorithms for large-scale
+learning. They are similar to the Perceptron in that they do not require a
+learning rate. However, contrary to the Perceptron, they include a
+regularization parameter <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
+<p>For classification, <a class="reference internal" href="generated/sklearn.linear_model.PassiveAggressiveClassifier.html#sklearn.linear_model.PassiveAggressiveClassifier" title="sklearn.linear_model.PassiveAggressiveClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">PassiveAggressiveClassifier</span></code></a> can be used with
+<code class="docutils literal notranslate"><span class="pre">loss='hinge'</span></code> (PA-I) or <code class="docutils literal notranslate"><span class="pre">loss='squared_hinge'</span></code> (PA-II).  For regression,
+<a class="reference internal" href="generated/sklearn.linear_model.PassiveAggressiveRegressor.html#sklearn.linear_model.PassiveAggressiveRegressor" title="sklearn.linear_model.PassiveAggressiveRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PassiveAggressiveRegressor</span></code></a> can be used with
+<code class="docutils literal notranslate"><span class="pre">loss='epsilon_insensitive'</span></code> (PA-I) or
+<code class="docutils literal notranslate"><span class="pre">loss='squared_epsilon_insensitive'</span></code> (PA-II).</p>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://jmlr.csail.mit.edu/papers/volume7/crammer06a/crammer06a.pdf">“Online Passive-Aggressive Algorithms”</a>
+K. Crammer, O. Dekel, J. Keshat, S. Shalev-Shwartz, Y. Singer - JMLR 7 (2006)</p></li>
+</ul>
+</aside>
+</section>
+<section id="robustness-regression-outliers-and-modeling-errors">
+<h2><span class="section-number">1.1.16. </span>Robustness regression: outliers and modeling errors<a class="headerlink" href="#robustness-regression-outliers-and-modeling-errors" title="Permalink to this heading">¶</a></h2>
+<p>Robust regression aims to fit a regression model in the
+presence of corrupt data: either outliers, or error in the model.</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_theilsen.html"><img alt="../_images/sphx_glr_plot_theilsen_001.png" src="../_images/sphx_glr_plot_theilsen_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<section id="different-scenario-and-useful-concepts">
+<h3><span class="section-number">1.1.16.1. </span>Different scenario and useful concepts<a class="headerlink" href="#different-scenario-and-useful-concepts" title="Permalink to this heading">¶</a></h3>
+<p>There are different things to keep in mind when dealing with data
+corrupted by outliers:</p>
+<ul>
+<li><p><strong>Outliers in X or in y</strong>?</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Outliers in the y direction</p></th>
+<th class="head"><p>Outliers in the X direction</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="../auto_examples/linear_model/plot_robust_fit.html"><img alt="y_outliers" src="../_images/sphx_glr_plot_robust_fit_003.png" style="width: 300.0px; height: 240.0px;" /></a></p></td>
+<td><p><a class="reference external" href="../auto_examples/linear_model/plot_robust_fit.html"><img alt="X_outliers" src="../_images/sphx_glr_plot_robust_fit_002.png" style="width: 300.0px; height: 240.0px;" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Fraction of outliers versus amplitude of error</strong></p>
+<p>The number of outlying points matters, but also how much they are
+outliers.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Small outliers</p></th>
+<th class="head"><p>Large outliers</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="../auto_examples/linear_model/plot_robust_fit.html"><img alt="y_outliers" src="../_images/sphx_glr_plot_robust_fit_003.png" style="width: 300.0px; height: 240.0px;" /></a></p></td>
+<td><p><a class="reference external" href="../auto_examples/linear_model/plot_robust_fit.html"><img alt="large_y_outliers" src="../_images/sphx_glr_plot_robust_fit_005.png" style="width: 300.0px; height: 240.0px;" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p>An important notion of robust fitting is that of breakdown point: the
+fraction of data that can be outlying for the fit to start missing the
+inlying data.</p>
+<p>Note that in general, robust fitting in high-dimensional setting (large
+<code class="docutils literal notranslate"><span class="pre">n_features</span></code>) is very hard. The robust models here will probably not work
+in these settings.</p>
+<aside class="topic">
+<p class="topic-title"><strong>Trade-offs: which estimator?</strong></p>
+<blockquote>
+<div><p>Scikit-learn provides 3 robust regression estimators:
+<a class="reference internal" href="#ransac-regression"><span class="std std-ref">RANSAC</span></a>,
+<a class="reference internal" href="#theil-sen-regression"><span class="std std-ref">Theil Sen</span></a> and
+<a class="reference internal" href="#huber-regression"><span class="std std-ref">HuberRegressor</span></a>.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#huber-regression"><span class="std std-ref">HuberRegressor</span></a> should be faster than
+<a class="reference internal" href="#ransac-regression"><span class="std std-ref">RANSAC</span></a> and <a class="reference internal" href="#theil-sen-regression"><span class="std std-ref">Theil Sen</span></a>
+unless the number of samples are very large, i.e <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">n_features</span></code>.
+This is because <a class="reference internal" href="#ransac-regression"><span class="std std-ref">RANSAC</span></a> and <a class="reference internal" href="#theil-sen-regression"><span class="std std-ref">Theil Sen</span></a>
+fit on smaller subsets of the data. However, both <a class="reference internal" href="#theil-sen-regression"><span class="std std-ref">Theil Sen</span></a>
+and <a class="reference internal" href="#ransac-regression"><span class="std std-ref">RANSAC</span></a> are unlikely to be as robust as
+<a class="reference internal" href="#huber-regression"><span class="std std-ref">HuberRegressor</span></a> for the default parameters.</p></li>
+<li><p><a class="reference internal" href="#ransac-regression"><span class="std std-ref">RANSAC</span></a> is faster than <a class="reference internal" href="#theil-sen-regression"><span class="std std-ref">Theil Sen</span></a>
+and scales much better with the number of samples.</p></li>
+<li><p><a class="reference internal" href="#ransac-regression"><span class="std std-ref">RANSAC</span></a> will deal better with large
+outliers in the y direction (most common situation).</p></li>
+<li><p><a class="reference internal" href="#theil-sen-regression"><span class="std std-ref">Theil Sen</span></a> will cope better with
+medium-size outliers in the X direction, but this property will
+disappear in high-dimensional settings.</p></li>
+</ul>
+</div></blockquote>
+<p>When in doubt, use <a class="reference internal" href="#ransac-regression"><span class="std std-ref">RANSAC</span></a>.</p>
+</aside>
+</section>
+<section id="ransac-random-sample-consensus">
+<span id="ransac-regression"></span><h3><span class="section-number">1.1.16.2. </span>RANSAC: RANdom SAmple Consensus<a class="headerlink" href="#ransac-random-sample-consensus" title="Permalink to this heading">¶</a></h3>
+<p>RANSAC (RANdom SAmple Consensus) fits a model from random subsets of
+inliers from the complete data set.</p>
+<p>RANSAC is a non-deterministic algorithm producing only a reasonable result with
+a certain probability, which is dependent on the number of iterations (see
+<code class="docutils literal notranslate"><span class="pre">max_trials</span></code> parameter). It is typically used for linear and non-linear
+regression problems and is especially popular in the field of photogrammetric
+computer vision.</p>
+<p>The algorithm splits the complete input sample data into a set of inliers,
+which may be subject to noise, and outliers, which are e.g. caused by erroneous
+measurements or invalid hypotheses about the data. The resulting model is then
+estimated only from the determined inliers.</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_ransac.html"><img alt="../_images/sphx_glr_plot_ransac_001.png" src="../_images/sphx_glr_plot_ransac_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<section id="details-of-the-algorithm">
+<h4><span class="section-number">1.1.16.2.1. </span>Details of the algorithm<a class="headerlink" href="#details-of-the-algorithm" title="Permalink to this heading">¶</a></h4>
+<p>Each iteration performs the following steps:</p>
+<ol class="arabic simple">
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">min_samples</span></code> random samples from the original data and check
+whether the set of data is valid (see <code class="docutils literal notranslate"><span class="pre">is_data_valid</span></code>).</p></li>
+<li><p>Fit a model to the random subset (<code class="docutils literal notranslate"><span class="pre">base_estimator.fit</span></code>) and check
+whether the estimated model is valid (see <code class="docutils literal notranslate"><span class="pre">is_model_valid</span></code>).</p></li>
+<li><p>Classify all data as inliers or outliers by calculating the residuals
+to the estimated model (<code class="docutils literal notranslate"><span class="pre">base_estimator.predict(X)</span> <span class="pre">-</span> <span class="pre">y</span></code>) - all data
+samples with absolute residuals smaller than or equal to the
+<code class="docutils literal notranslate"><span class="pre">residual_threshold</span></code> are considered as inliers.</p></li>
+<li><p>Save fitted model as best model if number of inlier samples is
+maximal. In case the current estimated model has the same number of
+inliers, it is only considered as the best model if it has better score.</p></li>
+</ol>
+<p>These steps are performed either a maximum number of times (<code class="docutils literal notranslate"><span class="pre">max_trials</span></code>) or
+until one of the special stop criteria are met (see <code class="docutils literal notranslate"><span class="pre">stop_n_inliers</span></code> and
+<code class="docutils literal notranslate"><span class="pre">stop_score</span></code>). The final model is estimated using all inlier samples (consensus
+set) of the previously determined best model.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">is_data_valid</span></code> and <code class="docutils literal notranslate"><span class="pre">is_model_valid</span></code> functions allow to identify and reject
+degenerate combinations of random sub-samples. If the estimated model is not
+needed for identifying degenerate cases, <code class="docutils literal notranslate"><span class="pre">is_data_valid</span></code> should be used as it
+is called prior to fitting the model and thus leading to better computational
+performance.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_ransac.html#sphx-glr-auto-examples-linear-model-plot-ransac-py"><span class="std std-ref">Robust linear model estimation using RANSAC</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_robust_fit.html#sphx-glr-auto-examples-linear-model-plot-robust-fit-py"><span class="std std-ref">Robust linear estimator fitting</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/RANSAC">https://en.wikipedia.org/wiki/RANSAC</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.ait.ac.th/~mdailey/cvreadings/Fischler-RANSAC.pdf">“Random Sample Consensus: A Paradigm for Model Fitting with Applications to
+Image Analysis and Automated Cartography”</a>
+Martin A. Fischler and Robert C. Bolles - SRI International (1981)</p></li>
+<li><p><a class="reference external" href="http://www.bmva.org/bmvc/2009/Papers/Paper355/Paper355.pdf">“Performance Evaluation of RANSAC Family”</a>
+Sunglok Choi, Taemin Kim and Wonpil Yu - BMVC (2009)</p></li>
+</ul>
+</aside>
+</section>
+</section>
+<section id="theil-sen-estimator-generalized-median-based-estimator">
+<span id="theil-sen-regression"></span><h3><span class="section-number">1.1.16.3. </span>Theil-Sen estimator: generalized-median-based estimator<a class="headerlink" href="#theil-sen-estimator-generalized-median-based-estimator" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference internal" href="generated/sklearn.linear_model.TheilSenRegressor.html#sklearn.linear_model.TheilSenRegressor" title="sklearn.linear_model.TheilSenRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">TheilSenRegressor</span></code></a> estimator uses a generalization of the median in
+multiple dimensions. It is thus robust to multivariate outliers. Note however
+that the robustness of the estimator decreases quickly with the dimensionality
+of the problem. It loses its robustness properties and becomes no
+better than an ordinary least squares in high dimension.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_theilsen.html#sphx-glr-auto-examples-linear-model-plot-theilsen-py"><span class="std std-ref">Theil-Sen Regression</span></a></p></li>
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_robust_fit.html#sphx-glr-auto-examples-linear-model-plot-robust-fit-py"><span class="std std-ref">Robust linear estimator fitting</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Theil%E2%80%93Sen_estimator">https://en.wikipedia.org/wiki/Theil%E2%80%93Sen_estimator</a></p></li>
+</ul>
+</aside>
+<section id="theoretical-considerations">
+<h4><span class="section-number">1.1.16.3.1. </span>Theoretical considerations<a class="headerlink" href="#theoretical-considerations" title="Permalink to this heading">¶</a></h4>
+<p><a class="reference internal" href="generated/sklearn.linear_model.TheilSenRegressor.html#sklearn.linear_model.TheilSenRegressor" title="sklearn.linear_model.TheilSenRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">TheilSenRegressor</span></code></a> is comparable to the <a class="reference internal" href="#ordinary-least-squares"><span class="std std-ref">Ordinary Least Squares
+(OLS)</span></a> in terms of asymptotic efficiency and as an
+unbiased estimator. In contrast to OLS, Theil-Sen is a non-parametric
+method which means it makes no assumption about the underlying
+distribution of the data. Since Theil-Sen is a median-based estimator, it
+is more robust against corrupted data aka outliers. In univariate
+setting, Theil-Sen has a breakdown point of about 29.3% in case of a
+simple linear regression which means that it can tolerate arbitrary
+corrupted data of up to 29.3%.</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_theilsen.html"><img alt="../_images/sphx_glr_plot_theilsen_001.png" src="../_images/sphx_glr_plot_theilsen_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<p>The implementation of <a class="reference internal" href="generated/sklearn.linear_model.TheilSenRegressor.html#sklearn.linear_model.TheilSenRegressor" title="sklearn.linear_model.TheilSenRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">TheilSenRegressor</span></code></a> in scikit-learn follows a
+generalization to a multivariate linear regression model <a class="footnote-reference brackets" href="#f1" id="id44" role="doc-noteref"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></a> using the
+spatial median which is a generalization of the median to multiple
+dimensions <a class="footnote-reference brackets" href="#f2" id="id45" role="doc-noteref"><span class="fn-bracket">[</span>15<span class="fn-bracket">]</span></a>.</p>
+<p>In terms of time and space complexity, Theil-Sen scales according to</p>
+<div class="math notranslate nohighlight">
+\[\binom{n_{\text{samples}}}{n_{\text{subsamples}}}\]</div>
+<p>which makes it infeasible to be applied exhaustively to problems with a
+large number of samples and features. Therefore, the magnitude of a
+subpopulation can be chosen to limit the time and space complexity by
+considering only a random subset of all possible combinations.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_theilsen.html#sphx-glr-auto-examples-linear-model-plot-theilsen-py"><span class="std std-ref">Theil-Sen Regression</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id44">14</a><span class="fn-bracket">]</span></span>
+<p>Xin Dang, Hanxiang Peng, Xueqin Wang and Heping Zhang: <a class="reference external" href="http://home.olemiss.edu/~xdang/papers/MTSE.pdf">Theil-Sen Estimators in a Multiple Linear Regression Model.</a></p>
+</aside>
+<aside class="footnote brackets" id="f2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id45">15</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple" start="20">
+<li><p>Kärkkäinen and S. Äyrämö: <a class="reference external" href="http://users.jyu.fi/~samiayr/pdf/ayramo_eurogen05.pdf">On Computation of Spatial Median for Robust Data Mining.</a></p></li>
+</ol>
+</aside>
+</aside>
+</aside>
+</section>
+</section>
+<section id="huber-regression">
+<span id="id46"></span><h3><span class="section-number">1.1.16.4. </span>Huber Regression<a class="headerlink" href="#huber-regression" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference internal" href="generated/sklearn.linear_model.HuberRegressor.html#sklearn.linear_model.HuberRegressor" title="sklearn.linear_model.HuberRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">HuberRegressor</span></code></a> is different to <a class="reference internal" href="generated/sklearn.linear_model.Ridge.html#sklearn.linear_model.Ridge" title="sklearn.linear_model.Ridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ridge</span></code></a> because it applies a
+linear loss to samples that are classified as outliers.
+A sample is classified as an inlier if the absolute error of that sample is
+lesser than a certain threshold. It differs from <a class="reference internal" href="generated/sklearn.linear_model.TheilSenRegressor.html#sklearn.linear_model.TheilSenRegressor" title="sklearn.linear_model.TheilSenRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">TheilSenRegressor</span></code></a>
+and <a class="reference internal" href="generated/sklearn.linear_model.RANSACRegressor.html#sklearn.linear_model.RANSACRegressor" title="sklearn.linear_model.RANSACRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">RANSACRegressor</span></code></a> because it does not ignore the effect of the outliers
+but gives a lesser weight to them.</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_huber_vs_ridge.html"><img alt="../_images/sphx_glr_plot_huber_vs_ridge_001.png" src="../_images/sphx_glr_plot_huber_vs_ridge_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<p>The loss function that <a class="reference internal" href="generated/sklearn.linear_model.HuberRegressor.html#sklearn.linear_model.HuberRegressor" title="sklearn.linear_model.HuberRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">HuberRegressor</span></code></a> minimizes is given by</p>
+<div class="math notranslate nohighlight">
+\[\min_{w, \sigma} {\sum_{i=1}^n\left(\sigma + H_{\epsilon}\left(\frac{X_{i}w - y_{i}}{\sigma}\right)\sigma\right) + \alpha {||w||_2}^2}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H_{\epsilon}(z) = \begin{cases}
+       z^2, &amp; \text {if } |z| &lt; \epsilon, \\
+       2\epsilon|z| - \epsilon^2, &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+<p>It is advised to set the parameter <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> to 1.35 to achieve 95% statistical efficiency.</p>
+</section>
+<section id="notes">
+<h3><span class="section-number">1.1.16.5. </span>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference internal" href="generated/sklearn.linear_model.HuberRegressor.html#sklearn.linear_model.HuberRegressor" title="sklearn.linear_model.HuberRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">HuberRegressor</span></code></a> differs from using <a class="reference internal" href="generated/sklearn.linear_model.SGDRegressor.html#sklearn.linear_model.SGDRegressor" title="sklearn.linear_model.SGDRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">SGDRegressor</span></code></a> with loss set to <code class="docutils literal notranslate"><span class="pre">huber</span></code>
+in the following ways.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="generated/sklearn.linear_model.HuberRegressor.html#sklearn.linear_model.HuberRegressor" title="sklearn.linear_model.HuberRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">HuberRegressor</span></code></a> is scaling invariant. Once <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> is set, scaling <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>
+down or up by different values would produce the same robustness to outliers as before.
+as compared to <a class="reference internal" href="generated/sklearn.linear_model.SGDRegressor.html#sklearn.linear_model.SGDRegressor" title="sklearn.linear_model.SGDRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">SGDRegressor</span></code></a> where <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> has to be set again when <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are
+scaled.</p></li>
+<li><p><a class="reference internal" href="generated/sklearn.linear_model.HuberRegressor.html#sklearn.linear_model.HuberRegressor" title="sklearn.linear_model.HuberRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">HuberRegressor</span></code></a> should be more efficient to use on data with small number of
+samples while <a class="reference internal" href="generated/sklearn.linear_model.SGDRegressor.html#sklearn.linear_model.SGDRegressor" title="sklearn.linear_model.SGDRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">SGDRegressor</span></code></a> needs a number of passes on the training data to
+produce the same robustness.</p></li>
+</ul>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_huber_vs_ridge.html#sphx-glr-auto-examples-linear-model-plot-huber-vs-ridge-py"><span class="std std-ref">HuberRegressor vs Ridge on dataset with strong outliers</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p>Peter J. Huber, Elvezio M. Ronchetti: Robust Statistics, Concomitant scale estimates, pg 172</p></li>
+</ul>
+</aside>
+<p>Note that this estimator is different from the R implementation of Robust Regression
+(<a class="reference external" href="https://stats.oarc.ucla.edu/r/dae/robust-regression/">https://stats.oarc.ucla.edu/r/dae/robust-regression/</a>) because the R implementation does a weighted least
+squares implementation with weights given to each sample on the basis of how much the residual is
+greater than a certain threshold.</p>
+</section>
+</section>
+<section id="quantile-regression">
+<span id="id47"></span><h2><span class="section-number">1.1.17. </span>Quantile Regression<a class="headerlink" href="#quantile-regression" title="Permalink to this heading">¶</a></h2>
+<p>Quantile regression estimates the median or other quantiles of <span class="math notranslate nohighlight">\(y\)</span>
+conditional on <span class="math notranslate nohighlight">\(X\)</span>, while ordinary least squares (OLS) estimates the
+conditional mean.</p>
+<p>As a linear model, the <a class="reference internal" href="generated/sklearn.linear_model.QuantileRegressor.html#sklearn.linear_model.QuantileRegressor" title="sklearn.linear_model.QuantileRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantileRegressor</span></code></a> gives linear predictions
+<span class="math notranslate nohighlight">\(\hat{y}(w, X) = Xw\)</span> for the <span class="math notranslate nohighlight">\(q\)</span>-th quantile, <span class="math notranslate nohighlight">\(q \in (0, 1)\)</span>.
+The weights or coefficients <span class="math notranslate nohighlight">\(w\)</span> are then found by the following
+minimization problem:</p>
+<div class="math notranslate nohighlight">
+\[\min_{w} {\frac{1}{n_{\text{samples}}}
+\sum_i PB_q(y_i - X_i w) + \alpha ||w||_1}.\]</div>
+<p>This consists of the pinball loss (also known as linear loss),
+see also <a class="reference internal" href="generated/sklearn.metrics.mean_pinball_loss.html#sklearn.metrics.mean_pinball_loss" title="sklearn.metrics.mean_pinball_loss"><code class="xref py py-class docutils literal notranslate"><span class="pre">mean_pinball_loss</span></code></a>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}PB_q(t) = q \max(t, 0) + (1 - q) \max(-t, 0) =
+\begin{cases}
+    q t, &amp; t &gt; 0, \\
+    0,    &amp; t = 0, \\
+    (q-1) t, &amp; t &lt; 0
+\end{cases}\end{split}\]</div>
+<p>and the L1 penalty controlled by parameter <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, similar to
+<a class="reference internal" href="generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso" title="sklearn.linear_model.Lasso"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lasso</span></code></a>.</p>
+<p>As the pinball loss is only linear in the residuals, quantile regression is
+much more robust to outliers than squared error based estimation of the mean.
+Somewhat in between is the <a class="reference internal" href="generated/sklearn.linear_model.HuberRegressor.html#sklearn.linear_model.HuberRegressor" title="sklearn.linear_model.HuberRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">HuberRegressor</span></code></a>.</p>
+<p>Quantile regression may be useful if one is interested in predicting an
+interval instead of point prediction. Sometimes, prediction intervals are
+calculated based on the assumption that prediction error is distributed
+normally with zero mean and constant variance. Quantile regression provides
+sensible prediction intervals even for errors with non-constant (but
+predictable) variance or non-normal distribution.</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_quantile_regression.html"><img alt="../_images/sphx_glr_plot_quantile_regression_002.png" src="../_images/sphx_glr_plot_quantile_regression_002.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<p>Based on minimizing the pinball loss, conditional quantiles can also be
+estimated by models other than linear models. For example,
+<a class="reference internal" href="generated/sklearn.ensemble.GradientBoostingRegressor.html#sklearn.ensemble.GradientBoostingRegressor" title="sklearn.ensemble.GradientBoostingRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">GradientBoostingRegressor</span></code></a> can predict conditional
+quantiles if its parameter <code class="docutils literal notranslate"><span class="pre">loss</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&quot;quantile&quot;</span></code> and parameter
+<code class="docutils literal notranslate"><span class="pre">alpha</span></code> is set to the quantile that should be predicted. See the example in
+<a class="reference internal" href="../auto_examples/ensemble/plot_gradient_boosting_quantile.html#sphx-glr-auto-examples-ensemble-plot-gradient-boosting-quantile-py"><span class="std std-ref">Prediction Intervals for Gradient Boosting Regression</span></a>.</p>
+<p>Most implementations of quantile regression are based on linear programming
+problem. The current implementation is based on
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html#scipy.optimize.linprog" title="(in SciPy v1.9.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.linprog</span></code></a>.</p>
+<aside class="topic">
+<p class="topic-title">Examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../auto_examples/linear_model/plot_quantile_regression.html#sphx-glr-auto-examples-linear-model-plot-quantile-regression-py"><span class="std std-ref">Quantile regression</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References:</p>
+<ul class="simple">
+<li><p>Koenker, R., &amp; Bassett Jr, G. (1978). <a class="reference external" href="https://gib.people.uic.edu/RQ.pdf">Regression quantiles.</a>
+Econometrica: journal of the Econometric Society, 33-50.</p></li>
+<li><p>Portnoy, S., &amp; Koenker, R. (1997). <a class="reference external" href="https://doi.org/10.1214/ss/1030037960">The Gaussian hare and the Laplacian
+tortoise: computability of squared-error versus absolute-error estimators.
+Statistical Science, 12, 279-300</a>.</p></li>
+<li><p>Koenker, R. (2005). <a class="reference external" href="https://doi.org/10.1017/CBO9780511754098">Quantile Regression</a>.
+Cambridge University Press.</p></li>
+</ul>
+</aside>
+</section>
+<section id="polynomial-regression-extending-linear-models-with-basis-functions">
+<span id="polynomial-regression"></span><h2><span class="section-number">1.1.18. </span>Polynomial regression: extending linear models with basis functions<a class="headerlink" href="#polynomial-regression-extending-linear-models-with-basis-functions" title="Permalink to this heading">¶</a></h2>
+<p>One common pattern within machine learning is to use linear models trained
+on nonlinear functions of the data.  This approach maintains the generally
+fast performance of linear methods, while allowing them to fit a much wider
+range of data.</p>
+<p>For example, a simple linear regression can be extended by constructing
+<strong>polynomial features</strong> from the coefficients.  In the standard linear
+regression case, you might have a model that looks like this for
+two-dimensional data:</p>
+<div class="math notranslate nohighlight">
+\[\hat{y}(w, x) = w_0 + w_1 x_1 + w_2 x_2\]</div>
+<p>If we want to fit a paraboloid to the data instead of a plane, we can combine
+the features in second-order polynomials, so that the model looks like this:</p>
+<div class="math notranslate nohighlight">
+\[\hat{y}(w, x) = w_0 + w_1 x_1 + w_2 x_2 + w_3 x_1 x_2 + w_4 x_1^2 + w_5 x_2^2\]</div>
+<p>The (sometimes surprising) observation is that this is <em>still a linear model</em>:
+to see this, imagine creating a new set of features</p>
+<div class="math notranslate nohighlight">
+\[z = [x_1, x_2, x_1 x_2, x_1^2, x_2^2]\]</div>
+<p>With this re-labeling of the data, our problem can be written</p>
+<div class="math notranslate nohighlight">
+\[\hat{y}(w, z) = w_0 + w_1 z_1 + w_2 z_2 + w_3 z_3 + w_4 z_4 + w_5 z_5\]</div>
+<p>We see that the resulting <em>polynomial regression</em> is in the same class of
+linear models we considered above (i.e. the model is linear in <span class="math notranslate nohighlight">\(w\)</span>)
+and can be solved by the same techniques.  By considering linear fits within
+a higher-dimensional space built with these basis functions, the model has the
+flexibility to fit a much broader range of data.</p>
+<p>Here is an example of applying this idea to one-dimensional data, using
+polynomial features of varying degrees:</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../auto_examples/linear_model/plot_polynomial_interpolation.html"><img alt="../_images/sphx_glr_plot_polynomial_interpolation_001.png" src="../_images/sphx_glr_plot_polynomial_interpolation_001.png" style="width: 320.0px; height: 240.0px;" /></a>
+</figure>
+<p>This figure is created using the <a class="reference internal" href="generated/sklearn.preprocessing.PolynomialFeatures.html#sklearn.preprocessing.PolynomialFeatures" title="sklearn.preprocessing.PolynomialFeatures"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code></a> transformer, which
+transforms an input data matrix into a new data matrix of a given degree.
+It can be used as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span>
+<span class="go">array([[0, 1],</span>
+<span class="go">       [2, 3],</span>
+<span class="go">       [4, 5]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">array([[ 1.,  0.,  1.,  0.,  0.,  1.],</span>
+<span class="go">       [ 1.,  2.,  3.,  4.,  6.,  9.],</span>
+<span class="go">       [ 1.,  4.,  5., 16., 20., 25.]])</span>
+</pre></div>
+</div>
+<p>The features of <code class="docutils literal notranslate"><span class="pre">X</span></code> have been transformed from <span class="math notranslate nohighlight">\([x_1, x_2]\)</span> to
+<span class="math notranslate nohighlight">\([1, x_1, x_2, x_1^2, x_1 x_2, x_2^2]\)</span>, and can now be used within
+any linear model.</p>
+<p>This sort of preprocessing can be streamlined with the
+<a class="reference internal" href="compose.html#pipeline"><span class="std std-ref">Pipeline</span></a> tools. A single object representing a simple
+polynomial regression can be created and used as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)),</span>
+<span class="gp">... </span>                  <span class="p">(</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">))])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># fit to an order-3 polynomial data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span>
+<span class="go">array([ 3., -2.,  1., -1.])</span>
+</pre></div>
+</div>
+<p>The linear model trained on polynomial features is able to exactly recover
+the input polynomial coefficients.</p>
+<p>In some cases it’s not necessary to include higher powers of any single feature,
+but only the so-called <em>interaction features</em>
+that multiply together at most <span class="math notranslate nohighlight">\(d\)</span> distinct features.
+These can be gotten from <a class="reference internal" href="generated/sklearn.preprocessing.PolynomialFeatures.html#sklearn.preprocessing.PolynomialFeatures" title="sklearn.preprocessing.PolynomialFeatures"><code class="xref py py-class docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code></a> with the setting
+<code class="docutils literal notranslate"><span class="pre">interaction_only=True</span></code>.</p>
+<p>For example, when dealing with boolean features,
+<span class="math notranslate nohighlight">\(x_i^n = x_i\)</span> for all <span class="math notranslate nohighlight">\(n\)</span> and is therefore useless;
+but <span class="math notranslate nohighlight">\(x_i x_j\)</span> represents the conjunction of two booleans.
+This way, we can solve the XOR problem with a linear classifier:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Perceptron</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">^</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
+<span class="go">array([0, 1, 1, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">interaction_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span>
+<span class="go">array([[1, 0, 0, 0],</span>
+<span class="go">       [1, 0, 1, 0],</span>
+<span class="go">       [1, 1, 0, 0],</span>
+<span class="go">       [1, 1, 1, 1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">Perceptron</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="gp">... </span>                 <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And the classifier “predictions” are perfect:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">array([0, 1, 1, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+      </div>
+    <div class="container">
+      <footer class="sk-content-footer">
+            &copy; 2007 - 2022, scikit-learn developers (BSD License).
+          <a href="../_sources/modules/linear_model.rst.txt" rel="nofollow">Show this page source</a>
+      </footer>
+    </div>
+  </div>
+</div>
+<script src="../_static/js/vendor/bootstrap.min.js"></script>
+
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-22606712-2', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script>
+$(document).ready(function() {
+    /* Add a [>>>] button on the top-right corner of code samples to hide
+     * the >>> and ... prompts and the output and thus make the code
+     * copyable. */
+    var div = $('.highlight-python .highlight,' +
+                '.highlight-python3 .highlight,' +
+                '.highlight-pycon .highlight,' +
+		'.highlight-default .highlight')
+    var pre = div.find('pre');
+
+    // get the styles from the current theme
+    pre.parent().parent().css('position', 'relative');
+    var hide_text = 'Hide prompts and outputs';
+    var show_text = 'Show prompts and outputs';
+
+    // create and add the button to all the code blocks that contain >>>
+    div.each(function(index) {
+        var jthis = $(this);
+        if (jthis.find('.gp').length > 0) {
+            var button = $('<span class="copybutton">&gt;&gt;&gt;</span>');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+            jthis.prepend(button);
+        }
+        // tracebacks (.gt) contain bare text elements that need to be
+        // wrapped in a span to work with .nextUntil() (see later)
+        jthis.find('pre:has(.gt)').contents().filter(function() {
+            return ((this.nodeType == 3) && (this.data.trim().length > 0));
+        }).wrap('<span>');
+    });
+
+    // define the behavior of the button when it's clicked
+    $('.copybutton').click(function(e){
+        e.preventDefault();
+        var button = $(this);
+        if (button.data('hidden') === 'false') {
+            // hide the code output
+            button.parent().find('.go, .gp, .gt').hide();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'hidden');
+            button.css('text-decoration', 'line-through');
+            button.attr('title', show_text);
+            button.data('hidden', 'true');
+        } else {
+            // show the code output
+            button.parent().find('.go, .gp, .gt').show();
+            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'visible');
+            button.css('text-decoration', 'none');
+            button.attr('title', hide_text);
+            button.data('hidden', 'false');
+        }
+    });
+
+	/*** Add permalink buttons next to glossary terms ***/
+	$('dl.glossary > dt[id]').append(function() {
+		return ('<a class="headerlink" href="#' +
+			    this.getAttribute('id') +
+			    '" title="Permalink to this term">¶</a>');
+	});
+  /*** Hide navbar when scrolling down ***/
+  // Returns true when headerlink target matches hash in url
+  (function() {
+    hashTargetOnTop = function() {
+        var hash = window.location.hash;
+        if ( hash.length < 2 ) { return false; }
+
+        var target = document.getElementById( hash.slice(1) );
+        if ( target === null ) { return false; }
+
+        var top = target.getBoundingClientRect().top;
+        return (top < 2) && (top > -2);
+    };
+
+    // Hide navbar on load if hash target is on top
+    var navBar = document.getElementById("navbar");
+    var navBarToggler = document.getElementById("sk-navbar-toggler");
+    var navBarHeightHidden = "-" + navBar.getBoundingClientRect().height + "px";
+    var $window = $(window);
+
+    hideNavBar = function() {
+        navBar.style.top = navBarHeightHidden;
+    };
+
+    showNavBar = function() {
+        navBar.style.top = "0";
+    }
+
+    if (hashTargetOnTop()) {
+        hideNavBar()
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    hideOnScroll = function(lastScrollTop) {
+        if (($window.width() < 768) && (navBarToggler.getAttribute("aria-expanded") === 'true')) {
+            return;
+        }
+        if (lastScrollTop > 2 && (prevScrollpos <= lastScrollTop) || hashTargetOnTop()){
+            hideNavBar()
+        } else {
+            showNavBar()
+        }
+        prevScrollpos = lastScrollTop;
+    };
+
+    /*** high performance scroll event listener***/
+    var raf = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        window.oRequestAnimationFrame;
+    var lastScrollTop = $window.scrollTop();
+
+    if (raf) {
+        loop();
+    }
+
+    function loop() {
+        var scrollTop = $window.scrollTop();
+        if (lastScrollTop === scrollTop) {
+            raf(loop);
+            return;
+        } else {
+            lastScrollTop = scrollTop;
+            hideOnScroll(lastScrollTop);
+            raf(loop);
+        }
+    }
+  })();
+});
+
+</script>
+    
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    
+</body>
+</html>

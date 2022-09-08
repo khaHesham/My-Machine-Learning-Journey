@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.covariance`.EmpiricalCovariance
+====================================================
+
+.. currentmodule:: sklearn.covariance
+
+.. autoclass:: EmpiricalCovariance
+
+.. include:: sklearn.covariance.EmpiricalCovariance.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

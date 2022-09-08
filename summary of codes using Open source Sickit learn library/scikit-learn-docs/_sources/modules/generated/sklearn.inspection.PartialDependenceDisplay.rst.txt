@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.inspection`.PartialDependenceDisplay
+=========================================================
+
+.. currentmodule:: sklearn.inspection
+
+.. autoclass:: PartialDependenceDisplay
+
+.. include:: sklearn.inspection.PartialDependenceDisplay.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

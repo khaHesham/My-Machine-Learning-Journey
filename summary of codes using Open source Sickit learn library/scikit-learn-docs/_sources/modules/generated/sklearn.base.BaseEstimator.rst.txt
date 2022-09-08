@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.base`.BaseEstimator
+========================================
+
+.. currentmodule:: sklearn.base
+
+.. autoclass:: BaseEstimator
+
+.. include:: sklearn.base.BaseEstimator.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

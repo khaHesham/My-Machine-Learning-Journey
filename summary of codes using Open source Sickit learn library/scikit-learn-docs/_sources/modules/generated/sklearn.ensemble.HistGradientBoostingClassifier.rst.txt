@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.ensemble`.HistGradientBoostingClassifier
+=============================================================
+
+.. currentmodule:: sklearn.ensemble
+
+.. autoclass:: HistGradientBoostingClassifier
+
+.. include:: sklearn.ensemble.HistGradientBoostingClassifier.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

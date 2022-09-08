@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.base`.BiclusterMixin
+=========================================
+
+.. currentmodule:: sklearn.base
+
+.. autoclass:: BiclusterMixin
+
+.. include:: sklearn.base.BiclusterMixin.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

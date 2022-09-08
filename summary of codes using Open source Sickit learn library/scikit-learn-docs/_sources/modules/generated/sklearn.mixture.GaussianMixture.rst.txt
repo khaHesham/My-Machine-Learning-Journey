@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.mixture`.GaussianMixture
+=============================================
+
+.. currentmodule:: sklearn.mixture
+
+.. autoclass:: GaussianMixture
+
+.. include:: sklearn.mixture.GaussianMixture.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

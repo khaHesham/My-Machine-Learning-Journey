@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.decomposition`.DictionaryLearning
+======================================================
+
+.. currentmodule:: sklearn.decomposition
+
+.. autoclass:: DictionaryLearning
+
+.. include:: sklearn.decomposition.DictionaryLearning.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

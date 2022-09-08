@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.multiclass`.OneVsRestClassifier
+====================================================
+
+.. currentmodule:: sklearn.multiclass
+
+.. autoclass:: OneVsRestClassifier
+
+.. include:: sklearn.multiclass.OneVsRestClassifier.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

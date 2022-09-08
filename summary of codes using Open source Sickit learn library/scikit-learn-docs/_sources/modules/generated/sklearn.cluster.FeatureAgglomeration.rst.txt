@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.cluster`.FeatureAgglomeration
+==================================================
+
+.. currentmodule:: sklearn.cluster
+
+.. autoclass:: FeatureAgglomeration
+
+.. include:: sklearn.cluster.FeatureAgglomeration.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

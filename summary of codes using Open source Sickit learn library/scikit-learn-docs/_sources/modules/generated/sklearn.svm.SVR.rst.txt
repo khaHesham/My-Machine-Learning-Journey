@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.svm`.SVR
+=============================
+
+.. currentmodule:: sklearn.svm
+
+.. autoclass:: SVR
+
+.. include:: sklearn.svm.SVR.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.cluster`.AffinityPropagation
+=================================================
+
+.. currentmodule:: sklearn.cluster
+
+.. autoclass:: AffinityPropagation
+
+.. include:: sklearn.cluster.AffinityPropagation.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

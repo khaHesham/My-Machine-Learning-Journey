@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.preprocessing`.MinMaxScaler
+================================================
+
+.. currentmodule:: sklearn.preprocessing
+
+.. autoclass:: MinMaxScaler
+
+.. include:: sklearn.preprocessing.MinMaxScaler.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>

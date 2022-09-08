@@ -1,0 +1,12 @@
+﻿:mod:`sklearn.cluster`.OPTICS
+====================================
+
+.. currentmodule:: sklearn.cluster
+
+.. autoclass:: OPTICS
+
+.. include:: sklearn.cluster.OPTICS.examples
+
+.. raw:: html
+
+    <div class="clearer"></div>
