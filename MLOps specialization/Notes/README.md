@@ -25,5 +25,4 @@ Course 3: https://towardsdatascience.com/key-learning-points-from-mlops-speciali
 Course 4: https://towardsdatascience.com/key-learning-points-from-mlops-specialization-course-4-ee39bbd2864b
 
 ___
-#### Feedback/Suggestions
-Feel free to reach out to me on LinkedIn (https://linkedin.com/in/kennethleungty) or Medium (https://kennethleungty.medium.com)
+
